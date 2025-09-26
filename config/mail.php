@@ -34,6 +34,7 @@ return [
     |            "failover", "roundrobin"
     |
     */
+    'hr_email' => env('HR_EMAIL', 'hr@yourcompany.com'),
 
     'mailers' => [
 

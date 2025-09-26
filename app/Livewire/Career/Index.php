@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Career;
 
 use App\Models\JobPosting;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Carbon\Carbon;
 
-class Career extends Component
+class Index extends Component
 {
     use WithPagination;
 
@@ -94,7 +94,7 @@ class Career extends Component
 
     public function render()
     {
-        return view('livewire.career')
+        return view('livewire.career.index')
             ->layout('layouts.app');
     }
 }

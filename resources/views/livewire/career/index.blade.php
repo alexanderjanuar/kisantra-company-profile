@@ -313,7 +313,7 @@
                                     class="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors text-center">
                                     Tutup
                                 </button>
-                                <button
+                                <button @click="window.location.href = `/karir/${selectedJob?.id}/apply`"
                                     class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors text-center">
                                     Lamar Posisi Ini
                                 </button>
