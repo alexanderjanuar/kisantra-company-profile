@@ -26,7 +26,7 @@
                     Produk & Layanan
                 </a>
 
-                <a href="#"
+                <a href="{{ route('career.index') }}"
                     class="@if(request()->routeIs('career*') || request()->routeIs('job-postings*')) border-blue-500 text-gray-900 font-semibold @else border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 @endif inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition duration-150 ease-in-out">
                     Karir
                 </a>
@@ -89,7 +89,7 @@
                 Produk & Layanan
             </a>
 
-            <a href="#" @click="mobileMenuOpen = false"
+            <a href="{{ route('career.index') }}" @click="mobileMenuOpen = false"
                 class="@if(request()->routeIs('career*') || request()->routeIs('job-postings*')) bg-blue-50 text-blue-700 font-semibold @else text-gray-700 hover:bg-gray-50 @endif block px-3 py-2.5 rounded-lg text-base transition duration-150 ease-in-out">
                 <div class="flex items-center justify-between">
                     <span>Karir</span>

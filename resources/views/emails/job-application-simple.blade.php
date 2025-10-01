@@ -1,317 +1,456 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="id" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="x-apple-disable-message-reformatting">
     <title>Lamaran Kerja - {{ $jobTitle }}</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
+    <!--[if mso]>
+    <style type="text/css">
+        table {border-collapse: collapse; border-spacing: 0; margin: 0;}
+        div, td {padding: 0;}
+        div {margin: 0 !important;}
+    </style>
+    <noscript>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    </noscript>
+    <![endif]-->
+    <style type="text/css">
+        /* Reset styles */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #374151;
             margin: 0;
             padding: 0;
-            background-color: #f9fafb;
+            min-width: 100%;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
         }
-
-        .container {
+        
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        /* Typography */
+        body, table, td, p, a {
+            font-family: Arial, Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Main container */
+        .email-container {
             max-width: 600px;
             margin: 0 auto;
-            background-color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-
+        
+        /* Header styles */
         .header {
-            background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
-            color: white;
+            background-color: #111827;
             padding: 40px 30px;
             text-align: center;
+            border-bottom: 3px solid #111827;
         }
-
-        .header h1 {
-            margin: 0 0 10px 0;
-            font-size: 28px;
-            font-weight: 700;
-        }
-
-        .header h2 {
-            margin: 0;
-            font-size: 18px;
-            font-weight: 400;
-            opacity: 0.9;
-        }
-
-        .content {
-            padding: 30px;
-        }
-
-        .section {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #e91e63;
-            background-color: #f8fafc;
-        }
-
-        .section h3 {
-            margin: 0 0 20px 0;
-            font-size: 18px;
+        
+        .header-badge {
+            display: inline-block;
+            background-color: #000000;
+            color: #ffffff;
+            padding: 6px 14px;
+            font-size: 11px;
             font-weight: 600;
-            color: #1f2937;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
         }
-
-        .info-grid {
-            display: table;
+        
+        .header-title {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            line-height: 1.3;
+        }
+        
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            font-weight: 400;
+            margin: 0;
+        }
+        
+        /* Status bar */
+        .status-bar {
+            background-color: #f9fafb;
+            padding: 16px 30px;
+            border-bottom: 1px solid #d1d5db;
+        }
+        
+        .status-row {
             width: 100%;
         }
-
-        .info-row {
-            display: table-row;
-            margin-bottom: 12px;
-        }
-
-        .info-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .label {
-            display: table-cell;
-            font-weight: 600;
-            color: #4b5563;
-            width: 140px;
-            padding-right: 20px;
-            padding-bottom: 8px;
-            vertical-align: top;
-        }
-
-        .value {
-            display: table-cell;
-            color: #1f2937;
-            padding-bottom: 8px;
-            vertical-align: top;
-        }
-
-        .highlight-section {
-            background: linear-gradient(135deg, #fef3f4 0%, #fce7e8 100%);
-            border: 1px solid #fecaca;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .highlight-section .priority {
-            color: #dc2626;
-            font-weight: 700;
-            font-size: 16px;
-            margin: 0;
-        }
-
-        .footer {
-            background-color: #f3f4f6;
-            padding: 25px 30px;
-            border-top: 1px solid #e5e7eb;
-            text-align: center;
-        }
-
-        .footer p {
-            margin: 5px 0;
-            font-size: 14px;
-            color: #6b7280;
-        }
-
-        .footer .company {
-            font-weight: 600;
-            color: #374151;
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: #e91e63;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
+        
+        .status-left {
+            color: #059669;
+            font-size: 13px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
-        @media (max-width: 600px) {
-            .container {
-                margin: 0;
-                box-shadow: none;
+        
+        .status-right {
+            color: #6b7280;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: right;
+        }
+        
+        /* Content styles */
+        .content {
+            background-color: #ffffff;
+            padding: 40px 30px;
+        }
+        
+        .applicant-box {
+            background-color: #f9fafb;
+            border: 2px solid #e5e7eb;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .applicant-name {
+            color: #111827;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+        }
+        
+        .applicant-position {
+            color: #6b7280;
+            font-size: 15px;
+            margin: 0;
+        }
+        
+        /* Section styles */
+        .section {
+            margin-bottom: 32px;
+        }
+        
+        .section-header {
+            color: #111827;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0 0 16px 0;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .info-row {
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .info-label {
+            color: #6b7280;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 12px 20px 12px 0;
+            width: 140px;
+            vertical-align: top;
+        }
+        
+        .info-value {
+            color: #111827;
+            font-size: 14px;
+            padding: 12px 0;
+            vertical-align: top;
+        }
+        
+        .info-value a {
+            color: #111827;
+            text-decoration: none;
+            border-bottom: 1px solid #d1d5db;
+        }
+        
+        .info-value strong {
+            font-weight: 600;
+        }
+        
+        /* Attachment notice */
+        .attachment-notice {
+            background-color: #fffbeb;
+            border: 2px solid #fbbf24;
+            padding: 16px 20px;
+            margin-top: 32px;
+        }
+        
+        .attachment-text {
+            color: #92400e;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        /* Action buttons */
+        .button-wrapper {
+            padding: 32px 0 0 0;
+            border-top: 2px solid #e5e7eb;
+            margin-top: 32px;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #111827;
+            color: #ffffff !important;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid #111827;
+            margin: 8px 4px;
+        }
+        
+        .button-secondary {
+            background-color: #ffffff;
+            color: #111827 !important;
+            border: 2px solid #d1d5db;
+        }
+        
+        /* Footer styles */
+        .footer {
+            background-color: #f9fafb;
+            padding: 32px 30px;
+            text-align: center;
+            border-top: 2px solid #e5e7eb;
+        }
+        
+        .company-name {
+            color: #111827;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 0 8px 0;
+        }
+        
+        .footer-text {
+            color: #6b7280;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 4px 0;
+        }
+        
+        .divider {
+            height: 2px;
+            background-color: #e5e7eb;
+            margin: 20px auto;
+        }
+        
+        .footer-note {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            padding: 16px;
+            margin-top: 20px;
+        }
+        
+        .footer-note-text {
+            color: #6b7280;
+            font-size: 12px;
+            margin: 0;
+        }
+        
+        /* Responsive styles */
+        @media only screen and (max-width: 600px) {
+            .header, .content, .footer, .status-bar {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
             }
-
-            .header,
-            .content,
-            .footer {
-                padding: 20px;
-            }
-
-            .info-grid {
+            
+            .info-table {
                 display: block;
             }
-
+            
             .info-row {
                 display: block;
-                margin-bottom: 15px;
+                padding: 12px 0;
             }
-
-            .label,
-            .value {
+            
+            .info-label, .info-value {
                 display: block;
                 width: 100%;
                 padding: 0;
             }
-
-            .label {
-                margin-bottom: 5px;
+            
+            .info-label {
+                margin-bottom: 4px;
+            }
+            
+            .status-row td {
+                display: block;
+                width: 100%;
+                text-align: left !important;
+                padding: 4px 0;
+            }
+            
+            .button {
+                display: block;
+                width: 100%;
+                margin: 8px 0;
             }
         }
     </style>
 </head>
-
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>LAMARAN KERJA BARU</h1>
-            <h2>{{ $jobTitle }}</h2>
-            <span class="badge">Recruitment Portal</span>
-        </div>
-
-        <div class="content">
-            <div class="highlight-section">
-                <p class="priority">Lamaran baru memerlukan review segera</p>
-                <p style="margin: 5px 0 0 0; color: #374151;">Pelamar: <strong>{{ $applicationData['nama_lengkap']
-                        }}</strong></p>
-            </div>
-
-            <div class="section">
-                <h3>👤 Informasi Pelamar</h3>
-                <div class="info-grid">
-                    <div class="info-row">
-                        <div class="label">Nama Lengkap:</div>
-                        <div class="value">{{ $applicationData['nama_lengkap'] }}</div>
-                    </div>
-                    <div class="info-row">
-                        <div class="label">Email:</div>
-                        <div class="value"><a href="mailto:{{ $applicationData['email_aktif'] }}"
-                                style="color: #e91e63; text-decoration: none;">{{ $applicationData['email_aktif'] }}</a>
-                        </div>
-                    </div>
-                    <div class="info-row">
-                        <div class="label">Telepon/WA:</div>
-                        <div class="value"><a href="tel:{{ $applicationData['nomor_telepon'] }}"
-                                style="color: #e91e63; text-decoration: none;">{{ $applicationData['nomor_telepon']
-                                }}</a></div>
-                    </div>
-                    <div class="info-row">
-                        <div class="label">Alamat:</div>
-                        <div class="value">{{ $applicationData['alamat'] }}</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h3>💼 Informasi Posisi</h3>
-                <div class="info-grid">
-                    <div class="info-row">
-                        <div class="label">Divisi:</div>
-                        <div class="value">{{ $applicationData['divisi'] }}</div>
-                    </div>
-                    <div class="info-row">
-                        <div class="label">Posisi:</div>
-                        <div class="value"><strong>{{ $applicationData['nama_posisi'] }}</strong></div>
-                    </div>
-                    <div class="info-row">
-                        <div class="label">Sumber Info:</div>
-                        <div class="value">{{ $applicationData['sumber_info'] }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p class="company">PT Kisantra Indonesia</p>
-            <p>Diterima pada: <strong>{{ $applicationData['applied_at'] }}</strong></p>
-            <p>Email ini dikirim otomatis dari sistem recruitment Kisantra</p>
-            <p style="margin-top: 15px; font-style: italic;">💡 Untuk membalas pelamar, gunakan tombol Reply pada email
-                ini</p>
-        </div>
-    </div>
+<body style="margin: 0; padding: 0; background-color: #f5f5f5;">
+    
+    <!-- Email wrapper -->
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f5f5f5;">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <!-- Email container -->
+                <table role="presentation" class="email-container" width="600" cellspacing="0" cellpadding="0" border="0" style="background-color: #ffffff; max-width: 600px;">
+                    
+                    <!-- Header -->
+                    <tr>
+                        <td class="header">
+                            <div class="header-badge">LAMARAN BARU</div>
+                            <h1 class="header-title">Lamaran Kerja Baru</h1>
+                            <p class="header-subtitle">{{ $jobTitle }}</p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Status bar -->
+                    <tr>
+                        <td class="status-bar">
+                            <table role="presentation" class="status-row" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td class="status-left">Menunggu Review</td>
+                                    <td class="status-right">{{ $applicationData['applied_at'] }}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Main content -->
+                    <tr>
+                        <td class="content">
+                            
+                            <!-- Applicant highlight -->
+                            <div class="applicant-box">
+                                <p class="applicant-name">{{ $applicationData['nama_lengkap'] }}</p>
+                                <p class="applicant-position">Melamar untuk posisi {{ $applicationData['nama_posisi'] }}</p>
+                            </div>
+                            
+                            <!-- Personal Information Section -->
+                            <div class="section">
+                                <h2 class="section-header">Informasi Pribadi</h2>
+                                <table role="presentation" class="info-table" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                    <tr class="info-row">
+                                        <td class="info-label">Nama Lengkap</td>
+                                        <td class="info-value"><strong>{{ $applicationData['nama_lengkap'] }}</strong></td>
+                                    </tr>
+                                    <tr class="info-row">
+                                        <td class="info-label">Email</td>
+                                        <td class="info-value"><a href="mailto:{{ $applicationData['email_aktif'] }}">{{ $applicationData['email_aktif'] }}</a></td>
+                                    </tr>
+                                    <tr class="info-row">
+                                        <td class="info-label">Telepon (WA)</td>
+                                        <td class="info-value"><a href="tel:{{ $applicationData['nomor_telepon'] }}">{{ $applicationData['nomor_telepon'] }}</a></td>
+                                    </tr>
+                                    <tr class="info-row">
+                                        <td class="info-label">Alamat</td>
+                                        <td class="info-value">{{ $applicationData['alamat'] }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <!-- Position Information Section -->
+                            <div class="section">
+                                <h2 class="section-header">Informasi Posisi</h2>
+                                <table role="presentation" class="info-table" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                    <tr class="info-row">
+                                        <td class="info-label">Divisi</td>
+                                        <td class="info-value">{{ $applicationData['divisi'] }}</td>
+                                    </tr>
+                                    <tr class="info-row">
+                                        <td class="info-label">Posisi yang Dilamar</td>
+                                        <td class="info-value"><strong>{{ $applicationData['nama_posisi'] }}</strong></td>
+                                    </tr>
+                                    <tr class="info-row">
+                                        <td class="info-label">Sumber Informasi</td>
+                                        <td class="info-value">{{ $applicationData['sumber_info'] }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <!-- Attachment notice -->
+                            <div class="attachment-notice">
+                                <p class="attachment-text"><strong>LAMPIRAN:</strong> Dokumen pendukung (CV, portfolio, sertifikat) terlampir dalam email ini. Silakan review file yang diunggah oleh pelamar.</p>
+                            </div>
+                            
+                            <!-- Action buttons -->
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td class="button-wrapper" align="center">
+                                        <a href="mailto:{{ $applicationData['email_aktif'] }}" class="button">HUBUNGI PELAMAR</a>
+                                        <a href="tel:{{ $applicationData['nomor_telepon'] }}" class="button button-secondary">TELEPON VIA WHATSAPP</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td class="footer">
+                            <p class="company-name">PT Kisantra Indonesia</p>
+                            <p class="footer-text">Recruitment Management System</p>
+                            
+                            <div class="divider"></div>
+                            
+                            <p class="footer-text">Jl. Contoh No. 123, Jakarta, Indonesia</p>
+                            <p class="footer-text">
+                                Email: <a href="mailto:recruitment@kisantra.com" style="color: #6b7280; text-decoration: underline;">recruitment@kisantra.com</a><br>
+                                Telepon: <a href="tel:+6212345678" style="color: #6b7280; text-decoration: underline;">+62 123 456 78</a>
+                            </p>
+                            
+                            <div class="footer-note">
+                                <p class="footer-note-text">
+                                    Email ini dikirim secara otomatis dari sistem recruitment.<br>
+                                    Untuk membalas pelamar, gunakan tombol "Reply" atau klik "Hubungi Pelamar" di atas.
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
-
-</html>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>Lamaran Kerja - {{ $jobTitle }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .section {
-            margin-bottom: 20px;
-            padding: 15px;
-            border-left: 4px solid #e91e63;
-            background-color: #fafafa;
-        }
-
-        .label {
-            font-weight: bold;
-            display: inline-block;
-            width: 150px;
-        }
-
-        .value {
-            color: #2d3748;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="header">
-        <h1>LAMARAN KERJA BARU</h1>
-        <h2>{{ $jobTitle }}</h2>
-    </div>
-
-    <div class="section">
-        <h3>Informasi Pelamar</h3>
-        <p><span class="label">Nama Lengkap:</span> {{ $applicationData['nama_lengkap'] }}</p>
-        <p><span class="label">Email:</span> {{ $applicationData['email_aktif'] }}</p>
-        <p><span class="label">Telepon:</span> {{ $applicationData['nomor_telepon'] }}</p>
-        <p><span class="label">Alamat:</span> {{ $applicationData['alamat'] }}</p>
-        <p><span class="label">Divisi:</span> {{ $applicationData['divisi'] }}</p>
-        <p><span class="label">Posisi:</span> {{ $applicationData['nama_posisi'] }}</p>
-        <p><span class="label">Sumber Info:</span> {{ $applicationData['sumber_info'] }}</p>
-    </div>
-
-    <div class="section">
-        <p><strong>Diterima pada:</strong> {{ $applicationData['applied_at'] }}</p>
-        <p><em>Untuk membalas pelamar, gunakan tombol Reply pada email ini.</em></p>
-    </div>
-</body>
-
 </html>

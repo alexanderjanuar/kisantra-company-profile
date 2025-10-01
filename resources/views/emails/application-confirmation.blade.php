@@ -1,36 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="id" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="x-apple-disable-message-reformatting">
     <title>Konfirmasi Lamaran - {{ $jobTitle }}</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
+    <style type="text/css">
+        /* Reset styles */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #374151;
             margin: 0;
             padding: 0;
-            background-color: #f9fafb;
+            min-width: 100%;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
         }
 
-        .container {
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Typography */
+        body,
+        table,
+        td,
+        p,
+        a {
+            font-family: Arial, Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Main container */
+        .email-container {
             max-width: 600px;
             margin: 0 auto;
-            background-color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
+        /* Header styles */
         .header {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
+            background-color: #111827;
             padding: 40px 30px;
             text-align: center;
+            border-bottom: 3px solid #111827;
         }
 
         .logo {
@@ -38,236 +67,335 @@
         }
 
         .logo img {
-            max-width: 200px;
+            max-width: 180px;
             height: auto;
-            filter: brightness(0) invert(1);
+            display: block;
+            margin: 0 auto;
         }
 
-        .header h1 {
-            margin: 0 0 10px 0;
+        .header-title {
+            color: #ffffff;
             font-size: 28px;
             font-weight: 700;
+            margin: 0 0 8px 0;
+            line-height: 1.3;
         }
 
-        .header p {
-            margin: 0;
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.9);
             font-size: 16px;
-            opacity: 0.9;
+            font-weight: 400;
+            margin: 0;
         }
 
+        /* Content styles */
         .content {
-            padding: 30px;
+            background-color: #ffffff;
+            padding: 40px 30px;
         }
 
-        .success-message {
-            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-            border: 1px solid #a7f3d0;
-            border-radius: 8px;
-            padding: 25px;
+        .success-box {
+            background-color: #ffffff;
+            border: 2px solid #111827;
+            padding: 24px;
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 32px;
         }
 
-        .success-icon {
-            font-size: 48px;
-            color: #10b981;
-            margin-bottom: 15px;
+        .success-title {
+            color: #111827;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0 0 12px 0;
         }
 
+        .success-text {
+            color: #374151;
+            font-size: 15px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Section styles */
         .section {
-            margin-bottom: 25px;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #f8fafc;
-            border-left: 4px solid #10b981;
+            margin-bottom: 32px;
         }
 
-        .section h3 {
-            margin: 0 0 15px 0;
-            font-size: 18px;
-            font-weight: 600;
-            color: #1f2937;
+        .section-header {
+            color: #111827;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0 0 16px 0;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e5e7eb;
         }
 
-        .info-grid {
-            display: table;
+        .info-table {
             width: 100%;
+            border-collapse: collapse;
         }
 
         .info-row {
-            display: table-row;
+            border-bottom: 1px solid #f3f4f6;
         }
 
-        .label {
-            display: table-cell;
+        .info-label {
+            color: #6b7280;
+            font-size: 13px;
             font-weight: 600;
-            color: #4b5563;
+            padding: 12px 20px 12px 0;
             width: 120px;
-            padding-right: 15px;
-            padding-bottom: 8px;
             vertical-align: top;
         }
 
-        .value {
-            display: table-cell;
-            color: #1f2937;
-            padding-bottom: 8px;
+        .info-value {
+            color: #111827;
+            font-size: 14px;
+            padding: 12px 0;
             vertical-align: top;
         }
 
+        .info-value strong {
+            font-weight: 600;
+        }
+
+        /* Next steps notice */
         .next-steps {
-            background: linear-gradient(135deg, #fef3f4 0%, #fce7e8 100%);
-            border: 1px solid #fecaca;
-            border-radius: 8px;
+            background-color: #fffbeb;
+            border: 2px solid #fbbf24;
             padding: 20px;
-            margin: 25px 0;
+            margin-bottom: 32px;
         }
 
-        .next-steps h3 {
-            color: #dc2626;
-            margin: 0 0 15px 0;
+        .next-steps-title {
+            color: #92400e;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+            text-transform: uppercase;
         }
 
-        .next-steps ul {
+        .next-steps-list {
+            color: #374151;
+            font-size: 14px;
+            line-height: 1.6;
             margin: 0;
             padding-left: 20px;
-            color: #374151;
         }
 
-        .next-steps li {
+        .next-steps-list li {
             margin-bottom: 8px;
         }
 
-        .footer {
-            background-color: #f3f4f6;
-            padding: 25px 30px;
-            border-top: 1px solid #e5e7eb;
-            text-align: center;
-        }
-
-        .footer p {
-            margin: 5px 0;
-            font-size: 14px;
-            color: #6b7280;
-        }
-
-        .footer .company {
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 10px;
-        }
-
-        .contact-info {
+        /* Contact box */
+        .contact-box {
             background-color: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
+            border: 2px solid #e5e7eb;
+            padding: 20px;
+            margin-bottom: 32px;
         }
 
-        @media (max-width: 600px) {
-            .container {
-                margin: 0;
-                box-shadow: none;
-            }
+        .contact-title {
+            color: #111827;
+            font-size: 15px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        .contact-text {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .contact-text a {
+            color: #111827;
+            text-decoration: none;
+            border-bottom: 1px solid #d1d5db;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #f9fafb;
+            padding: 32px 30px;
+            text-align: center;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .company-name {
+            color: #111827;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 0 12px 0;
+        }
+
+        .footer-text {
+            color: #6b7280;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 4px 0;
+        }
+
+        .divider {
+            height: 2px;
+            background-color: #e5e7eb;
+            margin: 20px auto;
+        }
+
+        .footer-highlight {
+            color: #111827;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 16px 0 0 0;
+        }
+
+        /* Responsive styles */
+        @media only screen and (max-width: 600px) {
 
             .header,
             .content,
             .footer {
-                padding: 20px;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
             }
 
-            .info-grid {
+            .logo img {
+                max-width: 150px !important;
+            }
+
+            .header-title {
+                font-size: 24px !important;
+            }
+
+            .info-table {
                 display: block;
             }
 
             .info-row {
                 display: block;
-                margin-bottom: 15px;
+                padding: 12px 0;
             }
 
-            .label,
-            .value {
+            .info-label,
+            .info-value {
                 display: block;
                 width: 100%;
                 padding: 0;
             }
 
-            .label {
-                margin-bottom: 5px;
+            .info-label {
+                margin-bottom: 4px;
             }
         }
     </style>
 </head>
 
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <img src="cid:company-logo.png" alt="PT Kisantra Indonesia Logo">
-            </div>
-            <h1>Terima Kasih!</h1>
-            <p>Lamaran Anda telah berhasil dikirim</p>
-        </div>
+<body style="margin: 0; padding: 0; background-color: #f5f5f5;">
 
-        <div class="content">
-            <div class="success-message">
-                <div class="success-icon">✅</div>
-                <h2 style="margin: 0 0 10px 0; color: #065f46;">Lamaran Berhasil Dikirim</h2>
-                <p style="margin: 0; color: #374151;">Halo <strong>{{ $applicantName }}</strong>, terima kasih telah
-                    melamar untuk posisi <strong>{{ $jobTitle }}</strong> di PT Kisantra Indonesia.</p>
-            </div>
+    <!-- Email wrapper -->
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+        style="background-color: #f5f5f5;">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <!-- Email container -->
+                <table role="presentation" class="email-container" width="600" cellspacing="0" cellpadding="0"
+                    border="0" style="background-color: #ffffff; max-width: 600px;">
 
-            <div class="section">
-                <h3>📋 Ringkasan Lamaran Anda</h3>
-                <div class="info-grid">
-                    <div class="info-row">
-                        <div class="label">Posisi:</div>
-                        <div class="value"><strong>{{ $applicationData['nama_posisi'] }}</strong></div>
-                    </div>
-                    <div class="info-row">
-                        <div class="label">Divisi:</div>
-                        <div class="value">{{ $applicationData['divisi'] }}</div>
-                    </div>
-                    <div class="info-row">
-                        <div class="label">Tanggal:</div>
-                        <div class="value">{{ $applicationData['applied_at'] }}</div>
-                    </div>
-                    <div class="info-row">
-                        <div class="label">Email:</div>
-                        <div class="value">{{ $applicationData['email_aktif'] }}</div>
-                    </div>
-                </div>
-            </div>
+                    <!-- Header -->
+                    <tr>
+                        <td class="header">
+                            <div class="logo">
+                                <img src="{{ asset('image/Logo/Logo Vertical.png') }}" alt="PT Kisantra Indonesia"
+                                    width="180">
+                            </div>
+                            <h1 class="header-title">Terima Kasih!</h1>
+                            <p class="header-subtitle">Lamaran Anda telah berhasil dikirim</p>
+                        </td>
+                    </tr>
 
-            <div class="next-steps">
-                <h3>🚀 Langkah Selanjutnya</h3>
-                <ul>
-                    <li>Tim HR kami akan meninjau lamaran Anda dalam waktu <strong>7-14 hari kerja</strong></li>
-                    <li>Jika profil Anda sesuai, kami akan menghubungi melalui email atau telepon</li>
-                    <li>Pastikan nomor telepon dan email Anda selalu aktif</li>
-                    <li>Periksa folder spam/junk email secara berkala</li>
-                </ul>
-            </div>
+                    <!-- Main content -->
+                    <tr>
+                        <td class="content">
 
-            <div class="contact-info">
-                <h4 style="margin: 0 0 10px 0; color: #374151;">📞 Butuh Bantuan?</h4>
-                <p style="margin: 0; font-size: 14px; color: #6b7280;">
-                    Jika Anda memiliki pertanyaan, silakan hubungi tim recruitment kami di
-                    <a href="mailto:recruitment@kisantra.com"
-                        style="color: #10b981; text-decoration: none;">recruitment@kisantra.com</a>
-                </p>
-            </div>
-        </div>
+                            <!-- Success message -->
+                            <div class="success-box">
+                                <h2 class="success-title">Lamaran Berhasil Dikirim</h2>
+                                <p class="success-text">
+                                    Halo <strong>{{ $applicantName }}</strong>, terima kasih telah melamar untuk posisi
+                                    <strong>{{ $jobTitle }}</strong> di PT Kisantra Indonesia.
+                                </p>
+                            </div>
 
-        <div class="footer">
-            <p class="company">PT Kisantra Indonesia</p>
-            <p>Email ini dikirim otomatis dari sistem recruitment kami</p>
-            <p>Mohon untuk tidak membalas email ini secara langsung</p>
-            <p style="margin-top: 15px; color: #374151;"><strong>Terima kasih atas minat Anda bergabung dengan
-                    kami!</strong></p>
-        </div>
-    </div>
+                            <!-- Application Summary Section -->
+                            <div class="section">
+                                <h3 class="section-header">Ringkasan Lamaran Anda</h3>
+                                <table role="presentation" class="info-table" width="100%" cellspacing="0"
+                                    cellpadding="0" border="0">
+                                    <tr class="info-row">
+                                        <td class="info-label">Posisi</td>
+                                        <td class="info-value"><strong>{{ $applicationData['nama_posisi'] }}</strong>
+                                        </td>
+                                    </tr>
+                                    <tr class="info-row">
+                                        <td class="info-label">Divisi</td>
+                                        <td class="info-value">{{ $applicationData['divisi'] }}</td>
+                                    </tr>
+                                    <tr class="info-row">
+                                        <td class="info-label">Tanggal</td>
+                                        <td class="info-value">{{ $applicationData['applied_at'] }}</td>
+                                    </tr>
+                                    <tr class="info-row">
+                                        <td class="info-label">Email</td>
+                                        <td class="info-value">{{ $applicationData['email_aktif'] }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!-- Next steps notice -->
+                            <div class="next-steps">
+                                <h3 class="next-steps-title">Langkah Selanjutnya</h3>
+                                <ul class="next-steps-list">
+                                    <li>Tim HR kami akan meninjau lamaran Anda dalam waktu <strong>7-14 hari
+                                            kerja</strong></li>
+                                    <li>Jika profil Anda sesuai, kami akan menghubungi melalui email atau telepon</li>
+                                    <li>Pastikan nomor telepon dan email Anda selalu aktif</li>
+                                    <li>Periksa folder spam/junk email secara berkala</li>
+                                </ul>
+                            </div>
+
+                            <!-- Contact box -->
+                            <div class="contact-box">
+                                <h4 class="contact-title">Butuh Bantuan?</h4>
+                                <p class="contact-text">
+                                    Jika Anda memiliki pertanyaan, silakan hubungi tim recruitment kami di
+                                    <a href="mailto:recruitment@kisantra.com">recruitment@kisantra.com</a>
+                                </p>
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td class="footer">
+                            <p class="company-name">PT Kisantra Indonesia</p>
+                            <p class="footer-text">Email ini dikirim otomatis dari sistem recruitment kami</p>
+                            <p class="footer-text">Mohon untuk tidak membalas email ini secara langsung</p>
+
+                            <div class="divider"></div>
+
+                            <p class="footer-highlight">Terima kasih atas minat Anda bergabung dengan kami!</p>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>

@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 
 class JobApplicationEmail extends Mailable
@@ -16,16 +17,18 @@ class JobApplicationEmail extends Mailable
     public $jobTitle;
     public $applicantName;
     public $applicantEmail;
+    public $files;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($applicationData, $jobTitle, $applicantName, $applicantEmail)
+    public function __construct($applicationData, $jobTitle, $applicantName, $applicantEmail, $files = [])
     {
         $this->applicationData = $applicationData;
         $this->jobTitle = $jobTitle;
         $this->applicantName = $applicantName;
         $this->applicantEmail = $applicantEmail;
+        $this->files = $files;
     }
 
     /**
@@ -54,6 +57,20 @@ class JobApplicationEmail extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        $attachments = [];
+
+        // Add uploaded files as attachments
+        if (!empty($this->files)) {
+            foreach ($this->files as $file) {
+                // Check if file is a Livewire TemporaryUploadedFile
+                if ($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile) {
+                    $attachments[] = Attachment::fromPath($file->getRealPath())
+                        ->as($file->getClientOriginalName())
+                        ->withMime($file->getMimeType());
+                }
+            }
+        }
+
+        return $attachments;
     }
 }

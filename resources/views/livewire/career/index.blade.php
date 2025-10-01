@@ -310,11 +310,11 @@
                             </div>
                             <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
                                 <button @click="closeModal()"
-                                    class="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors text-center">
+                                    class="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors text-center cursor-pointer">
                                     Tutup
                                 </button>
                                 <button @click="window.location.href = `/karir/${selectedJob?.id}/apply`"
-                                    class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors text-center">
+                                    class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors text-center cursor-pointer">
                                     Lamar Posisi Ini
                                 </button>
                             </div>
