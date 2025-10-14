@@ -3,9 +3,8 @@
 use App\Livewire\Career\Index;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('layouts.app');
-});
+
+Route::get('/', App\Livewire\Home\Index::class)->name('home.index');
 
 // In routes/web.php
 Route::get('/karir', Index::class)->name('career.index');

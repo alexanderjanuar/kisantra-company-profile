@@ -4,8 +4,8 @@
         {{-- Success Message --}}
         @if($showSuccessMessage)
         <div class="mb-8 bg-white border border-gray-200 rounded-lg shadow-sm p-8 text-center">
-            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-gray-100 mb-6">
-                <svg class="h-8 w-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
+                <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
             </div>
@@ -13,7 +13,7 @@
             <p class="text-gray-600 mb-6 max-w-lg mx-auto leading-relaxed">
                 Terima kasih telah melamar untuk posisi <strong class="font-semibold text-gray-900">{{
                     $jobPosting->title }}</strong>.
-                Tim kami akan meninjau lamaran Anda dan menghubungi jika profil Anda sesuai dengan kebutuhan.
+                Data Anda telah tersimpan dalam sistem kami dan tim akan meninjau lamaran Anda.
             </p>
             <button wire:click="backToJobs"
                 class="inline-flex items-center bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
@@ -174,7 +174,7 @@
                                     Sumber Informasi Lowongan <span class="text-red-600">*</span>
                                 </label>
                                 <div class="md:col-span-2">
-                                    <select id="sumber_info" x-model="sumberInfo" wire:model.defer="sumber_info"
+                                    <select id="sumber_info" x-model="sumberInfo" wire:model="sumber_info"
                                         class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-colors">
                                         <option value="">Pilih sumber informasi</option>
                                         @foreach($sumberInfoOptions as $value => $label)
@@ -188,7 +188,7 @@
                             </div>
 
                             {{-- Sumber Info Lainnya --}}
-                            <div x-show="sumberInfo === 'Lainnya'" x-transition:enter="transition ease-out duration-300"
+                            <div x-show="sumberInfo === 'other'" x-transition:enter="transition ease-out duration-300"
                                 x-transition:enter-start="opacity-0 transform -translate-y-2"
                                 x-transition:enter-end="opacity-100 transform translate-y-0" style="display: none;"
                                 class="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
@@ -224,7 +224,8 @@
                                     <input type="text" id="divisi" wire:model.defer="divisi" disabled readonly
                                         class="w-full px-4 py-2.5 border border-gray-200 rounded-lg bg-gray-50 text-gray-600 cursor-not-allowed"
                                         value="{{ $jobPosting->division ?: 'Lainnya' }}">
-                                    <p class="mt-1.5 text-xs text-gray-500">Terisi otomatis sesuai posisi yang dilamar
+                                    <p class="mt-1.5 text-xs text-gray-500">API akan menentukan department otomatis
+                                        berdasarkan posisi
                                     </p>
                                 </div>
                             </div>
@@ -386,7 +387,7 @@
                                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                     </path>
                                 </svg>
-                                Mengirim...
+                                Mengirim
                             </span>
                         </button>
                     </div>
