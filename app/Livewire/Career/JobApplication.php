@@ -31,7 +31,7 @@ class JobApplication extends Component
     public $apiResponse = null;
 
     // API Configuration
-    public $apiUrl = 'https://attendance.kisantra.com';
+    public $apiUrl = 'https://attendance.kisantra.com/api/job-applications';
 
     // Predefined options - Map to API enum values
     public $sumberInfoOptions = [
