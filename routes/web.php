@@ -11,5 +11,5 @@ Route::get('/', App\Livewire\Home\Index::class)->name('home.index');
 Route::get('/karir', Index::class)->name('career.index');
 Route::get('/karir/{jobPosting}/apply', \App\Livewire\Career\JobApplication::class)->name('career.apply');
 
-Route::redirect('/laravel/login', '/login')->name('login');
+// Route::redirect('/laravel/login', '/login')->name('login');
 
