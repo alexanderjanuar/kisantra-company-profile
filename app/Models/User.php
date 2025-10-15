@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Filament\Panel;
 
 
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -48,8 +48,8 @@ class User extends Authenticatable implements FilamentUser
         ];
     }
 
-    public function canAccessPanel(Panel $panel): bool
-    {
-        return true;
-    }
+    // public function canAccessPanel(Panel $panel): bool
+    // {
+    //     return true;
+    // }
 }
