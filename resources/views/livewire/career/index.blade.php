@@ -45,7 +45,7 @@
                     data-aos-duration="1000">
                     Mulai Berkarya dengan Penuh Makna
                 </h1>
-                <p class="text-lg sm:text-xl font-bold text-gray-900 max-w-3xl mx-auto px-4" data-aos="fade-up"
+                <p class="text-lg sm:text-xl font-normal  text-gray-900 max-w-3xl mx-auto px-4" data-aos="fade-up"
                     data-aos-delay="200" data-aos-duration="1000">
                     Filosofi kami sederhana — merekrut tim yang beragam dan bersemangat serta membangun budaya yang
                     memberdayakan Anda untuk memberikan yang terbaik.

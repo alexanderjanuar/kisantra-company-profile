@@ -5,11 +5,13 @@
             <!-- Company Info -->
             <div class="col-span-1 lg:col-span-2">
                 <div class="flex items-center mb-4">
-                    <svg class="h-8 w-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <img src="{{ asset('image/Logo/OnlyLogo.png') }}" alt="Logo"
+                        class="w-8 h-8">
+                    {{-- <svg class="h-8 w-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0a2 2 0 002-2m-2 2a2 2 0 01-2 2m2-2H9a2 2 0 01-2-2m0 0V9a2 2 0 012-2h2a2 2 0 012 2v10">
                         </path>
-                    </svg>
+                    </svg> --}}
                     <span class="ml-2 text-xl font-bold">KISANTRA</span>
                 </div>
                 <p class="text-gray-300 mb-4 max-w-md">
@@ -26,7 +28,7 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-150 ease-in-out">
+                    <a href="https://www.instagram.com/kisantra.official" target="_blank" class="text-gray-400 hover:text-blue-400 transition duration-150 ease-in-out">
                         <span class="sr-only">Instagram</span>
                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
@@ -93,28 +95,8 @@
                 <h3 class="text-lg font-semibold mb-4 text-white">Karir</h3>
                 <ul class="space-y-3">
                     <li>
-                        <a href="#" class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
+                        <a href="{{ route('career.index') }}" class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
                             Lowongan Kerja
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
-                            Teknologi
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
-                            Marketing
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
-                            Keuangan
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
-                            Tips Karir
                         </a>
                     </li>
                 </ul>
@@ -135,11 +117,11 @@
                     </svg>
                     <div>
                         <h4 class="font-semibold text-white mb-1">Alamat Kantor</h4>
-                        <p class="text-gray-300 text-sm">
-                            Jl. Teknologi Raya No. 123<br>
-                            Jakarta Selatan 12345<br>
+                        <a href="https://maps.app.goo.gl/kyo3XAtAM6zz5hnY6" target="_blank" class="text-gray-300 text-sm">
+                            Jl. A. Wahab Syahranie Perum Pondok Alam Indah Nomor 3D<br>
+                            Sempaja Sel., Kec. Samarinda Utara, Kota Samarinda, Kalimantan Timur 75119<br>
                             Indonesia
-                        </p>
+                        </a>
                     </div>
                 </div>
 
@@ -153,8 +135,8 @@
                     <div>
                         <h4 class="font-semibold text-white mb-1">Telepon</h4>
                         <p class="text-gray-300 text-sm">
-                            +62 21 1234 5678<br>
-                            +62 812 3456 7890
+                            <a href="https://wa.me/message/DHM4YJFMMAV2A1" target="_blank">+62 811 8000 9787</a> <br>
+                            <a href="https://wa.me/message/DHM4YJFMMAV2A1" target="_blank">+63 212 8944 772</a> <br>
                         </p>
                     </div>
                 </div>
@@ -169,8 +151,8 @@
                     <div>
                         <h4 class="font-semibold text-white mb-1">Email</h4>
                         <p class="text-gray-300 text-sm">
-                            info@teknologimaju.com<br>
-                            karir@teknologimaju.com
+                            <a href="mailto:kisantra.official@gmail.com">kisantra.official@gmail.com</a> <br>
+                            <a href="mailto:recruitment@kisantra.com">recruitment@kisantra.com</a> <br>
                         </p>
                     </div>
                 </div>
