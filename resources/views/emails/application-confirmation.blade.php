@@ -309,8 +309,7 @@
                     <tr>
                         <td class="header">
                             <div class="logo">
-                                <img src="{{ asset('image/Logo/Logo Vertical.png') }}" alt="PT Kisantra Indonesia"
-                                    width="180">
+                                <img src="{{ asset('image/Logo/OnlyLogo.png') }}" alt="Logo">
                             </div>
                             <h1 class="header-title">Terima Kasih!</h1>
                             <p class="header-subtitle">Lamaran Anda telah berhasil dikirim</p>

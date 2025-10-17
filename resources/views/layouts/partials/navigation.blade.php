@@ -1,4 +1,42 @@
-<nav class="bg-white border-b border-gray-200" x-data="{ mobileMenuOpen: false }">
+<nav class="bg-white/80 backdrop-blur-sm border-b border-gray-200/50 fixed top-0 left-0 right-0 z-50 transition-transform duration-300"
+    x-data="{ 
+         mobileMenuOpen: false,
+         scrolled: false,
+         lastScroll: 0,
+         showNav: true,
+         scrollTimeout: null
+     }" x-init="
+         window.addEventListener('scroll', () => {
+             let currentScroll = window.pageYOffset;
+             
+             // Check if scrolled from top
+             scrolled = currentScroll > 10;
+             
+             // Hide nav when scrolling and not at top
+             if (currentScroll > 100) {
+                 showNav = false;
+             }
+             
+             // If at top, always show nav
+             if (currentScroll <= 0) {
+                 showNav = true;
+             }
+             
+             // Clear existing timeout
+             clearTimeout(scrollTimeout);
+             
+             // Show nav after scrolling stops (idle for 150ms) - only if not at top
+             if (currentScroll > 0) {
+                 scrollTimeout = setTimeout(() => {
+                     showNav = true;
+                 }, 150);
+             }
+             
+             lastScroll = currentScroll;
+         });
+     " :class="{ 
+         '-translate-y-full': !showNav
+     }">
     <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-14 sm:h-16">
             {{-- Left side - Logo --}}
@@ -26,7 +64,7 @@
                     Produk & Layanan
                 </a>
 
-                <a href="{{ route('career.index') }}"
+                <a href="{{ route('career.index') }}" wire:navigate
                     class="@if(request()->routeIs('career*') || request()->routeIs('job-postings*')) border-blue-500 text-gray-900 font-semibold @else border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 @endif inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition duration-150 ease-in-out">
                     Karir
                 </a>
@@ -36,7 +74,7 @@
                     Berita
                 </a>
 
-                <a href="#"
+                <a href="{{ route('contact.index') }}" wire:navigate
                     class="@if(request()->routeIs('contact')) border-blue-500 text-gray-900 @else border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 @endif inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition duration-150 ease-in-out">
                     Kontak
                 </a>
@@ -70,7 +108,7 @@
         x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2"
         x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150"
         x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2"
-        class="lg:hidden bg-white border-b border-gray-200 shadow-lg" id="mobile-menu">
+        class="lg:hidden bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-lg" id="mobile-menu">
 
         <!-- Simple mobile menu -->
         <div class="px-4 py-3 space-y-1">
@@ -89,7 +127,7 @@
                 Produk & Layanan
             </a>
 
-            <a href="{{ route('career.index') }}" @click="mobileMenuOpen = false"
+            <a href="{{ route('career.index') }}" @click="mobileMenuOpen = false" wire:navigate
                 class="@if(request()->routeIs('career*') || request()->routeIs('job-postings*')) bg-blue-50 text-blue-700 font-semibold @else text-gray-700 hover:bg-gray-50 @endif block px-3 py-2.5 rounded-lg text-base transition duration-150 ease-in-out">
                 <div class="flex items-center justify-between">
                     <span>Karir</span>
@@ -106,7 +144,7 @@
                 Berita
             </a>
 
-            <a href="#" @click="mobileMenuOpen = false"
+            <a href="{{ route('contact.index') }}" @click="mobileMenuOpen = false" wire:navigate
                 class="@if(request()->routeIs('contact')) bg-blue-50 text-blue-700 font-medium @else text-gray-700 hover:bg-gray-50 @endif block px-3 py-2.5 rounded-lg text-base transition duration-150 ease-in-out">
                 Kontak
             </a>
@@ -120,3 +158,6 @@
         </div>
     </div>
 </nav>
+
+<!-- Add padding to body content so it's not hidden behind fixed nav -->
+<div class="h-14 sm:h-16"></div>

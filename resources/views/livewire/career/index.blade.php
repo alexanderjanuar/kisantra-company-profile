@@ -1,51 +1,63 @@
 <div class="min-h-screen mb-52" x-data="{ 
-    showModal: false, 
-    selectedJob: null,
-    showStickyHeader: false,
-    openModal(job) {
-        this.selectedJob = job;
-        this.showModal = true;
-        document.body.style.overflow = 'hidden';
-    },
-    closeModal() {
-        this.showModal = false;
-        this.selectedJob = null;
-        document.body.style.overflow = 'auto';
-        this.showStickyHeader = false;
-    },
-    shareJob() {
-        if (navigator.share) {
-            navigator.share({
-                title: this.selectedJob?.title,
-                text: `Lihat lowongan kerja ini: ${this.selectedJob?.title}`,
-                url: window.location.href
+        showModal: false, 
+        selectedJob: null,
+        showStickyHeader: false,
+        openModal(job) {
+            this.selectedJob = job;
+            this.showModal = true;
+            document.body.style.overflow = 'hidden';
+        },
+        closeModal() {
+            this.showModal = false;
+            this.selectedJob = null;
+            document.body.style.overflow = 'auto';
+            this.showStickyHeader = false;
+        },
+        shareJob() {
+            if (navigator.share) {
+                navigator.share({
+                    title: this.selectedJob?.title,
+                    text: `Lihat lowongan kerja ini: ${this.selectedJob?.title}`,
+                    url: window.location.href
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link lowongan kerja berhasil disalin!');
+            }
+        },
+        formatDate(dateString) {
+            if (!dateString) return 'Terbuka';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('id-ID', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
             });
-        } else {
-            // Fallback: copy to clipboard
-            navigator.clipboard.writeText(window.location.href);
-            alert('Link lowongan kerja berhasil disalin!');
         }
-    },
-    formatDate(dateString) {
-        if (!dateString) return 'Terbuka';
-        const date = new Date(dateString);
-        return date.toLocaleDateString('id-ID', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        });
-    }
-}" @keydown.escape="closeModal()">
+    }" @keydown.escape="closeModal()">
 
-    {{-- Hero Section --}}
-    <div class="bg-white">
-        <div class="max-w-screen-2xl mx-auto px-4 sm:px-8 lg:px-16 py-12 sm:py-20">
-            <div class="text-center">
+    {{-- Pattern Header Section --}}
+    <div class="relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-repeat opacity-40"
+                style="background-image: url('{{ asset('image/Logo/KisantraPattern.jpg') }}'); background-size: 1200px 1200px;">
+            </div>
+            {{-- Blur overlay from all sides to center --}}
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
+            <div class="absolute inset-0"
+                style="background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 30%, rgba(255,255,255,0.3) 60%, rgba(255,255,255,1) 100%);">
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-8 lg:px-16 py-12 sm:py-20">
+            <div class="text-center py-8 rounded-2xl">
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6" data-aos="fade-up"
                     data-aos-duration="1000">
                     Mulai Berkarya dengan Penuh Makna
                 </h1>
-                <p class="text-lg sm:text-xl font-normal  text-gray-900 max-w-3xl mx-auto px-4" data-aos="fade-up"
+                <p class="text-lg sm:text-xl font-normal text-gray-900 max-w-3xl mx-auto px-4" data-aos="fade-up"
                     data-aos-delay="200" data-aos-duration="1000">
                     Filosofi kami sederhana — merekrut tim yang beragam dan bersemangat serta membangun budaya yang
                     memberdayakan Anda untuk memberikan yang terbaik.
@@ -58,7 +70,7 @@
     </div>
 
     {{-- Job Listings --}}
-    <div class="max-w-screen-2xl mx-auto px-4 sm:px-8 lg:px-16 py-8 sm:py-16">
+    <div class="max-w-screen-2xl mx-auto px-4 sm:px-8 lg:px-16 py-8 sm:py-16 bg-white">
         <div class="space-y-16 sm:space-y-24">
             @php
             $jobsByDivision = $this->jobs->groupBy('division');
@@ -313,10 +325,10 @@
                                     class="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors text-center cursor-pointer">
                                     Tutup
                                 </button>
-                                <button @click="window.location.href = `/karir/${selectedJob?.id}/apply`"
-                                    class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors text-center cursor-pointer">
+                                <a :href="`/karir/${selectedJob?.id}/apply`" wire:navigate
+                                    class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors text-center cursor-pointer inline-block">
                                     Lamar Posisi Ini
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
