@@ -230,7 +230,7 @@
                                 3D<br>
                                 Sempaja Sel., Kec. Samarinda Utara, Kota Samarinda, Kalimantan Timur 75119</span>
                         </a>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>

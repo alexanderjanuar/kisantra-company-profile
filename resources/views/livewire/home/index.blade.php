@@ -1,3 +1,3 @@
-<div class="h-screen">
-    {{-- Nothing in the world is as soft and yielding as water. --}}
+<div class="">
+    @include('components.landing.hero')
 </div>
