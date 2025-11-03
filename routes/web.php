@@ -15,6 +15,7 @@ Route::get('/karir/{jobPosting}/apply', \App\Livewire\Career\JobApplication::cla
 
 Route::get('/kontak', \App\Livewire\Contact\Index::class)->name('contact.index');
 
+Route::get('/konsultasi', [KisantraConsultController::class, 'create'])->name('kisantra.consult.create');
 Route::post('/kisantra-consult', [KisantraConsultController::class, 'store'])->name('kisantra.consult.store');
 
 // Route::redirect('/laravel/login', '/login')->name('login');

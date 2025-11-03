@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Mail\KisantraConsultMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\KisantraSessionMail;
 use Illuminate\Support\Facades\Log;
 
 class KisantraConsultController extends Controller
@@ -25,12 +24,13 @@ class KisantraConsultController extends Controller
             'jenis_usaha'  => ['nullable','string','max:200'],
             'alamat'       => ['nullable','string','max:1000'],
             'telepon'      => ['required','regex:/^08\d{8,12}$/'],
-            'email'        => ['required','email:rfc,dns','max:200'],
+            'email'        => ['required','email','max:200'],
             'topik'        => ['required','string','max:3000'],
             'sumber'       => ['nullable','string','max:200'],
-            'persetujuan'  => ['required','in:Ya, saya bersedia,Tidak'],
+            'persetujuan'  => ['required','string'],
         ], [
             'telepon.regex' => 'Nomor HP/WA harus diawali 08 dan panjang 10–14 digit.',
+            'persetujuan.required' => 'Persetujuan diundang ke grup harus dipilih.',
         ]);
 
         try {
@@ -38,12 +38,11 @@ class KisantraConsultController extends Controller
             Mail::to('alexanderjanuar16@gmail.com')->send(new KisantraConsultMail($data));
 
             // (Optional) auto-reply to participant
-            // Mail::to($data['email'])->send(new KisantraSessionMail($data, true));
+            // Mail::to($data['email'])->send(new KisantraConsultMail($data, true));
 
             return back()->with('status', 'Pendaftaran berhasil dikirim. Cek email Anda untuk info selanjutnya.');
         } catch (\Throwable $e) {
             Log::error('Kisantra session mail failed: '.$e->getMessage());
-            @dd($e->getMessage());
             return back()
                 ->withErrors(['email' => 'Maaf, terjadi kendala saat mengirim email. Coba lagi beberapa saat.'])
                 ->withInput();

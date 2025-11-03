@@ -1,5 +1,21 @@
 <div class="relative min-h-screen overflow-hidden bg-white flex items-center">
-    {{-- Background Pattern --}}
+    <div class="absolute inset-x-0 top-0 h-full z-0 flex items-start justify-center pt-10">
+        <div class="relative w-[1400px] h-full">
+            <div class="absolute inset-0 bg-repeat opacity-10"
+                style="background-image: url('{{ asset('image/Logo/KisantraPattern.jpg') }}'); background-size: 1200px 1200px;">
+            </div>
+            {{-- Blur overlay from all sides to center --}}
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white"></div>
+            <div class="absolute inset-0"
+                style="background: radial-gradient(ellipse at center, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.4) 20%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.9) 70%, rgba(255,255,255,1) 100%);">
+            </div>
+            {{-- Additional blur effect at center --}}
+            <div class="absolute inset-0"
+                style="background: radial-gradient(circle at center, rgba(255,255,255,0.5) 0%, transparent 35%);">
+            </div>
+        </div>
+    </div>
 
     {{-- Main Content Container --}}
     <div class="relative z-10 w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-16 py-20">
@@ -75,9 +91,14 @@
                 {{-- Description --}}
                 <p class="text-gray-600 leading-relaxed mb-4 text-base" data-aos="fade-up" data-aos-duration="1000"
                     data-aos-delay="300">
-                    PT Kinara Sadayatra Nusantara berdiri pada tahun 2025 dengan komitmen menghadirkan solusi bisnis yang andal di bidang perpajakan, keuangan, perizinan, dan digital marketing. Kami hadir sebagai mitra strategis bagi pelaku usaha yang membutuhkan layanan terintegrasi, akurat, dan sesuai regulasi, sehingga aktivitas bisnis dapat berjalan lebih efisien dan berkelanjutan.
+                    PT Kinara Sadayatra Nusantara berdiri pada tahun 2025 dengan komitmen menghadirkan solusi bisnis
+                    yang andal di bidang perpajakan, keuangan, perizinan, dan digital marketing. Kami hadir sebagai
+                    mitra strategis bagi pelaku usaha yang membutuhkan layanan terintegrasi, akurat, dan sesuai
+                    regulasi, sehingga aktivitas bisnis dapat berjalan lebih efisien dan berkelanjutan.
 
-Dengan didukung tenaga profesional dan sistem kerja yang terstruktur, PT Kinara Sadayatra Nusantara berupaya memberikan rasa aman, kepercayaan, dan kepastian layanan bagi setiap klien, baik individu, UMKM, maupun korporasi.
+                    Dengan didukung tenaga profesional dan sistem kerja yang terstruktur, PT Kinara Sadayatra Nusantara
+                    berupaya memberikan rasa aman, kepercayaan, dan kepastian layanan bagi setiap klien, baik individu,
+                    UMKM, maupun korporasi.
                 </p>
 
                 {{-- CTA Button and Clients --}}

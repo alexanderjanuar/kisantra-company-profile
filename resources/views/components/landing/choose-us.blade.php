@@ -1,4 +1,4 @@
-<div class="relative min-h-[80vh] overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 flex items-center py-10">
+<div class="relative min-h-[70vh] overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 flex items-center py-10">
     {{-- Main Content Container --}}
     <div class="relative max-w-[1920px] z-10 w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">

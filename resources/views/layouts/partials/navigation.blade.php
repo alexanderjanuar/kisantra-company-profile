@@ -13,7 +13,6 @@
             {{-- Center - Desktop Navigation Links --}}
             <div class="hidden lg:flex lg:gap-4">
                 <a href="/"
-                    wire:navigate
                     class="@if(request()->routeIs('home.index')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 @endif inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out whitespace-nowrap">
                     Beranda
                 </a>

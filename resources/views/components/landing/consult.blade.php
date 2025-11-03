@@ -94,7 +94,7 @@
                     </div>
                     @endif
 
-                    <form method="POST" action="{{ url('/kisantra-consult') }}" novalidate>
+                    <form method="POST" action="{{ route('kisantra.consult.store') }}" novalidate>
                         @csrf
                         {{-- 1. Nama Lengkap --}}
                         <div class="mb-5">

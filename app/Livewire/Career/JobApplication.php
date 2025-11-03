@@ -365,12 +365,12 @@ class JobApplication extends Component
             ));
 
             // Send confirmation email to applicant
-            Mail::to($this->email_aktif)->send(new \App\Mail\ApplicationConfirmationEmail(
-                $applicationData,
-                $this->jobPosting->title,
-                $this->nama_lengkap,
-                $this->files
-            ));
+            // Mail::to($this->email_aktif)->send(new \App\Mail\ApplicationConfirmationEmail(
+            //     $applicationData,
+            //     $this->jobPosting->title,
+            //     $this->nama_lengkap,
+            //     $this->files
+            // ));
 
             \Log::info('Job application emails sent successfully', [
                 'api_application_id' => $apiResponseData['id'] ?? null,
