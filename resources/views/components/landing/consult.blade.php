@@ -101,7 +101,7 @@
                             <label for="nama" class="block text-sm font-medium text-slate-700 mb-2">1. Nama Lengkap
                                 <span class="text-red-500">*</span></label>
                             <input id="nama" name="nama" type="text" required value="{{ old('nama') }}"
-                                class="w-full rounded-xl border-slate-200 focus:border-blue-400 focus:ring-blue-400 px-4 py-3"
+                                class="w-full rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-4 py-3 transition-colors duration-200"
                                 placeholder="Contoh: Muhammad Daffa Putra Mahardika">
                             @error('nama') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
@@ -111,7 +111,7 @@
                             <label for="usaha" class="block text-sm font-medium text-slate-700 mb-2">2. Nama Usaha /
                                 Perusahaan</label>
                             <input id="usaha" name="usaha" type="text" value="{{ old('usaha') }}"
-                                class="w-full rounded-xl border-slate-200 focus:border-blue-400 focus:ring-blue-400 px-4 py-3"
+                                class="w-full rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-4 py-3 transition-colors duration-200"
                                 placeholder="Contoh: PT Kinara Sadayatra Nusantara">
                             @error('usaha') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
@@ -121,7 +121,7 @@
                             <label for="npwp" class="block text-sm font-medium text-slate-700 mb-2">3. NPWP Perusahaan
                                 <span class="text-gray-400 font-normal">(opsional)</span></label>
                             <input id="npwp" name="npwp" type="text" value="{{ old('npwp') }}"
-                                class="w-full rounded-xl border-slate-200 focus:border-blue-400 focus:ring-blue-400 px-4 py-3"
+                                class="w-full rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-4 py-3 transition-colors duration-200"
                                 placeholder="Masukkan NPWP">
                             @error('npwp') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
@@ -132,7 +132,7 @@
                                 Usaha / Bidang Usaha</label>
                             <input id="jenis_usaha" name="jenis_usaha" type="text" list="opsi_jenis_usaha"
                                 value="{{ old('jenis_usaha') }}"
-                                class="w-full rounded-xl border-slate-200 focus:border-blue-400 focus:ring-blue-400 px-4 py-3"
+                                class="w-full rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-4 py-3 transition-colors duration-200"
                                 placeholder="Contoh: Kuliner, Fashion, Jasa, Pertanian, Digital Agency, dll.">
                             <datalist id="opsi_jenis_usaha">
                                 <option value="Kuliner" />
@@ -152,7 +152,7 @@
                             <label for="alamat" class="block text-sm font-medium text-slate-700 mb-2">5. Alamat Usaha /
                                 Domisili</label>
                             <textarea id="alamat" name="alamat" rows="3"
-                                class="w-full rounded-xl border-slate-200 focus:border-blue-400 focus:ring-blue-400 px-4 py-3"
+                                class="w-full rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-4 py-3 transition-colors duration-200"
                                 placeholder="Contoh: Jl. Pahlawan No. 10, Samarinda, Kalimantan Timur">{{ old('alamat') }}</textarea>
                             @error('alamat') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
@@ -163,7 +163,7 @@
                                 Handphone / WhatsApp Aktif <span class="text-red-500">*</span></label>
                             <input id="telepon" name="telepon" type="tel" required pattern="^08\d{8,12}$"
                                 value="{{ old('telepon') }}"
-                                class="w-full rounded-xl border-slate-200 focus:border-blue-400 focus:ring-blue-400 px-4 py-3"
+                                class="w-full rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-4 py-3 transition-colors duration-200"
                                 placeholder="Format: 08xxxxxxxxxx">
                             <p class="mt-1 text-xs text-gray-500">Gunakan format lokal Indonesia, contoh: 081234567890
                             </p>
@@ -175,7 +175,7 @@
                             <label for="email" class="block text-sm font-medium text-slate-700 mb-2">7. Email (untuk
                                 pengiriman link Zoom) <span class="text-red-500">*</span></label>
                             <input id="email" name="email" type="email" required value="{{ old('email') }}"
-                                class="w-full rounded-xl border-slate-200 focus:border-blue-400 focus:ring-blue-400 px-4 py-3"
+                                class="w-full rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-4 py-3 transition-colors duration-200"
                                 placeholder="nama@email.com">
                             @error('email') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
@@ -185,7 +185,7 @@
                             <label for="topik" class="block text-sm font-medium text-slate-700 mb-2">8. Permasalahan
                                 atau Topik yang Ingin Dikonsultasikan <span class="text-red-500">*</span></label>
                             <textarea id="topik" name="topik" rows="4" required
-                                class="w-full rounded-xl border-slate-200 focus:border-blue-400 focus:ring-blue-400 px-4 py-3"
+                                class="w-full rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-4 py-3 transition-colors duration-200"
                                 placeholder='Contoh: "Saya ingin tanya soal pajak UMKM 0,5%" atau "Cara lapor SPT tahunan perusahaan."'>{{ old('topik') }}</textarea>
                             @error('topik') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
@@ -205,7 +205,7 @@
                                 @endphp
                                 @foreach ($sources as $src)
                                 <label
-                                    class="flex items-center gap-3 rounded-xl border border-slate-200 px-4 py-3 hover:border-blue-300 cursor-pointer">
+                                    class="flex items-center gap-3 rounded-xl border-2 border-gray-300 px-4 py-3 hover:border-blue-400 hover:bg-blue-50 cursor-pointer transition-all duration-200">
                                     <input type="radio" name="sumber" value="{{ $src }}"
                                         class="text-blue-600 focus:ring-blue-500" {{ old('sumber')===$src ? 'checked'
                                         : '' }}>
@@ -223,14 +223,14 @@
                                     class="text-red-500">*</span></span>
                             <div class="flex flex-wrap gap-3">
                                 <label
-                                    class="flex items-center gap-3 rounded-xl border border-slate-200 px-4 py-3 hover:border-blue-300 cursor-pointer">
+                                    class="flex items-center gap-3 rounded-xl border-2 border-gray-300 px-4 py-3 hover:border-blue-400 hover:bg-blue-50 cursor-pointer transition-all duration-200">
                                     <input type="radio" name="persetujuan" value="Ya, saya bersedia"
                                         class="text-blue-600 focus:ring-blue-500" {{
                                         old('persetujuan')==='Ya, saya bersedia' ? 'checked' : '' }} required>
                                     <span class="text-sm text-slate-700">Ya, saya bersedia</span>
                                 </label>
                                 <label
-                                    class="flex items-center gap-3 rounded-xl border border-slate-200 px-4 py-3 hover:border-blue-300 cursor-pointer">
+                                    class="flex items-center gap-3 rounded-xl border-2 border-gray-300 px-4 py-3 hover:border-blue-400 hover:bg-blue-50 cursor-pointer transition-all duration-200">
                                     <input type="radio" name="persetujuan" value="Tidak"
                                         class="text-blue-600 focus:ring-blue-500" {{ old('persetujuan')==='Tidak'
                                         ? 'checked' : '' }} required>
@@ -243,7 +243,7 @@
                         {{-- Submit --}}
                         <div class="mt-6 flex items-center gap-4">
                             <button type="submit"
-                                class="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-white font-semibold shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                class="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-white font-semibold shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-200">
                                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" />
                                 </svg>
