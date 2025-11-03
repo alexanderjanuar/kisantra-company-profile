@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\KisantraConsultController;
 use App\Livewire\Career\Index;
 use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\KisantraMailController;
 
 Route::get('/', App\Livewire\Home\Index::class)->name('home.index');
 
@@ -13,6 +14,8 @@ Route::get('/karir/{jobPosting}/apply', \App\Livewire\Career\JobApplication::cla
 
 
 Route::get('/kontak', \App\Livewire\Contact\Index::class)->name('contact.index');
+
+Route::post('/kisantra-consult', [KisantraConsultController::class, 'store'])->name('kisantra.consult.store');
 
 // Route::redirect('/laravel/login', '/login')->name('login');
 // Route::get('/login', function () {
