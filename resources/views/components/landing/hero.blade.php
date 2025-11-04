@@ -8,7 +8,7 @@
                 <div class="hero-slide relative min-h-[90vh] flex items-center">
                     <!-- Background Image -->
                     <div class="absolute inset-0 z-0">
-                        <img src="{{ asset('image/Home/Hero/heroThumb1_1.webp') }}" alt="Finance & Tax Consulting"
+                        <img src="{{ asset('image/Home/Hero/heroThumb1_1.jpg') }}" alt="Finance & Tax Consulting"
                             class="w-full h-full object-cover">
                         <div class="absolute inset-0"
                             style="background-image: linear-gradient(282deg, rgba(0,16,47,.23) 19.19%, rgba(0,13,38,.69) 61.36%);">
