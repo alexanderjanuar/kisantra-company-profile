@@ -1,5 +1,5 @@
 <div
-    class="relative min-h-[70vh] overflow-hidden bg-gradient-to-br from-blue-500 via-blue-400 to-blue-300 flex items-center py-16">
+    class="relative min-h-[70vh] overflow-hidden bg-gradient-to-br from-blue-600 via-blue-500 to-blue-600 flex items-center py-16">
     {{-- Background Decorative Elements --}}
     <div class="absolute inset-0 overflow-hidden">
         <div class="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>

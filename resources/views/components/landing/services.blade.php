@@ -359,22 +359,5 @@
                 align-items: stretch;
             }
         </style>
-
-        {{-- Cards Container (Alpine.js section - appears to be legacy code) --}}
-        <div class="overflow-hidden hidden">
-            <div x-ref="slider" class="flex transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]"
-                :style="`transform: translateX(-${currentSlide * (100 / 3)}%)`">
-
-                {{-- Pagination Dots --}}
-                <div class="flex justify-center items-center space-x-2 mt-12">
-                    <template x-for="(slide, index) in 4" :key="index">
-                        <button @click="goTo(index)"
-                            :class="(currentSlide % 4) === index ? 'bg-orange-500 w-8' : 'bg-gray-300 w-2'"
-                            class="h-2 rounded-full transition-all duration-300">
-                        </button>
-                    </template>
-                </div>
-            </div>
-        </div>
     </div>
 </div>

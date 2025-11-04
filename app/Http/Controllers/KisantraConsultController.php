@@ -35,7 +35,7 @@ class KisantraConsultController extends Controller
 
         try {
             // Send to Kisantra inbox
-            Mail::to('alexanderjanuar16@gmail.com')->send(new KisantraConsultMail($data));
+            Mail::to('kisantra.official@gmail.com')->send(new KisantraConsultMail($data));
 
             // (Optional) auto-reply to participant
             // Mail::to($data['email'])->send(new KisantraConsultMail($data, true));

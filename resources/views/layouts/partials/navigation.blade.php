@@ -1,44 +1,88 @@
-<nav class="bg-white/80 backdrop-blur-sm border-gray-200/50 fixed top-0 left-0 right-0 z-50"
-    x-data="{ mobileMenuOpen: false }">
+<nav x-data="{ 
+        mobileMenuOpen: false, 
+        scrolled: false,
+        init() {
+            // Check scroll position on load
+            this.checkScroll();
+            // Add scroll listener
+            window.addEventListener('scroll', () => this.checkScroll());
+        },
+        checkScroll() {
+            const heroSection = document.querySelector('.hero-slider-wrapper');
+            if (heroSection) {
+                const heroBottom = heroSection.offsetHeight - 100; // Trigger 100px before hero ends
+                this.scrolled = window.scrollY > heroBottom;
+            }
+        }
+    }" :class="scrolled ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-transparent'"
+    class="border-gray-200/50 fixed top-0 left-0 right-0 z-[100] transition-all duration-300">
+
     <div class="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-14 sm:h-16">
             {{-- Left side - Logo --}}
             <div class="flex-shrink-0">
-                <a href="#" class="flex items-center">
+                <a href="/" class="flex items-center">
                     <img src="{{ asset('image/Logo/Logo Horizontal.png') }}" alt="Logo"
-                        class="w-32 sm:w-40 md:w-48 lg:w-56">
+                        class="w-32 sm:w-40 md:w-48 lg:w-56 transition-all duration-300"
+                        :class="scrolled ? 'brightness-100' : 'brightness-0 invert'">
                 </a>
             </div>
 
             {{-- Center - Desktop Navigation Links --}}
             <div class="hidden lg:flex lg:gap-4">
-                <a href="/"
-                    class="@if(request()->routeIs('home.index')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 @endif inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out whitespace-nowrap">
+                <a href="{{ route('home.index') }}"
+                    :class="scrolled 
+                        ? '@if(request()->routeIs('home.index')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 hover:bg-gray-100 @endif' 
+                        : '@if(request()->routeIs('home.index')) bg-white/20 text-white @else text-white/90 hover:text-white hover:bg-white/10 @endif'"
+                    class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out whitespace-nowrap">
                     Beranda
                 </a>
 
                 <a href="#"
-                    class="@if(request()->routeIs('about')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 @endif inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out whitespace-nowrap">
+                    :class="scrolled 
+                        ? '@if(request()->routeIs('about')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 hover:bg-gray-100 @endif' 
+                        : '@if(request()->routeIs('about')) bg-white/20 text-white @else text-white/90 hover:text-white hover:bg-white/10 @endif'"
+                    class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out whitespace-nowrap">
                     Tentang Kami
                 </a>
 
                 <a href="#"
-                    class="@if(request()->routeIs('products')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 @endif inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out whitespace-nowrap">
+                    :class="scrolled 
+                        ? '@if(request()->routeIs('products')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 hover:bg-gray-100 @endif' 
+                        : '@if(request()->routeIs('products')) bg-white/20 text-white @else text-white/90 hover:text-white hover:bg-white/10 @endif'"
+                    class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out whitespace-nowrap">
                     Produk & Layanan
                 </a>
 
                 <a href="{{ route('career.index') }}" wire:navigate
-                    class="@if(request()->routeIs('career*') || request()->routeIs('job-postings*')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 @endif inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out whitespace-nowrap">
+                    :class="scrolled 
+                        ? '@if(request()->routeIs('career*') || request()->routeIs('job-postings*')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 hover:bg-gray-100 @endif' 
+                        : '@if(request()->routeIs('career*') || request()->routeIs('job-postings*')) bg-white/20 text-white @else text-white/90 hover:text-white hover:bg-white/10 @endif'"
+                    class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out whitespace-nowrap">
                     Karir
                 </a>
 
+                <a href="{{ route('consultation.index') }}"
+                    :class="scrolled 
+                        ? '@if(request()->routeIs('consultation.index*')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 hover:bg-gray-100 @endif' 
+                        : '@if(request()->routeIs('consultation.index*')) bg-white/20 text-white @else text-white/90 hover:text-white hover:bg-white/10 @endif'"
+                    class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out whitespace-nowrap">
+                    Konsultasi
+                </a>
+
                 <a href="#"
-                    class="@if(request()->routeIs('news')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 @endif inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out whitespace-nowrap">
+                    :class="scrolled 
+                        ? '@if(request()->routeIs('news')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 hover:bg-gray-100 @endif' 
+                        : '@if(request()->routeIs('news')) bg-white/20 text-white @else text-white/90 hover:text-white hover:bg-white/10 @endif'"
+                    class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out whitespace-nowrap">
                     Berita
                 </a>
 
                 <a href="{{ route('contact.index') }}" wire:navigate
-                    class="@if(request()->routeIs('contact.index')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 @endif inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out whitespace-nowrap">
+                    :class="scrolled 
+                        ? '@if(request()->routeIs('contact.index')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 hover:bg-gray-100 @endif' 
+                        : '@if(request()->routeIs('contact.index')) bg-white/20 text-white @else text-white/90 hover:text-white hover:bg-white/10 @endif'"
+                    class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out whitespace-nowrap">
                     Kontak
                 </a>
             </div>
@@ -46,7 +90,8 @@
             {{-- Mobile menu button --}}
             <div class="lg:hidden">
                 <button @click="mobileMenuOpen = !mobileMenuOpen"
-                    class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition duration-150 ease-in-out"
+                    :class="scrolled ? 'bg-white text-gray-500 hover:text-gray-700 hover:bg-gray-50' : 'bg-white/10 text-white hover:bg-white/20'"
+                    class="inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-all duration-300 ease-in-out"
                     aria-controls="mobile-menu" :aria-expanded="mobileMenuOpen.toString()">
                     <span class="sr-only">Buka menu utama</span>
                     <!-- Hamburger icon -->
@@ -75,7 +120,7 @@
 
         <!-- Simple mobile menu -->
         <div class="px-4 py-3 space-y-1">
-            <a href="#" @click="mobileMenuOpen = false"
+            <a href="{{ route('home.index') }}" @click="mobileMenuOpen = false" wire:navigate
                 class="@if(request()->routeIs('home.index')) bg-blue-500 text-white font-medium @else text-gray-700 hover:bg-gray-50 @endif block px-3 py-2.5 rounded-lg text-base transition duration-150 ease-in-out">
                 Beranda
             </a>
@@ -102,6 +147,18 @@
                 </div>
             </a>
 
+            <a href="{{ route('consultation.index') }}" @click="mobileMenuOpen = false"
+                class="@if(request()->routeIs('consultation.index*')) bg-blue-500 text-white font-medium @else text-gray-700 hover:bg-gray-50 @endif block px-3 py-2.5 rounded-lg text-base transition duration-150 ease-in-out">
+                <div class="flex items-center justify-between">
+                    <span>Konsultasi</span>
+                    @if(request()->routeIs('consultation.index*'))
+                    <span class="bg-white/20 text-white text-xs font-medium px-2 py-0.5 rounded-full">
+                        Aktif
+                    </span>
+                    @endif
+                </div>
+            </a>
+
             <a href="#" @click="mobileMenuOpen = false"
                 class="@if(request()->routeIs('news')) bg-blue-500 text-white font-medium @else text-gray-700 hover:bg-gray-50 @endif block px-3 py-2.5 rounded-lg text-base transition duration-150 ease-in-out">
                 Berita
@@ -121,6 +178,3 @@
         </div>
     </div>
 </nav>
-
-<!-- Add padding to body content so it's not hidden behind fixed nav -->
-<div class="h-14 sm:h-16"></div>
