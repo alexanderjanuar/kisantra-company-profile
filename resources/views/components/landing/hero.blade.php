@@ -34,8 +34,8 @@
 
                             <!-- CTA Button -->
                             <div class="hero-cta">
-                                <a href="{{ route('consultation.index') }}"
-                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold text-lg px-10 py-5 rounded-full shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 transform hover:scale-105 group">
+                                <a href="{{ route(name: 'consultation.index') }}"
+                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-lg px-10 py-5 rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
                                     <span>Konsultasi Gratis</span>
                                     <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
@@ -80,8 +80,8 @@
 
                             <!-- CTA Button -->
                             <div class="hero-cta">
-                                <a href="{{ route('consultation.index') }}" wire:navigate
-                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold text-lg px-10 py-5 rounded-full shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 transform hover:scale-105 group">
+                                <a href="{{ route(name: 'consultation.index') }}"
+                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-lg px-10 py-5 rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
                                     <span>Konsultasi Gratis</span>
                                     <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
@@ -190,10 +190,10 @@
 
         .hero-pagination-custom .swiper-pagination-bullet-active {
             background: #fff !important;
-            border-color: #f97316 !important;
+            border-color: #4235fc !important;
             width: 14px !important;
             height: 14px !important;
-            box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+            box-shadow: 0 0 15px rgba(22, 26, 249, 0.5);
         }
 
         .hero-pagination-custom .swiper-pagination-bullet::after {
@@ -211,7 +211,7 @@
 
         .hero-pagination-custom .swiper-pagination-bullet-active::after {
             transform: translate(-50%, -50%) scale(1);
-            border-color: rgba(249, 115, 22, 0.4);
+            border-color: rgba(22, 139, 249, 0.4);
         }
 
         /* Smooth transitions */
