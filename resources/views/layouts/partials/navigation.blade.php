@@ -1,16 +1,18 @@
 <nav x-data="{ 
         mobileMenuOpen: false, 
-        scrolled: false,
+        scrolled: {{ request()->routeIs('home.index') ? 'false' : 'true' }},
         init() {
+            @if(request()->routeIs('home.index'))
             // Check scroll position on load
             this.checkScroll();
             // Add scroll listener
             window.addEventListener('scroll', () => this.checkScroll());
+            @endif
         },
         checkScroll() {
             const heroSection = document.querySelector('.hero-slider-wrapper');
             if (heroSection) {
-                const heroBottom = heroSection.offsetHeight - 100; // Trigger 100px before hero ends
+                const heroBottom = heroSection.offsetHeight - 100;
                 this.scrolled = window.scrollY > heroBottom;
             }
         }
@@ -70,10 +72,10 @@
                     Konsultasi
                 </a>
 
-                <a href="#"
+                <a href="{{ route('news.index') }}"
                     :class="scrolled 
-                        ? '@if(request()->routeIs('news')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 hover:bg-gray-100 @endif' 
-                        : '@if(request()->routeIs('news')) bg-white/20 text-white @else text-white/90 hover:text-white hover:bg-white/10 @endif'"
+                        ? '@if(request()->routeIs('news*')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 hover:bg-gray-100 @endif' 
+                        : '@if(request()->routeIs('news*')) bg-white/20 text-white @else text-white/90 hover:text-white hover:bg-white/10 @endif'"
                     class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out whitespace-nowrap">
                     Berita
                 </a>
@@ -159,8 +161,8 @@
                 </div>
             </a>
 
-            <a href="#" @click="mobileMenuOpen = false"
-                class="@if(request()->routeIs('news')) bg-blue-500 text-white font-medium @else text-gray-700 hover:bg-gray-50 @endif block px-3 py-2.5 rounded-lg text-base transition duration-150 ease-in-out">
+            <a href="{{ route('news.index') }}" @click="mobileMenuOpen = false"
+                class="@if(request()->routeIs('news*')) bg-blue-500 text-white font-medium @else text-gray-700 hover:bg-gray-50 @endif block px-3 py-2.5 rounded-lg text-base transition duration-150 ease-in-out">
                 Berita
             </a>
 
@@ -177,4 +179,9 @@
             </div>
         </div>
     </div>
+
 </nav>
+
+@if(!request()->routeIs('home.index'))
+<div class="h-14 sm:h-16"></div>
+@endif

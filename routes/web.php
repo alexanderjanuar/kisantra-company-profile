@@ -18,6 +18,9 @@ Route::get('/konsultasi', \App\Livewire\Consultation\Index::class)->name('consul
 
 Route::get('/kontak', \App\Livewire\Contact\Index::class)->name('contact.index');
 
+Route::get('/berita', \App\Livewire\News\Index::class)->name('news.index');
+Route::get('/berita/{slug}', \App\Livewire\News\Show::class)->name('news.show');
+
 
 
 // Route::get('/konsultasi', [KisantraConsultController::class, 'create'])->name('kisantra.consult.create');

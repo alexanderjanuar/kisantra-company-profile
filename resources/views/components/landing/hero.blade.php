@@ -13,12 +13,11 @@
                         <div class="absolute inset-0"
                             style="background-image: linear-gradient(282deg, rgba(0,16,47,.23) 19.19%, rgba(0,13,38,.69) 61.36%);">
                         </div>
-
                     </div>
 
                     <!-- Content -->
                     <div class="relative z-10 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                        <div class="max-w-3xl">
+                        <div class="max-w-4xl">
                             <!-- Main Heading -->
                             <h1
                                 class="hero-title text-[94px] leading-[90px] font-semibold tracking-[-1.88px] text-white mb-5 not-italic">
@@ -34,8 +33,8 @@
 
                             <!-- CTA Button -->
                             <div class="hero-cta">
-                                <a href="{{ route(name: 'consultation.index') }}"
-                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-lg px-10 py-5 rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
+                                <a href="{{ route('consultation.index') }}"
+                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-lg px-10 py-3 rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
                                     <span>Konsultasi Gratis</span>
                                     <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
@@ -59,12 +58,11 @@
                         <div class="absolute inset-0"
                             style="background-image: linear-gradient(282deg, rgba(0,16,47,.23) 19.19%, rgba(0,13,38,.69) 61.36%);">
                         </div>
-
                     </div>
 
                     <!-- Content -->
                     <div class="relative z-10 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                        <div class="max-w-3xl">
+                        <div class="max-w-4xl">
                             <!-- Main Heading -->
                             <h1
                                 class="hero-title text-[94px] leading-[90px] font-semibold tracking-[-1.88px] text-white mb-5 not-italic">
@@ -80,8 +78,8 @@
 
                             <!-- CTA Button -->
                             <div class="hero-cta">
-                                <a href="{{ route(name: 'consultation.index') }}"
-                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-lg px-10 py-5 rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
+                                <a href="{{ route('consultation.index') }}"
+                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-lg px-10 py-3 rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
                                     <span>Konsultasi Gratis</span>
                                     <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
@@ -154,7 +152,7 @@
             animation: slideUp 0.8s ease-out forwards;
         }
 
-        /* Custom Pagination Styles - Middle Right - WITH !important TO OVERRIDE SWIPER DEFAULTS */
+        /* Custom Pagination Styles */
         .hero-pagination-custom {
             position: absolute !important;
             right: 30px !important;
@@ -219,8 +217,122 @@
             transition: opacity 0.8s ease-in-out;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* ============================================
+           COMPREHENSIVE RESPONSIVE STYLES
+           ============================================ */
+
+        /* Extra Small Mobile - 320px to 480px */
+        @media (max-width: 480px) {
+
+            .hero-slider-wrapper,
+            .hero-slide {
+                min-height: 100vh;
+                height: 100vh;
+            }
+
+            .hero-title {
+                font-size: 32px !important;
+                line-height: 36px !important;
+                letter-spacing: -0.64px !important;
+                margin-bottom: 16px !important;
+            }
+
+            .hero-description {
+                font-size: 14px !important;
+                margin-bottom: 24px !important;
+            }
+
+            .hero-cta a {
+                font-size: 14px !important;
+                padding: 12px 24px !important;
+            }
+
+            .hero-cta svg {
+                width: 18px !important;
+                height: 18px !important;
+            }
+
+            .hero-pagination-custom {
+                right: 10px !important;
+                gap: 10px;
+            }
+
+            .hero-pagination-custom .swiper-pagination-bullet {
+                width: 8px !important;
+                height: 8px !important;
+                border-width: 1.5px !important;
+            }
+
+            .hero-pagination-custom .swiper-pagination-bullet-active {
+                width: 10px !important;
+                height: 10px !important;
+            }
+
+            .hero-pagination-custom .swiper-pagination-bullet::after {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        /* Small Mobile - 481px to 640px */
+        @media (min-width: 481px) and (max-width: 640px) {
+            .hero-title {
+                font-size: 40px !important;
+                line-height: 44px !important;
+                letter-spacing: -0.8px !important;
+                margin-bottom: 18px !important;
+            }
+
+            .hero-description {
+                font-size: 15px !important;
+                margin-bottom: 28px !important;
+            }
+
+            .hero-cta a {
+                font-size: 15px !important;
+                padding: 13px 28px !important;
+            }
+
+            .hero-cta svg {
+                width: 20px !important;
+                height: 20px !important;
+            }
+
+            .hero-pagination-custom {
+                right: 12px !important;
+                gap: 11px;
+            }
+
+            .hero-pagination-custom .swiper-pagination-bullet {
+                width: 9px !important;
+                height: 9px !important;
+            }
+
+            .hero-pagination-custom .swiper-pagination-bullet-active {
+                width: 11px !important;
+                height: 11px !important;
+            }
+        }
+
+        /* Tablets Portrait - 641px to 768px */
+        @media (min-width: 641px) and (max-width: 768px) {
+            .hero-title {
+                font-size: 48px !important;
+                line-height: 52px !important;
+                letter-spacing: -0.96px !important;
+                margin-bottom: 20px !important;
+            }
+
+            .hero-description {
+                font-size: 16px !important;
+                margin-bottom: 30px !important;
+            }
+
+            .hero-cta a {
+                font-size: 16px !important;
+                padding: 14px 32px !important;
+            }
+
             .hero-pagination-custom {
                 right: 15px !important;
                 gap: 12px;
@@ -236,31 +348,255 @@
                 height: 12px !important;
             }
         }
+
+        /* Tablets Landscape - 769px to 1024px */
+        @media (min-width: 769px) and (max-width: 1024px) {
+
+            .hero-slider-wrapper,
+            .hero-slide {
+                min-height: 700px;
+            }
+
+            .hero-title {
+                font-size: 56px !important;
+                line-height: 60px !important;
+                letter-spacing: -1.12px !important;
+                margin-bottom: 22px !important;
+            }
+
+            .hero-description {
+                font-size: 17px !important;
+                margin-bottom: 32px !important;
+            }
+
+            .hero-cta a {
+                font-size: 17px !important;
+                padding: 15px 36px !important;
+            }
+
+            .hero-pagination-custom {
+                right: 20px !important;
+                gap: 14px;
+            }
+
+            .hero-pagination-custom .swiper-pagination-bullet {
+                width: 11px !important;
+                height: 11px !important;
+            }
+
+            .hero-pagination-custom .swiper-pagination-bullet-active {
+                width: 13px !important;
+                height: 13px !important;
+            }
+        }
+
+        /* Small Laptops - 1025px to 1280px */
+        @media (min-width: 1025px) and (max-width: 1280px) {
+
+            .hero-slider-wrapper,
+            .hero-slide {
+                min-height: 650px;
+            }
+
+            .hero-title {
+                font-size: 64px !important;
+                line-height: 68px !important;
+                letter-spacing: -1.28px !important;
+                margin-bottom: 24px !important;
+            }
+
+            .hero-description {
+                font-size: 18px !important;
+                margin-bottom: 34px !important;
+            }
+
+            .hero-cta a {
+                font-size: 18px !important;
+                padding: 16px 40px !important;
+            }
+
+            .hero-pagination-custom {
+                right: 25px !important;
+                gap: 15px;
+            }
+        }
+
+        /* Standard Laptops - 1281px to 1440px */
+        @media (min-width: 1281px) and (max-width: 1440px) {
+
+            .hero-slider-wrapper,
+            .hero-slide {
+                min-height: 700px;
+            }
+
+            .hero-title {
+                font-size: 72px !important;
+                line-height: 76px !important;
+                letter-spacing: -1.44px !important;
+                margin-bottom: 26px !important;
+            }
+
+            .hero-description {
+                font-size: 18px !important;
+                margin-bottom: 36px !important;
+            }
+
+            .hero-cta a {
+                font-size: 18px !important;
+                padding: 16px 40px !important;
+            }
+        }
+
+        /* Large Desktops - 1441px to 1920px */
+        @media (min-width: 1441px) and (max-width: 1920px) {
+
+            .hero-slider-wrapper,
+            .hero-slide {
+                min-height: 750px;
+            }
+
+            .hero-title {
+                font-size: 82px !important;
+                line-height: 86px !important;
+                letter-spacing: -1.64px !important;
+                margin-bottom: 28px !important;
+            }
+
+            .hero-description {
+                font-size: 19px !important;
+                margin-bottom: 38px !important;
+            }
+
+            .hero-cta a {
+                font-size: 19px !important;
+                padding: 16px 42px !important;
+            }
+
+            .hero-pagination-custom {
+                right: 35px !important;
+                gap: 18px;
+            }
+
+            .hero-pagination-custom .swiper-pagination-bullet {
+                width: 13px !important;
+                height: 13px !important;
+            }
+
+            .hero-pagination-custom .swiper-pagination-bullet-active {
+                width: 15px !important;
+                height: 15px !important;
+            }
+        }
+
+        /* Extra Large Screens - 1921px and above */
+        @media (min-width: 1921px) {
+
+            .hero-slider-wrapper,
+            .hero-slide {
+                min-height: 800px;
+            }
+
+            .hero-title {
+                font-size: 94px !important;
+                line-height: 90px !important;
+                letter-spacing: -1.88px !important;
+                margin-bottom: 30px !important;
+            }
+
+            .hero-description {
+                font-size: 20px !important;
+                margin-bottom: 40px !important;
+            }
+
+            .hero-cta a {
+                font-size: 20px !important;
+                padding: 16px 44px !important;
+            }
+
+            .hero-pagination-custom {
+                right: 40px !important;
+                gap: 20px;
+            }
+
+            .hero-pagination-custom .swiper-pagination-bullet {
+                width: 14px !important;
+                height: 14px !important;
+            }
+
+            .hero-pagination-custom .swiper-pagination-bullet-active {
+                width: 16px !important;
+                height: 16px !important;
+            }
+        }
+
+        /* Landscape Orientation for Mobile/Tablet */
+        @media (max-height: 600px) and (orientation: landscape) {
+
+            .hero-slider-wrapper,
+            .hero-slide {
+                min-height: 500px !important;
+                height: 100vh;
+            }
+
+            .hero-title {
+                font-size: 36px !important;
+                line-height: 40px !important;
+                margin-bottom: 12px !important;
+            }
+
+            .hero-description {
+                font-size: 14px !important;
+                margin-bottom: 16px !important;
+            }
+
+            .hero-cta a {
+                padding: 10px 24px !important;
+                font-size: 14px !important;
+            }
+
+            .hero-pagination-custom {
+                gap: 8px;
+            }
+        }
+
+        /* Ultra-wide screens (21:9 aspect ratio) */
+        @media (min-aspect-ratio: 21/9) {
+            .hero-slide {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+            }
+        }
+
+        /* Content container responsive padding */
+        @media (max-width: 640px) {
+            .hero-slide .relative.z-10 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .hero-slide .relative.z-10 {
+                padding-left: 1.5rem !important;
+                padding-right: 1.5rem !important;
+            }
+        }
     </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
         const heroSwiper = new Swiper('.heroSwiper', {
-            // Loop
             loop: true,
-
-            // Speed - transition duration
             speed: 1200,
-
-            // Effect
             effect: 'fade',
             fadeEffect: {
                 crossFade: true
             },
-
-            // Autoplay
             autoplay: {
                 delay: 4000,
                 disableOnInteraction: false,
-                // pauseOnMouseEnter: false, // Changed to false so we can control it manually
             },
-
-            // Pagination
             pagination: {
                 el: '.hero-pagination-custom',
                 clickable: true,
@@ -270,34 +606,24 @@
                     return '<span class="' + className + '"></span>';
                 },
             },
-
-            // Keyboard control
             keyboard: {
                 enabled: true,
                 onlyInViewport: true,
             },
-
-            // Smooth transitions
             grabCursor: false,
-
-            // Accessibility
             a11y: {
                 enabled: true,
             },
-
-            // Events
             on: {
                 init: function() {
                     console.log('Hero Swiper initialized');
                 },
                 slideChange: function() {
-                    // Reset text animations on slide change
                     const activeSlide = this.slides[this.activeIndex];
                     const title = activeSlide.querySelector('.hero-title');
                     const description = activeSlide.querySelector('.hero-description');
                     const cta = activeSlide.querySelector('.hero-cta');
 
-                    // Remove and re-add animation
                     if (title) {
                         title.style.animation = 'none';
                         setTimeout(() => {
@@ -328,7 +654,6 @@
         const swiperContainer = document.querySelector('.heroSwiper');
         let isHovering = false;
 
-        // Pause/Resume autoplay on hover
         if (swiperContainer) {
             swiperContainer.addEventListener('mouseenter', () => {
                 isHovering = true;
@@ -341,24 +666,21 @@
             });
         }
 
-        // Intersection Observer to handle autoplay when scrolling
         const heroSection = document.querySelector('.hero-slider-wrapper');
         if (heroSection) {
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.3 // Hero section must be at least 30% visible
+                threshold: 0.3
             };
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Hero section is visible - start autoplay (if not hovering)
                         if (!isHovering && heroSwiper.autoplay && !heroSwiper.autoplay.running) {
                             heroSwiper.autoplay.start();
                         }
                     } else {
-                        // Hero section is not visible - stop autoplay
                         if (heroSwiper.autoplay && heroSwiper.autoplay.running) {
                             heroSwiper.autoplay.stop();
                         }
