@@ -1,15 +1,6 @@
 {{-- Client Slider Section --}}
-<div class="relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 flex items-center py-36">
+<div class="relative overflow-hidden flex items-center pb-16">
     <div class="container mx-auto px-4">
-        {{-- Header Text --}}
-        <div class="text-center mb-12">
-            <h2 class="text-lg md:text-lg text-gray-400 max-w-4xl mx-auto">
-                Bergabunglah dengan Mitra Terpercaya Kami untuk Solusi Keuangan dan Perpajakan yang Profesional,
-                <br class="hidden md:block">
-                Layanan Berkualitas, dan Pengelolaan Bisnis yang Lebih Baik
-            </h2>
-        </div>
-
         {{-- Client Logos Slider --}}
         <div class="swiper clientSwiper">
             <div class="swiper-wrapper items-center">
@@ -20,9 +11,9 @@
 
                 @foreach($clientImages as $image)
                 <div class="swiper-slide">
-                    <div class="flex items-center justify-center h-36 px-8">
+                    <div class="flex items-center justify-center h-[120px] px-8">
                         <img src="{{ asset('image/Home/Client/' . $image->getFilename()) }}" alt="Client Logo"
-                            class="max-h-20 max-w-full object-contain transition-all duration-300">
+                            class="max-h-20 max-w-full object-contain transition-all duration-300 filter grayscale hover:grayscale-0">
                     </div>
                 </div>
                 @endforeach

@@ -1,38 +1,7 @@
 <div
-    class="relative min-h-[70vh] overflow-hidden bg-gradient-to-br from-blue-600 via-blue-500 to-blue-600 flex items-center py-16">
-    {{-- Enhanced Background Decorative Elements with Animation - BIGGER --}}
-    <div class="absolute inset-0 overflow-hidden">
-        {{-- Much larger animated floating elements --}}
-        <div
-            class="absolute -top-32 -right-32 w-[600px] h-[600px] bg-white/20 rounded-full blur-3xl animate-pulse-slow">
-        </div>
-        <div
-            class="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-blue-300/30 rounded-full blur-3xl animate-bounce-slow">
-        </div>
+    class="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-500 to-blue-600 flex items-center p-16" style="background-image: url('{{ asset('image/Pattern/DarkWorld.jpg') }}');">
 
-        {{-- Additional larger visible animated decorative elements --}}
-        <div class="absolute top-1/4 right-1/3 w-48 h-48 bg-white/15 rounded-full blur-2xl animate-float"></div>
-        <div class="absolute bottom-1/3 left-1/4 w-72 h-72 bg-blue-300/25 rounded-full blur-xl animate-float-reverse">
-        </div>
-        <div class="absolute top-1/2 right-1/4 w-36 h-36 bg-white/10 rounded-full blur-xl animate-float-delayed"></div>
-        <div class="absolute top-3/4 left-1/3 w-56 h-56 bg-blue-200/20 rounded-full blur-2xl animate-bounce-delayed">
-        </div>
-
-        {{-- Bigger moving particles --}}
-        <div class="absolute top-10 left-10 w-6 h-6 bg-white/30 rounded-full animate-particle-1"></div>
-        <div class="absolute top-20 right-20 w-5 h-5 bg-white/25 rounded-full animate-particle-2"></div>
-        <div class="absolute bottom-20 left-20 w-8 h-8 bg-white/20 rounded-full animate-particle-3"></div>
-        <div class="absolute top-1/3 right-1/2 w-4 h-4 bg-blue-200/40 rounded-full animate-particle-1"
-            style="animation-delay: 5s;"></div>
-        <div class="absolute bottom-1/2 left-1/2 w-6 h-6 bg-white/15 rounded-full animate-particle-2"
-            style="animation-delay: 8s;"></div>
-
-        {{-- Subtle grid pattern --}}
-        <div class="absolute inset-0 opacity-10"
-            style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 60px 60px; animation: grid-move 20s linear infinite;">
-        </div>
-    </div>
-
+    
     {{-- Main Content Container --}}
     <div class="relative max-w-[1920px] z-10 w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">

@@ -1,24 +1,9 @@
-<div class="relative min-h-screen overflow-hidden bg-white flex items-center">
-    <div class="absolute inset-x-0 top-0 h-full z-0 flex items-start justify-center pt-10">
-        <div class="relative w-[1400px] h-full">
-            <div class="absolute inset-0 bg-repeat opacity-5"
-                style="background-image: url('{{ asset('image/Logo/KisantraPattern.jpg') }}'); background-size: 1200px 1200px;">
-            </div>
-            {{-- Blur overlay from all sides to center --}}
-            <div class="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white"></div>
-            <div class="absolute inset-0"
-                style="background: radial-gradient(ellipse at center, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.4) 20%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.9) 70%, rgba(255,255,255,1) 100%);">
-            </div>
-            {{-- Additional blur effect at center --}}
-            <div class="absolute inset-0"
-                style="background: radial-gradient(circle at center, rgba(255,255,255,0.5) 0%, transparent 35%);">
-            </div>
-        </div>
-    </div>
+<div class="relative min-h-screen overflow-hidden bg-white flex items-center" style="">
 
+    <img class="absolute top-0 right-0 z-1 w-lg" src="image\Pattern\WhiteShape.png"></img>
+    
     {{-- Main Content Container --}}
-    <div class="relative z-10 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-16 py-20">
+    <div class="relative z-10 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-16 pt-20">
         <div class="flex flex-col lg:flex-row gap-12 items-center">
             {{-- Left Section: Images - Hidden on smaller screens --}}
             <div class="hidden lg:flex w-full lg:w-1/2 gap-2 h-[700px]" data-aos="fade-right" data-aos-duration="1000">
@@ -122,3 +107,4 @@
         </div>
     </div>
 </div>
+@include('components.landing.client')

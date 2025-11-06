@@ -1,26 +1,6 @@
 {{-- Portfolio Masonry Section - With AOS Animations --}}
-<section class="py-16 bg-white">
-
-
+<section class="py-16 bg-white" style="background-image: url('{{ asset('image/Pattern/WhitePattern.jpg') }}'); background-size: cover;">
     <div class="relative max-w-[1920px] z-10 w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 ">
-
-        <div class="absolute inset-x-0 top-0 h-full z-0 flex items-start justify-center pt-10">
-            <div class="relative w-[1400px] h-full">
-                <div class="absolute inset-0 bg-repeat opacity-10"
-                    style="background-image: url('{{ asset('image/Logo/KisantraPattern.jpg') }}'); background-size: 1200px 1200px;">
-                </div>
-                {{-- Blur overlay from all sides to center --}}
-                <div class="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white"></div>
-                <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white"></div>
-                <div class="absolute inset-0"
-                    style="background: radial-gradient(ellipse at center, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.4) 20%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.9) 70%, rgba(255,255,255,1) 100%);">
-                </div>
-                {{-- Additional blur effect at center --}}
-                <div class="absolute inset-0"
-                    style="background: radial-gradient(circle at center, rgba(255,255,255,0.5) 0%, transparent 35%);">
-                </div>
-            </div>
-        </div>
         {{-- Section Header --}}
         <div class="text-center mb-12" data-aos="fade-down" data-aos-duration="800" data-aos-once="true">
             <h2 class="text-4xl font-bold text-gray-800 mb-4">Portofolio Kami</h2>

@@ -1,4 +1,6 @@
 <div class="relative min-h-[80vh] overflow-hidden flex items-center py-20">
+
+
     {{-- Decorative Background Elements --}}
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         {{-- Blob 1 - Top Left (Bigger) --}}
