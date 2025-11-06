@@ -16,7 +16,7 @@
                 this.scrolled = window.scrollY > heroBottom;
             }
         }
-    }" :class="scrolled ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-transparent'"
+    }" :class="scrolled ? 'bg-white/95 backdrop-blur-md' : 'bg-transparent'"
     class="border-gray-200/50 fixed top-0 left-0 right-0 z-[100] transition-all duration-300">
 
     <div class="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">

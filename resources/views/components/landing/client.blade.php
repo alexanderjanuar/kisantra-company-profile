@@ -1,5 +1,5 @@
 {{-- Client Slider Section --}}
-<div class="relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 flex items-center py-28">
+<div class="relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 flex items-center py-36">
     <div class="container mx-auto px-4">
         {{-- Header Text --}}
         <div class="text-center mb-12">
@@ -37,7 +37,7 @@
             spaceBetween: 30,
             loop: true,
             autoplay: {
-                delay: 2500,
+                delay: 1500,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
             },

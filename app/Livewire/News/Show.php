@@ -36,7 +36,7 @@ class Show extends Component
         $categories = Category::active()
             ->withCount('articles')
             ->having('articles_count', '>', 0)
-            ->ordered()
+            ->ordered() 
             ->get();
 
         $relatedArticles = Article::published()

@@ -16,7 +16,9 @@
     <link rel="icon" href="{{ asset('image/Logo/OnlyLogo.png') }}">
     @filamentStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    @yield('title')
+    @yield('meta_description')
+    @yield('meta_keywords')
 </head>
 
 <body class="">

@@ -8,7 +8,7 @@
                 <div class="hero-slide relative min-h-[90vh] flex items-center">
                     <!-- Background Image -->
                     <div class="absolute inset-0 z-0">
-                        <img src="{{ asset('image/Home/Hero/heroThumb1_1.jpg') }}" alt="Finance & Tax Consulting"
+                        <img src="{{ asset('image/Home/Hero/heroThumb1_1.webp') }}" alt="Finance & Tax Consulting"
                             class="w-full h-full object-cover">
                         <div class="absolute inset-0"
                             style="background-image: linear-gradient(282deg, rgba(0,16,47,.23) 19.19%, rgba(0,13,38,.69) 61.36%);">
@@ -26,7 +26,7 @@
 
                             <!-- Description -->
                             <p
-                                class="hero-description font-bold text-sm sm:text-md lg:text-lg text-gray-200 leading-relaxed mb-8 max-w-2xl">
+                                class="hero-description font-semibold text-sm sm:text-sm lg:text-md text-gray-200 leading-relaxed mb-8 max-w-2xl">
                                 Solusi lengkap perpajakan, keuangan, dan konsultasi bisnis untuk mendorong pertumbuhan
                                 perusahaan Anda dengan strategi yang terukur dan profesional.
                             </p>
@@ -34,7 +34,7 @@
                             <!-- CTA Button -->
                             <div class="hero-cta">
                                 <a href="{{ route('consultation.index') }}"
-                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-lg px-10 py-3 rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
+                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-lg px-10 py-2 rounded-full hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
                                     <span>Konsultasi Gratis</span>
                                     <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
@@ -71,7 +71,7 @@
 
                             <!-- Description -->
                             <p
-                                class="hero-description font-bold text-sm sm:text-md lg:text-lg text-gray-200 leading-relaxed mb-8 max-w-2xl">
+                                class="hero-description font-bold text-sm sm:text-sm lg:text-md text-gray-200 leading-relaxed mb-8 max-w-2xl">
                                 Tingkatkan visibilitas bisnis Anda dengan strategi digital marketing yang inovatif dan
                                 terukur. Dari SEO hingga social media management untuk hasil maksimal.
                             </p>
@@ -79,7 +79,7 @@
                             <!-- CTA Button -->
                             <div class="hero-cta">
                                 <a href="{{ route('consultation.index') }}"
-                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-lg px-10 py-3 rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
+                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-lg px-10 py-2 rounded-full hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
                                     <span>Konsultasi Gratis</span>
                                     <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">

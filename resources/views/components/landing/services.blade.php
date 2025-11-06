@@ -85,8 +85,7 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        <span>Perencanaan keuangan strategis untuk menyelaraskan teknologi dengan tujuan
-                                            bisnis Anda.</span>
+                                        <span>Penyusunan laporan keuangan bulanan dan tahunan</span>
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
@@ -96,8 +95,27 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        <span>Penilaian komprehensif dan rekomendasi untuk mengoptimalkan infrastruktur
-                                            keuangan Anda.</span>
+                                        <span>Analisis arus kas dan proyeksi keuangan</span>
+                                    </li>
+                                    <li
+                                        class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
+                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                            fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span>Audit internal dan rekonsiliasi bank</span>
+                                    </li>
+                                    <li
+                                        class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
+                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                            fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span>Konsultasi investasi dan pengelolaan aset</span>
                                     </li>
                                 </ul>
 
@@ -166,8 +184,7 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        <span>Konsultasi perpajakan untuk memastikan kepatuhan dan optimalisasi pajak
-                                            perusahaan.</span>
+                                        <span>Penyusunan dan pelaporan SPT Tahunan/Bulanan.</span>
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
@@ -177,8 +194,27 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        <span>Perencanaan pajak strategis untuk meminimalkan beban pajak secara
-                                            legal.</span>
+                                        <span>Penanganan SP2DK dan surat menyurat dengan DJP</span>
+                                    </li>
+                                    <li
+                                        class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
+                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                            fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span>Konsultasi tax planning dan review pajak</span>
+                                    </li>
+                                    <li
+                                        class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
+                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                            fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span>Pendampingan pemeriksaan pajak dan keberatan</span>
                                     </li>
                                 </ul>
 
@@ -246,8 +282,7 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        <span>Bantuan pengurusan perizinan usaha dan legalitas perusahaan yang
-                                            lengkap.</span>
+                                        <span>Pengurusan NIB (Nomor Induk Berusaha) dan OSS</span>
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
@@ -257,8 +292,27 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        <span>Konsultasi regulasi dan kepatuhan untuk memastikan operasional yang
-                                            legal.</span>
+                                        <span>Izin usaha sektor perdagangan dan industri</span>
+                                    </li>
+                                    <li
+                                        class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
+                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                            fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span>SIUP, TDP, dan izin domisili perusahaan</span>
+                                    </li>
+                                    <li
+                                        class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
+                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                            fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span>Akta pendirian dan perubahan PT/CV</span>
                                     </li>
                                 </ul>
 
@@ -321,8 +375,7 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        <span>Transformasi digital untuk meningkatkan efisiensi dan daya saing bisnis
-                                            Anda.</span>
+                                        <span>Pengembangan website dan aplikasi mobile</span>
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
@@ -332,8 +385,27 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        <span>Strategi pemasaran digital dan pengembangan sistem informasi
-                                            terintegrasi.</span>
+                                        <span>Social media marketing dan Google Ads</span>
+                                    </li>
+                                    <li
+                                        class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
+                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                            fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span>Sistem ERP dan digitalisasi dokumen</span>
+                                    </li>
+                                    <li
+                                        class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
+                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                            fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span>E-commerce setup dan marketplace management</span>
                                     </li>
                                 </ul>
 
