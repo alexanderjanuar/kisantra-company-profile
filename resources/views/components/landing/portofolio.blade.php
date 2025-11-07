@@ -1,6 +1,6 @@
 {{-- Portfolio Masonry Section - With AOS Animations --}}
 <section class="py-16 bg-white" style="background-image: url('{{ asset('image/Pattern/WhitePattern.jpg') }}'); background-size: cover;">
-    <div class="relative max-w-[1920px] z-10 w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 ">
+    <div class="relative max-w-[1600px] z-10 w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 ">
         {{-- Section Header --}}
         <div class="text-center mb-12" data-aos="fade-down" data-aos-duration="800" data-aos-once="true">
             <h2 class="text-4xl font-bold text-gray-800 mb-4">Portofolio Kami</h2>

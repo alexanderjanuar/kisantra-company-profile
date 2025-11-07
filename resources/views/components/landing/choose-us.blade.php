@@ -1,13 +1,13 @@
-<div
-    class="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-500 to-blue-600 flex items-center p-16" style="background-image: url('{{ asset('image/Pattern/DarkWorld.jpg') }}');">
+<div class="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-500 to-blue-600 flex items-center p-16"
+    style="background-image: url('{{ asset('image/Pattern/DarkWorld.jpg') }}');">
 
-    
+
     {{-- Main Content Container --}}
-    <div class="relative max-w-[1920px] z-10 w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
+    <div class="relative max-w-[1600px] z-10 w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
             {{-- Left Side - Content --}}
-            <div class="space-y-8" data-aos="fade-right" data-aos-duration="1000">
+            <div class="space-y-8 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
                 {{-- Section Label --}}
                 <div
                     class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm font-medium">
@@ -16,20 +16,20 @@
 
                 {{-- Main Heading --}}
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-white">
-                    Solusi Terpercaya untuk<br>Kesuksesan Bisnis Anda
+                    Solusi Terpercaya untuk<br class="hidden lg:block">Kesuksesan Bisnis Anda
                 </h2>
 
                 {{-- Description --}}
-                <p class="text-white/90 text-lg leading-relaxed">
+                <p class="text-white/90 text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
                     Kami mengkhususkan diri dalam menyediakan layanan keuangan dan perpajakan yang komprehensif
                     untuk mendorong pertumbuhan bisnis Anda. Tim ahli kami siap membantu mengelola keuangan dan
                     memastikan kepatuhan perpajakan dengan solusi yang tepat dan efisien.
                 </p>
 
                 {{-- Statistics with Count Up Animation --}}
-                <div class="grid grid-cols-2 gap-8 pt-4">
+                <div class="grid grid-cols-2 gap-8 pt-4 max-w-lg mx-auto lg:mx-0 lg:max-w-none">
                     {{-- Stat 1 --}}
-                    <div class="space-y-2">
+                    <div class="space-y-2 text-center lg:text-left">
                         <div class="text-4xl lg:text-5xl font-bold text-white">
                             <span class="counter" data-target="150">0</span>+
                         </div>
@@ -38,7 +38,7 @@
                     </div>
 
                     {{-- Stat 2 --}}
-                    <div class="space-y-2">
+                    <div class="space-y-2 text-center lg:text-left">
                         <div class="text-4xl lg:text-5xl font-bold text-white">
                             <span class="counter" data-target="200">0</span>+
                         </div>
@@ -49,12 +49,12 @@
             </div>
 
             {{-- Right Side - Enhanced Feature Cards with Smooth Hover Effects --}}
-            <div class="space-y-4" data-aos="fade-left" data-aos-duration="1000">
+            <div class="space-y-4 max-w-2xl mx-auto lg:mx-0" data-aos="fade-left" data-aos-duration="1000">
                 {{-- Feature Card 1: Keuangan --}}
                 <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="0"
                     class="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 lg:p-8 shadow-lg transition-all duration-500 ease-out hover:-translate-y-2 hover:bg-white/20 hover:border-white/40 hover:shadow-2xl hover:shadow-white/10 card-hover">
-                    <div class="flex items-start gap-4">
-                        <div class="flex-shrink-0">
+                    <div class="flex items-start gap-4 text-center sm:text-left">
+                        <div class="flex-shrink-0 mx-auto sm:mx-0">
                             <div
                                 class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-all duration-500 ease-out group-hover:bg-white/40 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-lg">
                                 <svg class="w-7 h-7 text-white transition-all duration-500 group-hover:scale-110"
@@ -64,7 +64,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="flex-1">
+                        <div class="flex-1 sm:flex-initial">
                             <h3
                                 class="text-xl font-bold mb-2 text-white transition-all duration-500 group-hover:text-blue-100 group-hover:translate-x-1">
                                 Solusi Keuangan Fleksibel</h3>
@@ -79,8 +79,8 @@
                 {{-- Feature Card 2: Transparan & Profesional --}}
                 <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="200"
                     class="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 lg:p-8 shadow-lg transition-all duration-500 ease-out hover:-translate-y-2 hover:bg-white/20 hover:border-white/40 hover:shadow-2xl hover:shadow-white/10 card-hover">
-                    <div class="flex items-start gap-4">
-                        <div class="flex-shrink-0">
+                    <div class="flex items-start gap-4 text-center sm:text-left">
+                        <div class="flex-shrink-0 mx-auto sm:mx-0">
                             <div
                                 class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-all duration-500 ease-out group-hover:bg-white/40 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-lg">
                                 <svg class="w-7 h-7 text-white transition-all duration-500 group-hover:scale-110"
@@ -90,7 +90,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="flex-1">
+                        <div class="flex-1 sm:flex-initial">
                             <h3
                                 class="text-xl font-bold mb-2 text-white transition-all duration-500 group-hover:text-blue-100 group-hover:translate-x-1">
                                 Transparan & Profesional</h3>
@@ -106,8 +106,8 @@
                 {{-- Feature Card 3: Aman & Rahasia --}}
                 <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="400"
                     class="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 lg:p-8 shadow-lg transition-all duration-500 ease-out hover:-translate-y-2 hover:bg-white/20 hover:border-white/40 hover:shadow-2xl hover:shadow-white/10 card-hover">
-                    <div class="flex items-start gap-4">
-                        <div class="flex-shrink-0">
+                    <div class="flex items-start gap-4 text-center sm:text-left">
+                        <div class="flex-shrink-0 mx-auto sm:mx-0">
                             <div
                                 class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-all duration-500 ease-out group-hover:bg-white/40 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-lg">
                                 <svg class="w-7 h-7 text-white transition-all duration-500 group-hover:scale-110"
@@ -117,7 +117,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="flex-1">
+                        <div class="flex-1 sm:flex-initial">
                             <h3
                                 class="text-xl font-bold mb-2 text-white transition-all duration-500 group-hover:text-blue-100 group-hover:translate-x-1">
                                 Keamanan Data Terjamin</h3>
@@ -133,8 +133,8 @@
                 {{-- Feature Card 4: 100% Online --}}
                 <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="600"
                     class="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 lg:p-8 shadow-lg transition-all duration-500 ease-out hover:-translate-y-2 hover:bg-white/20 hover:border-white/40 hover:shadow-2xl hover:shadow-white/10 card-hover">
-                    <div class="flex items-start gap-4">
-                        <div class="flex-shrink-0">
+                    <div class="flex items-start gap-4 text-center sm:text-left">
+                        <div class="flex-shrink-0 mx-auto sm:mx-0">
                             <div
                                 class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-all duration-500 ease-out group-hover:bg-white/40 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-lg">
                                 <svg class="w-7 h-7 text-white transition-all duration-500 group-hover:scale-110"
@@ -144,7 +144,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="flex-1">
+                        <div class="flex-1 sm:flex-initial">
                             <h3
                                 class="text-xl font-bold mb-2 text-white transition-all duration-500 group-hover:text-blue-100 group-hover:translate-x-1">
                                 Layanan Digital</h3>
@@ -370,6 +370,19 @@
         /* Smooth scaling for better performance */
         .group:hover .w-14 {
             will-change: transform;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 640px) {
+            .flex.items-start.gap-4 {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .flex-1.sm\\:flex-initial {
+                width: 100%;
+            }
         }
     </style>
 

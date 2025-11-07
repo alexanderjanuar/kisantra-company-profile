@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -16,9 +15,18 @@
     <link rel="icon" href="{{ asset('image/Logo/OnlyLogo.png') }}">
     @filamentStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @yield('title')
-    @yield('meta_description')
-    @yield('meta_keywords')
+
+    <title>@yield('title', 'Kisantra')</title>
+    <meta name="description" content="@yield('meta_description', 'Kisantra')">
+    <meta name="keywords" content="@yield('meta_keywords', 'default, keywords')">
+    
+    <!-- Add these for better SEO -->
+    <meta name="author" content="Kisantra">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="@yield('title', 'Kisantra')">
+    <meta property="og:description" content="@yield('meta_description', 'Kisantra')">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
 </head>
 
 <body class="">

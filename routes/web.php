@@ -15,6 +15,9 @@ Route::get('/karir/{jobPosting}/apply', action: \App\Livewire\Career\JobApplicat
 
 Route::get('/konsultasi', \App\Livewire\Consultation\Index::class)->name('consultation.index');
 
+Route::get('/tentang-kami', \App\Livewire\AboutUs\Index::class)->name('about.index');
+
+
 
 Route::get('/kontak', \App\Livewire\Contact\Index::class)->name('contact.index');
 

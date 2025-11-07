@@ -40,10 +40,11 @@
                     Beranda
                 </a>
 
-                <a href="#"
+                <a href="{{ route('about.index') }}"
+                    wire:navigate
                     :class="scrolled 
-                        ? '@if(request()->routeIs('about')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 hover:bg-gray-100 @endif' 
-                        : '@if(request()->routeIs('about')) bg-white/20 text-white @else text-white/90 hover:text-white hover:bg-white/10 @endif'"
+                        ? '@if(request()->routeIs('about*')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 hover:bg-gray-100 @endif' 
+                        : '@if(request()->routeIs('about*')) bg-white/20 text-white @else text-white/90 hover:text-white hover:bg-white/10 @endif'"
                     class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out whitespace-nowrap">
                     Tentang Kami
                 </a>

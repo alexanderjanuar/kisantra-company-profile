@@ -12,7 +12,7 @@ $articles = \App\Models\Article::query()
 <div class="relative overflow-hidden bg-white flex items-center py-16"
     style="background-image: url('{{ asset('image/Pattern/WhitePattern.jpg') }}'); background-size: cover;">
     {{-- Main Content Container --}}
-    <div class="relative max-w-[1920px] z-10 w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
+    <div class="relative max-w-[1600px] z-10 w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
         {{-- Section Header --}}
         <div class="text-center mb-12" data-aos="fade-up" data-aos-duration="1000">
             <div class="inline-block bg-blue-50 text-blue-500 px-4 py-2 rounded-lg text-sm font-medium mb-4">
