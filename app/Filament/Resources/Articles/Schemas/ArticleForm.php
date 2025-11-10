@@ -8,6 +8,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Repeater;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
@@ -91,6 +92,68 @@ class ArticleForm
                             ])
                             ->helperText('Ukuran maksimal 2MB'),
                     ]),
+
+                Section::make('Lampiran')
+                    ->description('Tambahkan file lampiran untuk artikel (PDF, DOC, ZIP, dll)')
+                    ->schema([
+                        Repeater::make('attachments')
+                            ->label('File Lampiran')
+                            ->relationship()
+                            ->schema([
+                                FileUpload::make('file_path')
+                                    ->label('File')
+                                    ->disk('public')
+                                    ->directory('articles/attachments')
+                                    ->visibility('public')
+                                    ->maxSize(10240) // 10MB
+                                    ->acceptedFileTypes([
+                                        'application/pdf',
+                                        'application/msword',
+                                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                        'application/vnd.ms-excel',
+                                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                                        'application/zip',
+                                        'application/x-rar-compressed',
+                                        'text/plain',
+                                        'image/*',
+                                    ])
+                                    ->required()
+                                    ->downloadable()
+                                    ->openable()
+                                    ->afterStateUpdated(function (Get $get, Set $set, $state) {
+                                        if ($state) {
+                                            // Auto-fill file name if not set
+                                            if (empty($get('file_name')) && is_object($state)) {
+                                                $set('file_name', $state->getClientOriginalName());
+                                            }
+                                        }
+                                    })
+                                    ->helperText('Maksimal 10MB. Format: PDF, DOC, DOCX, XLS, XLSX, ZIP, RAR, TXT, Gambar'),
+                                
+                                TextInput::make('file_name')
+                                    ->label('Nama File')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->helperText('Nama file yang akan ditampilkan'),
+                                
+                                Textarea::make('description')
+                                    ->label('Deskripsi')
+                                    ->rows(2)
+                                    ->maxLength(500)
+                                    ->helperText('Deskripsi singkat tentang file ini (opsional)')
+                                    ->columnSpanFull(),
+                            ])
+                            ->columns(2)
+                            ->collapsed()
+                            ->itemLabel(fn (array $state): ?string => $state['file_name'] ?? null)
+                            ->addActionLabel('Tambah Lampiran')
+                            ->reorderable()
+                            ->collapsible()
+                            ->cloneable()
+                            ->defaultItems(0)
+                            ->columnSpanFull(),
+                    ])
+                    ->collapsible(),
 
                 Section::make('Kategorisasi')
                     ->schema([

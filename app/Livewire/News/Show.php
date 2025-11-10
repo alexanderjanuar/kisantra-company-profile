@@ -15,7 +15,7 @@ class Show extends Component
     {
         $this->slug = $slug;
         
-        $this->article = Article::with(['author', 'categories', 'comments'])
+        $this->article = Article::with(['author', 'categories', 'comments', 'attachments'])
             ->withCount('comments')
             ->where('slug', $slug)
             ->where('status', 'published')

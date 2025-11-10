@@ -175,21 +175,23 @@
         }
     </style>
     {{-- Hero Section with Featured Image --}}
-    <div class="relative overflow-hidden ">
+    <div class="relative overflow-hidden">
         <div class="relative z-10 max-w-[1500px] w-full mx-auto px-4 sm:px-8 py-12 sm:py-12">
             {{-- Article Meta --}}
             <header class="mb-6 sm:mb-8">
                 <!-- Category Badge -->
                 <div class="mb-3 sm:mb-4">
-                    <a href=""
+                    @if($article->categories->isNotEmpty())
+                    <a href="{{ route('news.index', ['selectedCategory' => $article->categories->first()->id]) }}"
                         class="inline-block px-3 py-1 bg-blue-500 dark:bg-blue-600 text-white text-xs sm:text-sm font-medium rounded-full hover:bg-blue-600 dark:hover:bg-blue-500 transition-colors duration-200">
-
+                        {{ $article->categories->first()->name }}
                     </a>
+                    @endif
                 </div>
 
                 <!-- Title -->
                 <h1
-                    class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900leading-tight mb-4 sm:mb-6 transition-colors duration-300">
+                    class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4 sm:mb-6 transition-colors duration-300">
                     {{ $article->title }}
                 </h1>
 
@@ -199,7 +201,7 @@
                     <div class="flex items-center space-x-3 sm:space-x-4">
                         <!-- Author Info -->
                         <div class="flex items-center space-x-2 sm:space-x-3">
-                            @if ($article->author->avatar)
+                            @if ($article->author->avatar ?? false)
                             <img src="{{ asset('storage/authors/' . $article->author->avatar) }}"
                                 alt="{{ $article->author->name }}"
                                 class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover">
@@ -211,13 +213,10 @@
                             @endif
                             <div>
                                 <p class="font-medium text-sm sm:text-base text-gray-900">
-                                    <a href="" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                                        {{ $article->author->name }}
-                                    </a>
+                                    {{ $article->author->name }}
                                 </p>
                                 <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                                    {{ $article->published_at->format('d M Y') }} • {{ $article->read_time ?? 5 }}
-                                    min read
+                                    {{ $article->published_at->format('d M Y') }} • {{ $article->reading_time }}
                                 </p>
                             </div>
                         </div>
@@ -260,7 +259,7 @@
     </div>
 
     {{-- Main Content --}}
-    <div class="max-w-[1500px] mx-auto px-4 sm:px-8 hidden lg:block">
+    <div class="max-w-[1500px] mx-auto px-4 sm:px-8">
         <div class="grid lg:grid-cols-12 gap-8">
             {{-- Article Content --}}
             <article class="lg:col-span-8">
@@ -286,6 +285,62 @@
                     {!! $article->content !!}
                 </div>
 
+                {{-- Attachments Section for Mobile --}}
+                @if($article->attachments->isNotEmpty())
+                <div class="lg:hidden mb-8 bg-white rounded-2xl border border-gray-200 p-6" data-aos="fade-up">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                        </svg>
+                        Lampiran
+                    </h3>
+                    <div class="space-y-3">
+                        @foreach($article->attachments as $attachment)
+                        <a href="{{ Storage::url($attachment->file_path) }}" download="{{ $attachment->file_name }}"
+                            class="flex items-center gap-3 p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors group">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                @php
+                                $extension = strtolower(pathinfo($attachment->file_name, PATHINFO_EXTENSION));
+                                $iconClass = match($extension) {
+                                'pdf' => 'fa-file-pdf text-red-600',
+                                'doc', 'docx' => 'fa-file-word text-blue-600',
+                                'xls', 'xlsx' => 'fa-file-excel text-green-600',
+                                'zip', 'rar' => 'fa-file-archive text-yellow-600',
+                                'jpg', 'jpeg', 'png', 'gif' => 'fa-file-image text-purple-600',
+                                default => 'fa-file text-gray-600'
+                                };
+                                @endphp
+                                <i class="fas {{ $iconClass }} text-lg"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p
+                                    class="font-medium text-gray-900 group-hover:text-blue-600 transition-colors truncate text-sm">
+                                    {{ $attachment->file_name }}
+                                </p>
+                                @if($attachment->description)
+                                <p class="text-xs text-gray-500 line-clamp-1 mt-0.5">
+                                    {{ $attachment->description }}
+                                </p>
+                                @endif
+                                <p class="text-xs text-gray-400 mt-0.5">
+                                    {{ $attachment->file_size_formatted }} • {{ $attachment->download_count }} downloads
+                                </p>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <svg class="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                            </div>
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+
                 {{-- Comments Section (Placeholder) --}}
                 <div class="mb-12" data-aos="fade-up">
                     <h3 class="text-2xl font-bold text-gray-900 mb-6">
@@ -304,97 +359,174 @@
 
             {{-- Sidebar --}}
             <aside class="lg:col-span-4">
-                <div class="sticky top-8 space-y-8">
-                    {{-- Latest Articles --}}
-                    <div class="bg-white rounded-2xl border border-gray-200 p-6" data-aos="fade-left">
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                            </svg>
-                            Artikel Terbaru
-                        </h3>
-                        <div class="space-y-4">
-                            @foreach($latestArticles as $latestArticle)
-                            <a href="{{ route('news.show', $latestArticle->slug) }}" class="block group">
-                                <div class="flex gap-3">
-                                    <div class="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden">
-                                        <img src="{{ $latestArticle->featured_image ? Storage::url($latestArticle->featured_image) : asset('image/placeholder.jpg') }}"
-                                            alt="{{ $latestArticle->title }}"
-                                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                <div class="sticky top-8 space-y-6">
+                    {{-- Attachments --}}
+                    @if($article->attachments->isNotEmpty())
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl overflow-hidden"
+                        data-aos="fade-left">
+                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                                </svg>
+                                File Lampiran
+                            </h3>
+                            <p class="text-blue-100 text-xs mt-1">{{ $article->attachments->count() }} file tersedia</p>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            @foreach($article->attachments as $attachment)
+                            <a href="{{ Storage::url($attachment->file_path) }}" download="{{ $attachment->file_name }}"
+                                class="flex items-start gap-3 p-3 bg-white hover:bg-blue-50 rounded-xl transition-all duration-300 group hover:shadow-md border border-gray-100">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center shadow-sm
+                                    @php
+                                    $extension = strtolower(pathinfo($attachment->file_name, PATHINFO_EXTENSION));
+                                    echo match($extension) {
+                                        'pdf' => 'bg-gradient-to-br from-red-100 to-red-200',
+                                        'doc', 'docx' => 'bg-gradient-to-br from-blue-100 to-blue-200',
+                                        'xls', 'xlsx' => 'bg-gradient-to-br from-green-100 to-green-200',
+                                        'zip', 'rar' => 'bg-gradient-to-br from-yellow-100 to-yellow-200',
+                                        'jpg', 'jpeg', 'png', 'gif' => 'bg-gradient-to-br from-purple-100 to-purple-200',
+                                        default => 'bg-gradient-to-br from-gray-100 to-gray-200'
+                                    };
+                                    @endphp
+                                ">
+                                    @php
+                                    $iconClass = match($extension) {
+                                    'pdf' => 'fa-file-pdf text-red-600',
+                                    'doc', 'docx' => 'fa-file-word text-blue-600',
+                                    'xls', 'xlsx' => 'fa-file-excel text-green-600',
+                                    'zip', 'rar' => 'fa-file-archive text-yellow-600',
+                                    'jpg', 'jpeg', 'png', 'gif' => 'fa-file-image text-purple-600',
+                                    default => 'fa-file text-gray-600'
+                                    };
+                                    @endphp
+                                    <i class="fas {{ $iconClass }} text-xl"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p
+                                        class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors text-sm line-clamp-2 leading-snug">
+                                        {{ $attachment->file_name }}
+                                    </p>
+                                    @if($attachment->description)
+                                    <p class="text-xs text-gray-600 line-clamp-2 mt-1 leading-relaxed">
+                                        {{ $attachment->description }}
+                                    </p>
+                                    @endif
+                                    <div class="flex items-center gap-3 mt-2">
+                                        <span class="inline-flex items-center gap-1 text-xs text-gray-500">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                            </svg>
+                                            {{ $attachment->file_size_formatted }}
+                                        </span>
+                                        <span class="inline-flex items-center gap-1 text-xs text-gray-500">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                            </svg>
+                                            {{ $attachment->download_count }}
+                                        </span>
                                     </div>
-                                    <div class="flex-1 min-w-0">
-                                        <h4
-                                            class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 text-sm mb-1">
-                                            {{ $latestArticle->title }}
-                                        </h4>
-                                        <p class="text-xs text-gray-500">
-                                            {{ $latestArticle->published_at->format('d M Y') }}
-                                        </p>
+                                </div>
+                                <div class="flex-shrink-0 self-center">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-blue-100 group-hover:bg-blue-600 flex items-center justify-center transition-colors">
+                                        <svg class="w-4 h-4 text-blue-600 group-hover:text-white transition-colors"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                        </svg>
                                     </div>
                                 </div>
                             </a>
                             @endforeach
                         </div>
                     </div>
+                    @endif
+
+                    {{-- Latest Articles --}}
+                    <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden"
+                        data-aos="fade-left">
+                        <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                                    </svg>
+                                </div>
+                                Artikel Terbaru
+                            </h3>
+                        </div>
+                        <div class="p-4 space-y-3">
+                            @foreach($latestArticles as $index => $latestArticle)
+                            <a href="{{ route('news.show', $latestArticle->slug) }}" class="block group">
+                                <div class="flex gap-3 p-2 rounded-xl hover:bg-gray-50 transition-colors">
+                                    <div class="relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden shadow-sm">
+                                        <img src="{{ $latestArticle->featured_image ? Storage::url($latestArticle->featured_image) : asset('image/placeholder.jpg') }}"
+                                            alt="{{ $latestArticle->title }}"
+                                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent">
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4
+                                            class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 text-sm mb-1.5 leading-snug">
+                                            {{ $latestArticle->title }}
+                                        </h4>
+                                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                            {{ $latestArticle->published_at->format('d M Y') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            @if(!$loop->last)
+                            <div class="border-b border-gray-100"></div>
+                            @endif
+                            @endforeach
+                        </div>
+                    </div>
 
                     {{-- Categories --}}
-                    <div class="bg-white rounded-2xl border border-gray-200 p-6" data-aos="fade-left"
-                        data-aos-delay="100">
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                            </svg>
-                            Kategori
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            @foreach($categories as $category)
-                            <a href="{{ route('news.index', ['selectedCategory' => $category->id]) }}"
-                                class="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-full text-sm font-medium transition-colors">
-                                {{ $category->name }}
-                            </a>
-                            @endforeach
+                    <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden"
+                        data-aos="fade-left" data-aos-delay="100">
+                        <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                                    </svg>
+                                </div>
+                                Kategori Artikel
+                            </h3>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex flex-wrap gap-2">
+                                @foreach($categories as $category)
+                                <a href="{{ route('news.index', ['selectedCategory' => $category->id]) }}"
+                                    class="group inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-600 hover:to-indigo-600 text-blue-700 hover:text-white rounded-full text-sm font-medium transition-all duration-300 shadow-sm hover:shadow-md">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    {{ $category->name }}
+                                </a>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
             </aside>
         </div>
     </div>
-
-    {{-- Related Articles --}}
-    @if (isset($relatedArticles) && $relatedArticles->count() > 0)
-    <div class="bg-white rounded-lg p-4 sm:p-6 transition-colors duration-300">
-        <h3 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">Artikel Terkait</h3>
-        <div class="space-y-4">
-            @foreach ($relatedArticles->take(4) as $related)
-            <article class="group">
-                <a href="{{ route('article', $related->slug) }}" class="block">
-                    <div class="flex space-x-3">
-                        @if ($related->featured_image)
-                        <img src="{{ asset('storage/articles/' . $related->featured_image) }}"
-                            alt="{{ $related->title }}"
-                            class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-lg flex-shrink-0 group-hover:opacity-80 transition-opacity">
-                        @else
-                        <div
-                            class="w-14 h-14 sm:w-16 sm:h-16 bg-gray-200 dark:bg-gray-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-newspaper text-gray-400 dark:text-gray-500 text-sm"></i>
-                        </div>
-                        @endif
-                        <div class="flex-1 min-w-0">
-                            <h4
-                                class="text-xs sm:text-sm font-medium text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 line-clamp-2 transition-colors">
-                                {{ $related->title }}
-                            </h4>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                                {{ $related->published_at->diffForHumans() }}
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </article>
-            @endforeach
-        </div>
-    </div>
-    @endif
 </div>

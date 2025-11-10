@@ -1,4 +1,13 @@
 <div class="relative">
+
+    @section('title', 'Konsultan Pajak, Keuangan & Digital Marketing Samarinda | Kisantra')
+
+    @section('meta_description', 'Konsultan profesional pajak, keuangan, dan digital marketing terpercaya di Samarinda.
+    Solusi lengkap untuk mengembangkan bisnis Anda dengan strategi yang tepat dan terukur.')
+
+    @section('meta_keywords', 'konsultan pajak samarinda, konsultan keuangan samarinda, digital marketing samarinda,
+    jasa pajak samarinda, konsultan bisnis kalimantan timur, tax consultant samarinda')
+    
     <!-- Background Image with Overlay -->
     <!-- About Us Banner -->
     <div class="relative h-96 flex items-center justify-center overflow-hidden">

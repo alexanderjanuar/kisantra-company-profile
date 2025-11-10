@@ -49,6 +49,11 @@ class Article extends Model
         return $this->hasMany(Comment::class)->approved();
     }
 
+    public function attachments()
+    {
+        return $this->hasMany(ArticleAttachment::class);
+    }
+
     // Scopes
     public function scopePublished($query)
     {
@@ -98,6 +103,10 @@ class Article extends Model
         return $this->comments()->approved()->count();
     }
 
+    public function getAttachmentsCountAttribute()
+    {
+        return $this->attachments()->count();
+    }
 
     // Methods
     public function incrementViews()

@@ -25,7 +25,7 @@
             <div class="flex-shrink-0">
                 <a href="/" class="flex items-center">
                     <img src="{{ asset('image/Logo/Logo Horizontal.png') }}" alt="Logo"
-                        class="w-32 sm:w-40 md:w-48 lg:w-56 transition-all duration-300"
+                        class="w-32 sm:w-40 md:w-48 lg:w-48 transition-all duration-300"
                         :class="scrolled ? 'brightness-100' : 'brightness-0 invert'">
                 </a>
             </div>
@@ -41,7 +41,6 @@
                 </a>
 
                 <a href="{{ route('about.index') }}"
-                    wire:navigate
                     :class="scrolled 
                         ? '@if(request()->routeIs('about*')) bg-blue-500 text-white @else text-gray-600 hover:text-gray-900 hover:bg-gray-100 @endif' 
                         : '@if(request()->routeIs('about*')) bg-white/20 text-white @else text-white/90 hover:text-white hover:bg-white/10 @endif'"
@@ -128,7 +127,7 @@
                 Beranda
             </a>
 
-            <a href="#" @click="mobileMenuOpen = false"
+            <a href="{{ route('about.index') }}" @click="mobileMenuOpen = false"
                 class="@if(request()->routeIs('about')) bg-blue-500 text-white font-medium @else text-gray-700 hover:bg-gray-50 @endif block px-3 py-2.5 rounded-lg text-base transition duration-150 ease-in-out">
                 Tentang Kami
             </a>
