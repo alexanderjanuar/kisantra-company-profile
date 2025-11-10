@@ -19,6 +19,8 @@
     <title>@yield('title', 'Kisantra')</title>
     <meta name="description" content="@yield('meta_description', 'Kisantra')">
     <meta name="keywords" content="@yield('meta_keywords', 'default, keywords')">
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     
     <!-- Add these for better SEO -->
     <meta name="author" content="Kisantra">

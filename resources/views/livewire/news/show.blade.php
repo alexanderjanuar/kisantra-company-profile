@@ -1,5 +1,9 @@
 <div>
     <style>
+        body {
+            font-family: 'Montserrat';font-size: 18px;
+        }
+
         .prose {
             line-height: 1.8;
             color: #111827;
@@ -362,17 +366,17 @@
                 <div class="sticky top-8 space-y-6">
                     {{-- Attachments --}}
                     @if($article->attachments->isNotEmpty())
-                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl overflow-hidden"
+                    <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl border border-gray-100 overflow-hidden"
                         data-aos="fade-left">
-                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4">
-                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <div class="px-6 py-4">
+                            <h3 class="text-lg font-bold text-black flex items-center gap-2">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                                 </svg>
                                 File Lampiran
                             </h3>
-                            <p class="text-blue-100 text-xs mt-1">{{ $article->attachments->count() }} file tersedia</p>
+                            <p class="text-blue-600 text-xs mt-1">{{ $article->attachments->count() }} file tersedia</p>
                         </div>
                         <div class="p-4 space-y-2">
                             @foreach($article->attachments as $attachment)
@@ -447,8 +451,7 @@
                     @endif
 
                     {{-- Latest Articles --}}
-                    <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden"
-                        data-aos="fade-left">
+                    <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden" data-aos="fade-left">
                         <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-b border-gray-200">
                             <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
                                 <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -495,8 +498,8 @@
                     </div>
 
                     {{-- Categories --}}
-                    <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden"
-                        data-aos="fade-left" data-aos-delay="100">
+                    <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden" data-aos="fade-left"
+                        data-aos-delay="100">
                         <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-b border-gray-200">
                             <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
                                 <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
