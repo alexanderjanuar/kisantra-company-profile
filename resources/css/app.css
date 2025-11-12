@@ -4,7 +4,7 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@font-face {
+/* @font-face {
     font-family: 'Sinhala MN';
     src: url('/fonts/sinhala-mn/sinhala-mn-bold.ttf') format('truetype');
     font-weight: 700;
@@ -18,7 +18,7 @@
     font-weight: 400;
     font-style: normal;
     font-display: swap;
-}
+} */
 
 @theme {
     --font-sans: 'Sinhala MN', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
