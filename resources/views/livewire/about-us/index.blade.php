@@ -10,7 +10,7 @@
     
     <!-- Background Image with Overlay -->
     <!-- About Us Banner -->
-    <div class="relative h-96 flex items-center justify-center overflow-hidden">
+    <div class="relative h-[450px] flex items-center justify-center overflow-hidden page-banner">
         <!-- Background Image -->
         <div class="absolute inset-0 w-full h-full">
             <img src="{{ asset('image/Pattern/BreadCrumbBanner.jpg') }}" alt="About Us Banner"

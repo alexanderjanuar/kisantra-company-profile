@@ -1,4 +1,4 @@
-<div class="hero-slider-wrapper relative overflow-hidden">
+<div class="hero-slider-wrapper relative overflow-hidden page-banner">
     <!-- Swiper Container -->
     <div class="swiper heroSwiper relative z-10">
         <div class="swiper-wrapper">
@@ -16,7 +16,7 @@
                     </div>
 
                     <!-- Content -->
-                    <div class="relative z-10 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                    <div class="relative z-10 max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
                         <div class="max-w-4xl">
                             <!-- Main Heading -->
                             <h1
@@ -26,7 +26,7 @@
 
                             <!-- Description -->
                             <p
-                                class="hero-description font-semibold text-sm sm:text-sm lg:text-md text-gray-200 leading-relaxed mb-8 max-w-2xl">
+                                class="hero-description font-semibold text-sm sm:text-sm lg:text-md text-gray-100 leading-relaxed mb-8 max-w-2xl">
                                 Solusi lengkap perpajakan, keuangan, dan konsultasi bisnis untuk mendorong pertumbuhan
                                 perusahaan Anda dengan strategi yang terukur dan profesional.
                             </p>
@@ -34,7 +34,7 @@
                             <!-- CTA Button -->
                             <div class="hero-cta">
                                 <a href="{{ route('consultation.index') }}"
-                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-lg px-10 py-2 rounded-full hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
+                                    class="inline-flex items-center gap-3 bg-[#42B2CD] hover:bg-[#3A9FB8] text-white font-semibold text-lg px-10 py-2 rounded-full shadow-lg hover:shadow-[#42B2CD]/50 transition-all duration-300 transform hover:scale-105 group">
                                     <span>Konsultasi Gratis</span>
                                     <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
@@ -61,7 +61,7 @@
                     </div>
 
                     <!-- Content -->
-                    <div class="relative z-10 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                    <div class="relative z-10 max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
                         <div class="max-w-4xl">
                             <!-- Main Heading -->
                             <h1
@@ -79,7 +79,7 @@
                             <!-- CTA Button -->
                             <div class="hero-cta">
                                 <a href="{{ route('consultation.index') }}"
-                                    class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-lg px-10 py-2 rounded-full hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 group">
+                                    class="inline-flex items-center gap-3 bg-[#42B2CD] hover:bg-[#3A9FB8] text-white font-semibold text-lg px-10 py-2 rounded-full shadow-lg hover:shadow-[#42B2CD]/50 transition-all duration-300 transform hover:scale-105 group">
                                     <span>Konsultasi Gratis</span>
                                     <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none"
                                         stroke="currentColor" viewBox="0 0 24 24">
@@ -152,7 +152,7 @@
             animation: slideUp 0.8s ease-out forwards;
         }
 
-        /* Custom Pagination Styles */
+        /* Custom Pagination Styles - Updated with Kisantra Teal */
         .hero-pagination-custom {
             position: absolute !important;
             right: 30px !important;
@@ -181,17 +181,17 @@
         }
 
         .hero-pagination-custom .swiper-pagination-bullet:hover {
-            background: rgba(255, 255, 255, 0.7) !important;
+            background: rgba(66, 178, 205, 0.7) !important;
             transform: scale(1.3);
-            border-color: rgba(255, 255, 255, 0.9) !important;
+            border-color: #42B2CD !important;
         }
 
         .hero-pagination-custom .swiper-pagination-bullet-active {
-            background: #fff !important;
-            border-color: #4235fc !important;
+            background: #42B2CD !important;
+            border-color: #42B2CD !important;
             width: 14px !important;
             height: 14px !important;
-            box-shadow: 0 0 15px rgba(22, 26, 249, 0.5);
+            box-shadow: 0 0 15px rgba(66, 178, 205, 0.6);
         }
 
         .hero-pagination-custom .swiper-pagination-bullet::after {
@@ -209,7 +209,7 @@
 
         .hero-pagination-custom .swiper-pagination-bullet-active::after {
             transform: translate(-50%, -50%) scale(1);
-            border-color: rgba(22, 139, 249, 0.4);
+            border-color: rgba(66, 178, 205, 0.4);
         }
 
         /* Smooth transitions */

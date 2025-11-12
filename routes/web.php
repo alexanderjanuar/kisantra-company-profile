@@ -17,6 +17,7 @@ Route::get('/konsultasi', \App\Livewire\Consultation\Index::class)->name('consul
 
 Route::get('/tentang-kami', \App\Livewire\AboutUs\Index::class)->name('about.index');
 
+Route::get('/layanan', \App\Livewire\Service\Index::class)->name('layanan.index');
 
 
 Route::get('/kontak', \App\Livewire\Contact\Index::class)->name('contact.index');

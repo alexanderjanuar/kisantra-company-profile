@@ -1,8 +1,6 @@
 <div>
     <style>
-        body {
-            font-family: 'Montserrat';font-size: 18px;
-        }
+        body {}
 
         .prose {
             line-height: 1.8;
@@ -178,6 +176,48 @@
             cursor: zoom-in;
         }
     </style>
+
+    {{-- Header Section --}}
+    <div class="relative h-96 flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 w-full h-full">
+            <img src="{{ asset('image/Pattern/BreadCrumbBanner.jpg') }}" alt="Layanan Kami Banner"
+                class="w-full h-full object-cover">
+
+            <div class="absolute inset-0"
+                style="background-image: linear-gradient(282deg, rgba(0,16,47,.5) 19.19%, rgba(0,13,38,.85) 61.36%);">
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center text-white px-4">
+            <h1 class="text-5xl font-bold mb-4">Berita</h1>
+
+            <!-- Breadcrumb -->
+            <div class="flex items-center justify-center text-sm space-x-2">
+                <a href="{{ url('/') }}" class="text-gray-300 hover:text-white transition-colors">
+                    Beranda
+                </a>
+                <svg class="w-4 h-4 text-[#42B2CD]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <a href="{{ url('/berita') }}" class="text-gray-300 hover:text-white transition-colors">
+                    Berita
+                </a>
+                <svg class="w-4 h-4 text-[#42B2CD]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-[#42B2CD]">{{ $article->title }}</span>
+            </div>
+        </div>
+
+        <img class="absolute top-0 left-0 z-1" src="image\Pattern\TopWave.png"></img>
+        <img class="absolute top-0 right-80 z-1" src="image\Pattern\CircleTopStrip.png"></img>
+    </div>
     {{-- Hero Section with Featured Image --}}
     <div class="relative overflow-hidden">
         <div class="relative z-10 max-w-[1500px] w-full mx-auto px-4 sm:px-8 py-12 sm:py-12">

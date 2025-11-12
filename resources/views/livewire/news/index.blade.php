@@ -1,33 +1,36 @@
 <div>
     {{-- Header Section --}}
-    <div class="relative overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-repeat opacity-40"
-                style="background-image: url('{{ asset('image/Logo/KisantraPattern.jpg') }}'); background-size: 1200px 1200px;">
-            </div>
-            {{-- Blur overlay from all sides to center --}}
-            <div class="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
+    <div class="relative h-96 flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 w-full h-full">
+            <img src="{{ asset('image/Pattern/BreadCrumbBanner.jpg') }}" alt="Layanan Kami Banner"
+                class="w-full h-full object-cover">
+
             <div class="absolute inset-0"
-                style="background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 30%, rgba(255,255,255,0.3) 60%, rgba(255,255,255,1) 100%);">
+                style="background-image: linear-gradient(282deg, rgba(0,16,47,.5) 19.19%, rgba(0,13,38,.85) 61.36%);">
             </div>
         </div>
 
-        <div class="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-8 lg:px-16 py-12 sm:py-20">
-            <div class="text-center py-8 rounded-2xl">
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6" data-aos="fade-up"
-                    data-aos-duration="1000">
-                    Berita & Artikel
-                </h1>
-                <p class="text-lg sm:text-xl font-normal text-gray-900 max-w-3xl mx-auto px-4" data-aos="fade-up"
-                    data-aos-delay="200" data-aos-duration="1000">
-                    Temukan informasi terbaru, wawasan industri, dan cerita inspiratif dari PT Kisantra
-                </p>
-            </div>
-            <div class="mt-12 sm:mt-15 pt-4" data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
-                <hr class="border-gray-200">
+        <!-- Content -->
+        <div class="relative z-10 text-center text-white px-4">
+            <h1 class="text-5xl font-bold mb-4">Berita</h1>
+
+            <!-- Breadcrumb -->
+            <div class="flex items-center justify-center text-sm space-x-2">
+                <a href="{{ url('/') }}" class="text-gray-300 hover:text-white transition-colors">
+                    Beranda
+                </a>
+                <svg class="w-4 h-4 text-[#42B2CD]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-[#42B2CD]">Berita</span>
             </div>
         </div>
+
+        <img class="absolute top-0 left-0 z-1" src="image\Pattern\TopWave.png"></img>
+        <img class="absolute top-0 right-80 z-1" src="image\Pattern\CircleTopStrip.png"></img>
     </div>
 
     {{-- Articles Grid Section --}}

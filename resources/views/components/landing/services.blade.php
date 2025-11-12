@@ -1,12 +1,13 @@
-<div class="relative min-h-screen overflow-hidden bg-white flex items-center py-20" style="background-image: url('{{ asset('image/Pattern/BlueWave.jpg') }}'); background-size: cover;">
+<div class="relative min-h-screen overflow-hidden bg-white flex items-center py-20"
+    style="background-image: url('{{ asset('image/Pattern/BlueWave.jpg') }}'); background-size: cover;">
     {{-- Main Content Container --}}
     <div class="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-20">
         {{-- Section Header --}}
         <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
-            <div class="inline-block bg-blue-50 text-blue-500 px-4 py-2 rounded-lg text-sm font-medium mb-6">
+            <div class="inline-block bg-[#42B2CD]/10 text-[#42B2CD] px-4 py-2 rounded-lg text-sm font-medium mb-6">
                 Layanan Kami
             </div>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-navy-900" style="color: #1e293b;">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#414141]">
                 Mitra Terpercaya untuk<br>Kebutuhan Bisnis Anda
             </h2>
         </div>
@@ -19,10 +20,10 @@
                     {{-- Service Card 1: Keuangan --}}
                     <div class="swiper-slide">
                         <div
-                            class="shadow-md group relative bg-white rounded-2xl p-10 lg:p-12 min-h-[500px] h-full border border-gray-100 hover:border-blue-500 transition-all duration-500 overflow-hidden">
+                            class="shadow-md group relative bg-white rounded-2xl p-10 lg:p-12 min-h-[500px] h-full border border-gray-100 hover:border-[#42B2CD] transition-all duration-500 overflow-hidden">
                             {{-- Background Image Overlay (appears on hover) --}}
                             <div
-                                class="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl">
+                                class="absolute inset-0 bg-gradient-to-br from-[#414141] to-[#2a2a2a] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl">
                             </div>
 
                             <div class="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-2xl"
@@ -30,7 +31,7 @@
                             </div>
 
                             <div
-                                class="absolute -top-10 -right-10 w-40 h-40 bg-blue-100 rounded-full opacity-20 group-hover:scale-150 group-hover:opacity-30 transition-all duration-700">
+                                class="absolute -top-10 -right-10 w-40 h-40 bg-[#42B2CD]/20 rounded-full opacity-20 group-hover:scale-150 group-hover:opacity-30 transition-all duration-700">
                             </div>
 
                             {{-- Content --}}
@@ -38,11 +39,11 @@
                                 {{-- Icon (no container) --}}
                                 <div class="mb-8 relative">
                                     <div
-                                        class="absolute inset-0 bg-blue-100 rounded-2xl blur-xl opacity-50 group-hover:opacity-0 transition-opacity duration-500">
+                                        class="absolute inset-0 bg-[#42B2CD]/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-0 transition-opacity duration-500">
                                     </div>
                                     <div
-                                        class="relative bg-gradient-to-br from-blue-50 to-blue-100 group-hover:from-white/20 group-hover:to-white/10 p-4 rounded-2xl w-fit transition-all duration-500">
-                                        <svg class="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-500"
+                                        class="relative bg-gradient-to-br from-[#42B2CD]/10 to-[#42B2CD]/20 group-hover:from-white/20 group-hover:to-white/10 p-4 rounded-2xl w-fit transition-all duration-500">
+                                        <svg class="w-12 h-12 text-[#42B2CD] group-hover:text-white transition-colors duration-500"
                                             fill="currentColor" viewBox="0 0 24 24">
                                             <path
                                                 d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v12h16V6H4zm2 2h2v2H6V8zm0 4h2v2H6v-2zm4-4h8v2h-8V8zm0 4h8v2h-8v-2z" />
@@ -51,8 +52,8 @@
                                 </div>
 
                                 {{-- Title --}}
-                                <h3 class="text-2xl lg:text-3xl font-bold mb-7 transition-colors duration-500"
-                                    style="color: #1e293b;">
+                                <h3
+                                    class="text-2xl lg:text-3xl font-bold mb-7 text-[#414141] transition-colors duration-500">
                                     <span class="group-hover:text-white transition-colors duration-500">Keuangan</span>
                                 </h3>
 
@@ -60,7 +61,7 @@
                                 <ul class="space-y-4 mb-8 flex-grow">
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -70,7 +71,7 @@
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -80,7 +81,7 @@
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -90,7 +91,7 @@
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -102,8 +103,8 @@
 
                                 {{-- Read More Button --}}
                                 <div class="mt-auto">
-                                    <a href="#"
-                                        class="inline-flex items-center gap-2 bg-blue-600 group-hover:bg-white text-white group-hover:text-blue-600 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-500 hover:shadow-lg hover:scale-105">
+                                    <a href="{{ route('layanan.index') }}"
+                                        class="inline-flex items-center gap-2 bg-[#42B2CD] group-hover:bg-white text-white group-hover:text-[#42B2CD] px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-500 hover:shadow-lg hover:scale-105">
                                         Selengkapnya
                                         <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,17 +120,17 @@
                     {{-- Service Card 2: Perpajakan --}}
                     <div class="swiper-slide">
                         <div
-                            class="group relative shadow-md bg-white rounded-2xl p-10 lg:p-12 min-h-[500px] h-full border border-gray-100 hover:border-blue-500 transition-all duration-500 overflow-hidden">
+                            class="group relative shadow-md bg-white rounded-2xl p-10 lg:p-12 min-h-[500px] h-full border border-gray-100 hover:border-[#42B2CD] transition-all duration-500 overflow-hidden">
                             {{-- Background Image Overlay (appears on hover) --}}
                             <div
-                                class="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl">
+                                class="absolute inset-0 bg-gradient-to-br from-[#414141] to-[#2a2a2a] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl">
                             </div>
                             <div class="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-2xl"
                                 style="background-image: url('{{ asset('image/Home/Services/teamThumb2_3.png') }}'); background-size: cover; background-position: center;">
                             </div>
 
                             <div
-                                class="absolute -top-10 -right-10 w-40 h-40 bg-blue-100 rounded-full opacity-20 group-hover:scale-150 group-hover:opacity-30 transition-all duration-700">
+                                class="absolute -top-10 -right-10 w-40 h-40 bg-[#42B2CD]/20 rounded-full opacity-20 group-hover:scale-150 group-hover:opacity-30 transition-all duration-700">
                             </div>
 
                             {{-- Content --}}
@@ -137,11 +138,11 @@
                                 {{-- Icon (no container) --}}
                                 <div class="mb-8 relative">
                                     <div
-                                        class="absolute inset-0 bg-blue-100 rounded-2xl blur-xl opacity-50 group-hover:opacity-0 transition-opacity duration-500">
+                                        class="absolute inset-0 bg-[#42B2CD]/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-0 transition-opacity duration-500">
                                     </div>
                                     <div
-                                        class="relative bg-gradient-to-br from-blue-50 to-blue-100 group-hover:from-white/20 group-hover:to-white/10 p-4 rounded-2xl w-fit transition-all duration-500">
-                                        <svg class="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-500"
+                                        class="relative bg-gradient-to-br from-[#42B2CD]/10 to-[#42B2CD]/20 group-hover:from-white/20 group-hover:to-white/10 p-4 rounded-2xl w-fit transition-all duration-500">
+                                        <svg class="w-12 h-12 text-[#42B2CD] group-hover:text-white transition-colors duration-500"
                                             fill="currentColor" viewBox="0 0 24 24">
                                             <path
                                                 d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 4h7v5h5v11H6V4zm2 8h8v2H8v-2zm0 4h8v2H8v-2z" />
@@ -149,8 +150,8 @@
                                     </div>
                                 </div>
                                 {{-- Title --}}
-                                <h3 class="text-2xl lg:text-3xl font-bold mb-7 transition-colors duration-500"
-                                    style="color: #1e293b;">
+                                <h3
+                                    class="text-2xl lg:text-3xl font-bold mb-7 text-[#414141] transition-colors duration-500">
                                     <span
                                         class="group-hover:text-white transition-colors duration-500">Perpajakan</span>
                                 </h3>
@@ -159,7 +160,7 @@
                                 <ul class="space-y-4 mb-8 flex-grow">
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -169,7 +170,7 @@
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -179,7 +180,7 @@
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -189,7 +190,7 @@
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -200,8 +201,8 @@
                                 </ul>
 
                                 <div class="mt-auto">
-                                    <a href="#"
-                                        class="inline-flex items-center gap-2 bg-blue-600 group-hover:bg-white text-white group-hover:text-blue-600 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-500 hover:shadow-lg hover:scale-105">
+                                    <a href="{{ route('layanan.index') }}"
+                                        class="inline-flex items-center gap-2 bg-[#42B2CD] group-hover:bg-white text-white group-hover:text-[#42B2CD] px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-500 hover:shadow-lg hover:scale-105">
                                         Selengkapnya
                                         <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -217,17 +218,17 @@
                     {{-- Service Card 3: Perizinan --}}
                     <div class="swiper-slide">
                         <div
-                            class="group relative shadow-md bg-white rounded-2xl p-10 lg:p-12 min-h-[500px] h-full border border-gray-100 hover:border-blue-500 transition-all duration-500 overflow-hidden">
+                            class="group relative shadow-md bg-white rounded-2xl p-10 lg:p-12 min-h-[500px] h-full border border-gray-100 hover:border-[#42B2CD] transition-all duration-500 overflow-hidden">
                             {{-- Background Image Overlay (appears on hover) --}}
                             <div
-                                class="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl">
+                                class="absolute inset-0 bg-gradient-to-br from-[#414141] to-[#2a2a2a] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl">
                             </div>
                             <div class="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-2xl"
                                 style="background-image: url('{{ asset('image/Home/Services/teamThumb2_3.png') }}'); background-size: cover; background-position: center;">
                             </div>
 
                             <div
-                                class="absolute -top-10 -right-10 w-40 h-40 bg-blue-100 rounded-full opacity-20 group-hover:scale-150 group-hover:opacity-30 transition-all duration-700">
+                                class="absolute -top-10 -right-10 w-40 h-40 bg-[#42B2CD]/20 rounded-full opacity-20 group-hover:scale-150 group-hover:opacity-30 transition-all duration-700">
                             </div>
 
                             {{-- Content --}}
@@ -235,11 +236,11 @@
                                 {{-- Icon (no container) --}}
                                 <div class="mb-8 relative">
                                     <div
-                                        class="absolute inset-0 bg-blue-100 rounded-2xl blur-xl opacity-50 group-hover:opacity-0 transition-opacity duration-500">
+                                        class="absolute inset-0 bg-[#42B2CD]/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-0 transition-opacity duration-500">
                                     </div>
                                     <div
-                                        class="relative bg-gradient-to-br from-blue-50 to-blue-100 group-hover:from-white/20 group-hover:to-white/10 p-4 rounded-2xl w-fit transition-all duration-500">
-                                        <svg class="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-500"
+                                        class="relative bg-gradient-to-br from-[#42B2CD]/10 to-[#42B2CD]/20 group-hover:from-white/20 group-hover:to-white/10 p-4 rounded-2xl w-fit transition-all duration-500">
+                                        <svg class="w-12 h-12 text-[#42B2CD] group-hover:text-white transition-colors duration-500"
                                             fill="currentColor" viewBox="0 0 24 24">
                                             <path
                                                 d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
@@ -248,8 +249,8 @@
                                 </div>
 
                                 {{-- Title --}}
-                                <h3 class="text-2xl lg:text-3xl font-bold mb-7 transition-colors duration-500"
-                                    style="color: #1e293b;">
+                                <h3
+                                    class="text-2xl lg:text-3xl font-bold mb-7 text-[#414141] transition-colors duration-500">
                                     <span class="group-hover:text-white transition-colors duration-500">Perizinan</span>
                                 </h3>
 
@@ -257,7 +258,7 @@
                                 <ul class="space-y-4 mb-8 flex-grow">
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -267,7 +268,7 @@
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -277,7 +278,7 @@
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -287,7 +288,7 @@
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -299,8 +300,8 @@
 
                                 {{-- Read More Button --}}
                                 <div class="mt-auto">
-                                    <a href="#"
-                                        class="inline-flex items-center gap-2 bg-blue-600 group-hover:bg-white text-white group-hover:text-blue-600 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-500 hover:shadow-lg hover:scale-105">
+                                    <a href="{{ route('layanan.index') }}"
+                                        class="inline-flex items-center gap-2 bg-[#42B2CD] group-hover:bg-white text-white group-hover:text-[#42B2CD] px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-500 hover:shadow-lg hover:scale-105">
                                         Selengkapnya
                                         <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -316,24 +317,24 @@
                     {{-- Service Card 4: Digital --}}
                     <div class="swiper-slide">
                         <div
-                            class="group relative shadow-md bg-white rounded-2xl p-10 lg:p-12 min-h-[500px] h-full border border-gray-100 hover:border-blue-500 transition-all duration-500 overflow-hidden">
+                            class="group relative shadow-md bg-white rounded-2xl p-10 lg:p-12 min-h-[500px] h-full border border-gray-100 hover:border-[#42B2CD] transition-all duration-500 overflow-hidden">
                             {{-- Background Image Overlay (appears on hover) --}}
                             <div
-                                class="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl">
+                                class="absolute inset-0 bg-gradient-to-br from-[#414141] to-[#2a2a2a] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl">
                             </div>
                             <div class="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-2xl"
                                 style="background-image: url('{{ asset('image/Home/Services/teamThumb2_3.png') }}'); background-size: cover; background-position: center;">
                             </div>
 
                             <div
-                                class="absolute -top-10 -right-10 w-40 h-40 bg-blue-100 rounded-full opacity-20 group-hover:scale-150 group-hover:opacity-30 transition-all duration-700">
+                                class="absolute -top-10 -right-10 w-40 h-40 bg-[#42B2CD]/20 rounded-full opacity-20 group-hover:scale-150 group-hover:opacity-30 transition-all duration-700">
                             </div>
 
                             {{-- Content --}}
                             <div class="relative z-10 flex flex-col h-full">
                                 {{-- Icon (no container) --}}
                                 <div class="mb-8">
-                                    <svg class="w-16 h-16 text-blue-600 group-hover:text-white transition-colors duration-500"
+                                    <svg class="w-16 h-16 text-[#42B2CD] group-hover:text-white transition-colors duration-500"
                                         fill="currentColor" viewBox="0 0 24 24">
                                         <path
                                             d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 9h10.5v3.5H4V9zm0 5.5h10.5V18H4v-3.5zM20 18h-3.5V9H20v9z" />
@@ -341,8 +342,8 @@
                                 </div>
 
                                 {{-- Title --}}
-                                <h3 class="text-2xl lg:text-3xl font-bold mb-7 transition-colors duration-500"
-                                    style="color: #1e293b;">
+                                <h3
+                                    class="text-2xl lg:text-3xl font-bold mb-7 text-[#414141] transition-colors duration-500">
                                     <span class="group-hover:text-white transition-colors duration-500">Digital</span>
                                 </h3>
 
@@ -350,7 +351,7 @@
                                 <ul class="space-y-4 mb-8 flex-grow">
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -360,7 +361,7 @@
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -370,7 +371,7 @@
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -380,7 +381,7 @@
                                     </li>
                                     <li
                                         class="flex items-start text-gray-600 group-hover:text-white/95 text-base leading-relaxed transition-colors duration-500">
-                                        <svg class="w-5 h-5 text-blue-500 group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
+                                        <svg class="w-5 h-5 text-[#42B2CD] group-hover:text-white mr-3 mt-0.5 flex-shrink-0"
                                             fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -392,8 +393,8 @@
 
                                 {{-- Read More Button --}}
                                 <div class="mt-auto pt-4">
-                                    <a href="#"
-                                        class="inline-flex items-center gap-2 bg-blue-600 group-hover:bg-white text-white group-hover:text-blue-600 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-500 hover:shadow-lg hover:scale-105">
+                                    <a href="{{ route('layanan.index') }}"
+                                        class="inline-flex items-center gap-2 bg-[#42B2CD] group-hover:bg-white text-white group-hover:text-[#42B2CD] px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-500 hover:shadow-lg hover:scale-105">
                                         Selengkapnya
                                         <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -464,7 +465,7 @@
                 height: auto;
             }
 
-            /* Enhanced Pagination Styling */
+            /* Enhanced Pagination Styling with Kisantra Colors */
             .servicesSwiper .swiper-pagination {
                 display: flex;
                 justify-content: center;
@@ -499,12 +500,12 @@
 
             .servicesSwiper .swiper-pagination-bullet-active {
                 width: 40px;
-                background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-                box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5);
+                background: linear-gradient(135deg, #42B2CD 0%, #3A9FB8 100%);
+                box-shadow: 0 4px 20px rgba(66, 178, 205, 0.5);
             }
 
             .servicesSwiper .swiper-pagination-bullet-active::before {
-                border-color: rgba(59, 130, 246, 0.3);
+                border-color: rgba(66, 178, 205, 0.3);
                 inset: -6px;
             }
 
