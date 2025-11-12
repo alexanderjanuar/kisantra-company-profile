@@ -50,11 +50,19 @@ class ServiceForm
                             ->label('Deskripsi')
                             ->required()
                             ->floatingToolbars([
-                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
-                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
-                                ['table', 'attachFiles'],
-                                ['undo', 'redo'],
+                                'paragraph' => [
+                                    'bold', 'italic', 'underline', 'strike', 'subscript', 'superscript',
+                                ],
+                                'heading' => [
+                                    'h1', 'h2', 'h3',
+                                ],
+                                'table' => [
+                                    'tableAddColumnBefore', 'tableAddColumnAfter', 'tableDeleteColumn',
+                                    'tableAddRowBefore', 'tableAddRowAfter', 'tableDeleteRow',
+                                    'tableMergeCells', 'tableSplitCell',
+                                    'tableToggleHeaderRow',
+                                    'tableDelete',
+                                ],
                             ])
                             ->columnSpanFull(),
                     ])
