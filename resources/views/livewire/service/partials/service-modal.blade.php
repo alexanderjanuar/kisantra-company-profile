@@ -17,7 +17,7 @@
             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-            x-transition:leave-end="opacity-0 translate-y-8 sm:scale-95" class="relative w-full max-w-5xl">
+            x-transition:leave-end="opacity-0 translate-y-8 sm:scale-95" class="relative w-full max-w-[1500px]">
 
             <div class="transform overflow-hidden rounded-xl bg-white shadow-2xl">
                 <!-- Close Button -->
