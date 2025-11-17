@@ -82,7 +82,7 @@ class ServiceSeeder extends Seeder
             [
                 'name' => 'Aktivasi Sertifikat Elektronik',
                 'category' => 'Perpajakan',
-                'description' => 'Layanan aktivasi sertifikat elektronik untuk keperluan perpajakan digital',
+                'description' => 'Layanan aktivasi sertifikat elektronik untuk keperluan perpajakan digitalLayanan aktivasi sertifikat elektronik untuk keperluan perpajakan digital',
                 'price' => 'Rp 1.600.000',
                 'price_note' => 'Mulai dari',
                 'features' => [
@@ -124,7 +124,7 @@ class ServiceSeeder extends Seeder
                 'features' => [
                     'Neraca & Laba Rugi',
                     'Analisis keuangan',
-                    'Konsultasi bulanan'
+                    '   '
                 ],
                 'target_business_types' => ['umkm', 'company'],
                 'target_pkp_status' => null,
@@ -152,7 +152,7 @@ class ServiceSeeder extends Seeder
             [
                 'name' => 'Laporan Keuangan Tahunan',
                 'category' => 'Keuangan',
-                'description' => 'Laporan keuangan tahunan lengkap untuk keperluan audit dan evaluasi',
+                'description' => 'Laporan keuangan tahunan lengkap untuk keperluan audit dan evaluasiLaporan keuangan tahunan lengkap untuk keperluan audit dan evaluasi',
                 'price' => 'Rp 4.500.000',
                 'price_note' => 'Mulai dari',
                 'features' => [
@@ -208,11 +208,7 @@ class ServiceSeeder extends Seeder
                 'description' => 'Pembuatan akta pendirian dan perubahan untuk PT atau CV',
                 'price' => 'Hubungi Kami',
                 'price_note' => null,
-                'features' => [
-                    'Notaris terpercaya',
-                    'SK Kemenkumham',
-                    'NPWP Perusahaan'
-                ],
+                 
                 'target_business_types' => ['new', 'company'],
                 'target_pkp_status' => null,
                 'search_keywords' => ['Akta', 'Pendirian', 'PT', 'CV', 'Notaris'],

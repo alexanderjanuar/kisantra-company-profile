@@ -34,7 +34,6 @@
     </div>
 
     <!-- Services Section - DYNAMIC (Inside Livewire Component) -->
-    <!-- Services Section - DYNAMIC (Inside Livewire Component) -->
     <div class="py-16">
         <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative">
             <!-- Decorative Blobs -->
@@ -284,68 +283,97 @@
 
                         @forelse($this->filteredServices as $index => $service)
                         <div
-                            class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 {{ $service['styles']['border_hover'] }} group animate-fade-up animate-delay-{{ min($index * 100, 800) }}">
+                            class="group bg-white rounded-2xl overflow-hidden border-2 border-gray-100 hover:border-[#42B2CD] transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 animate-fade-up animate-delay-{{ min($index * 100, 800) }} relative flex flex-col h-full">
 
-                            <!-- Card Header with Icon and Category Badge -->
-                            <div class="p-6 border-b border-gray-100">
-                                <div class="flex items-start justify-between mb-3">
-                                    <div
-                                        class="w-12 h-12 bg-gradient-to-br {{ $service['styles']['icon_bg'] }} rounded-xl flex items-center justify-center flex-shrink-0">
-                                        {!! $service['icon'] !!}
-                                    </div>
+                            <!-- Animated Background - Positioned at header level, expands down entire card -->
+                            <div
+                                class="absolute top-0 left-0 right-0 bottom-0 bg-[#42B2CD] transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-700 ease-out z-0">
+                            </div>
+
+                            <!-- Card Header with Category Badge - Now has teal background -->
+                            <div class="relative p-6 pb-4 bg-[#42B2CD] z-10">
+                                <!-- Category Badge - Top Right -->
+                                <div class="absolute top-4 right-4 z-20">
                                     <span
-                                        class="px-3 py-1 {{ $service['styles']['badge_bg'] }} {{ $service['styles']['badge_text'] }} text-xs font-semibold rounded-full">
+                                        class="px-3 py-1.5 bg-white/95 backdrop-blur-sm text-[#42B2CD] text-xs font-bold rounded-full shadow-sm">
                                         {{ $service['category'] }}
                                     </span>
                                 </div>
-                                <h3 class="text-lg font-bold text-[#414141] mb-2 transition-colors">
+
+                                <!-- Icon -->
+                                <div
+                                    class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300 relative z-10">
+                                    {!! $service['icon'] !!}
+                                </div>
+
+                                <!-- Service Name -->
+                                <h3
+                                    class="text-xl font-bold text-white mb-2 line-clamp-2 leading-tight transition-colors duration-500 relative z-10">
                                     {{ $service['name'] }}
                                 </h3>
-                                {{-- <p class="text-sm text-gray-500 line-clamp-2">
-                                    {!! $service['description'] !!}
-                                </p> --}}
                             </div>
 
-                            <!-- Card Body - Price -->
-                            <div class="p-6">
-                                <div class="mb-4">
-                                    <p class="text-2xl font-bold {{ $service['styles']['price_text'] }}">
-                                        {{ $service['price'] }}
-                                    </p>
+                            <!-- Card Body - Price & Features (flex-grow to push button down) -->
+                            <div class="p-6 pt-4 relative z-10 flex-grow flex flex-col">
+                                <!-- Price -->
+                                <div
+                                    class="mb-5 pb-5 border-b border-gray-100 group-hover:border-white/30 transition-colors duration-500">
+                                    <div class="flex items-baseline gap-2">
+                                        <span
+                                            class="text-3xl font-bold {{ $service['styles']['price_text'] }} group-hover:!text-white transition-colors duration-500">
+                                            {{ $service['price'] }}
+                                        </span>
+                                    </div>
                                     @if($service['price_note'])
-                                    <p class="text-xs text-gray-500 mt-1">{{ $service['price_note'] }}</p>
+                                    <p
+                                        class="text-xs text-gray-500 group-hover:text-white/90 mt-1.5 font-medium transition-colors duration-500">
+                                        {{ $service['price_note'] }}</p>
                                     @endif
                                 </div>
 
-                                <!-- Features List -->
+                                <!-- Features List (flex-grow to fill available space) -->
                                 @if(!empty($service['features']))
-                                <div class="space-y-2 mb-4">
-                                    @foreach(array_slice($service['features'], 0, 3) as $feature)
-                                    <div class="flex items-start gap-2">
-                                        <svg class="w-4 h-4 {{ $service['styles']['feature_icon'] }} mt-0.5 flex-shrink-0"
-                                            fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span class="text-sm text-gray-600">{{ $feature }}</span>
+                                <div class="space-y-3 mb-6 flex-grow">
+                                    <p
+                                        class="text-xs font-bold text-gray-400 group-hover:text-white/90 uppercase tracking-wider transition-colors duration-500">
+                                        Termasuk:</p>
+                                    @foreach(array_slice($service['features'], 0, 4) as $feature)
+                                    <div class="flex items-start gap-3">
+                                        <div class="flex-shrink-0 mt-0.5">
+                                            <svg class="w-5 h-5 {{ $service['styles']['feature_icon'] }} group-hover:!text-white transition-colors duration-500"
+                                                fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <span
+                                            class="text-sm text-gray-600 group-hover:text-white transition-colors duration-500 leading-relaxed">{{
+                                            $feature }}</span>
                                     </div>
                                     @endforeach
+
+                                    @if(count($service['features']) > 4)
+                                    <p
+                                        class="text-xs text-gray-400 group-hover:text-white/90 pl-8 italic transition-colors duration-500">
+                                        +{{ count($service['features']) - 4 }} fitur lainnya
+                                    </p>
+                                    @endif
                                 </div>
                                 @endif
-                            </div>
 
-                            <!-- Card Footer -->
-                            <div class="px-6 pb-6">
-                                <button wire:click="openModal({{ $service['id'] }})"
-                                    class="group inline-flex items-center gap-2 text-slate-700 hover:text-slate-900 font-semibold transition-colors cursor-pointer">
-                                    <span>Lihat Detail</span>
-                                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                    </svg>
-                                </button>
+                                <!-- CTA Button (mt-auto pushes it to bottom) -->
+                                <div class="mt-auto">
+                                    <button wire:click="openModal({{ $service['id'] }})"
+                                        class="w-full flex items-center justify-center gap-2 bg-white backdrop-blur-sm text-[#42B2CD] group-hover:bg-white group-hover:shadow-xl px-6 py-3.5 rounded-xl font-bold text-sm transition-all duration-500 hover:scale-105 group/btn border-2 border-gray-200 group-hover:border-white/50">
+                                        <span>Lihat Detail Lengkap</span>
+                                        <svg class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform duration-300"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         @empty

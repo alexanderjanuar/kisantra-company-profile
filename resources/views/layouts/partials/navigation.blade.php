@@ -66,7 +66,7 @@
                         x-transition:leave-start="opacity-100 translate-y-0"
                         x-transition:leave-end="opacity-0 translate-y-1"
                         class="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
-                        @click.away="dropdownOpen = false">
+                        @click.away="dropdownOpen = false" x-cloak>
 
                         <a href="{{ route('about.index') }}"
                             class="@if(request()->routeIs('about*')) bg-blue-50 text-blue-600 @else text-gray-700 hover:bg-gray-50 @endif block px-4 py-2.5 text-sm transition-colors duration-150">
