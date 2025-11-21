@@ -10,8 +10,9 @@
                     <span class="ml-2 text-xl font-bold">KISANTRA</span>
                 </div>
                 <p class="text-gray-300 mb-4 max-w-md">
-                    Perusahaan teknologi terdepan yang berfokus pada inovasi dan pengembangan solusi digital untuk masa
-                    depan yang lebih baik. Bergabunglah dengan tim kami dan wujudkan karir impian Anda.
+                    Konsultan profesional yang berpengalaman dalam menangani kompleksitas perpajakan, manajemen
+                    keuangan, proses perizinan, dan transformasi digital perusahaan. Bergabunglah dengan tim kami dan
+                    bangun karir yang bermakna dalam industri jasa konsultasi bisnis.
                 </p>
                 <div class="flex space-x-4">
                     <!-- Social Media Icons -->
