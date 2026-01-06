@@ -34,7 +34,9 @@
         {{ $slot }}
     </main>
 
-    @include('layouts.partials.footer')
+    @if(!request()->routeIs('home.index'))
+        @include('layouts.partials.footer')
+    @endif
 
     @filamentScripts
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>

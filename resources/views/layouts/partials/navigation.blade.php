@@ -10,7 +10,12 @@
         },
         checkScroll() {
             const bannerSection = document.querySelector('.page-banner');
-            if (bannerSection) {
+            const horizontalScroll = document.querySelector('.horizontal-scroll-container');
+            if (horizontalScroll) {
+                // For horizontal scroll homepage, keep transparent longer
+                const horizontalHeight = horizontalScroll.offsetHeight - 100;
+                this.scrolled = window.scrollY > horizontalHeight;
+            } else if (bannerSection) {
                 const bannerBottom = bannerSection.offsetHeight - 100;
                 this.scrolled = window.scrollY > bannerBottom;
             } else {

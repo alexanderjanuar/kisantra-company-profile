@@ -1,5 +1,4 @@
-<footer class="bg-gray-900 text-white"
-    style="background-image: url('{{ asset('image/Pattern/DarkWorld.jpg') }}'); background-size: cover; background-position: center;">
+<footer class="bg-[#080808] text-white">
     <div class="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Main footer content -->
         <div class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -16,7 +15,7 @@
                 </p>
                 <div class="flex space-x-4">
                     <!-- Social Media Icons -->
-                    <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-150 ease-in-out">
+                    <a href="#" class="text-gray-500 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                         <span class="sr-only">Facebook</span>
                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
@@ -25,7 +24,7 @@
                         </svg>
                     </a>
                     <a href="https://www.instagram.com/kisantra.official" target="_blank"
-                        class="text-gray-400 hover:text-blue-400 transition duration-150 ease-in-out">
+                        class="text-gray-500 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                         <span class="sr-only">Instagram</span>
                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
@@ -36,7 +35,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-150 ease-in-out">
+                    <a href="#" class="text-gray-500 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                         <span class="sr-only">Twitter</span>
                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path
@@ -44,7 +43,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-150 ease-in-out">
+                    <a href="#" class="text-gray-500 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                         <span class="sr-only">LinkedIn</span>
                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
@@ -61,31 +60,31 @@
                 <ul class="space-y-3">
                     <li>
                         <a href="{{ route('home.index') }}"
-                            class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
+                            class="text-gray-400 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                             Beranda
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('about.index') }}"
-                            class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
+                            class="text-gray-400 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                             Tentang Kami
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('layanan.index') }}"
-                            class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
+                            class="text-gray-400 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                             Layanan
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('news.index') }}"
-                            class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
+                            class="text-gray-400 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                             Berita
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('contact.index') }}"
-                            class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
+                            class="text-gray-400 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                             Kontak
                         </a>
                     </li>
@@ -98,13 +97,13 @@
                 <ul class="space-y-3">
                     <li>
                         <a href="{{ route('career.index') }}"
-                            class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
+                            class="text-gray-400 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                             Lowongan Kerja
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('consultation.index') }}"
-                            class="text-gray-300 hover:text-blue-400 transition duration-150 ease-in-out">
+                            class="text-gray-400 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                             Konsultasi
                         </a>
                     </li>
@@ -117,7 +116,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Address -->
                 <div class="flex items-start space-x-3">
-                    <svg class="h-6 w-6 text-blue-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="h-6 w-6 text-[#42B2CD] mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
                         </path>
@@ -127,7 +126,7 @@
                     <div>
                         <h4 class="font-semibold text-white mb-1">Alamat Kantor</h4>
                         <a href="https://maps.app.goo.gl/kyo3XAtAM6zz5hnY6" target="_blank"
-                            class="text-gray-300 text-sm hover:text-blue-400 transition duration-150 ease-in-out">
+                            class="text-gray-300 text-sm hover:text-[#42B2CD] transition duration-150 ease-in-out">
                             Jl. A. Wahab Syahranie Perum Pondok Alam Indah Nomor 3D<br>
                             Sempaja Sel., Kec. Samarinda Utara, Kota Samarinda, Kalimantan Timur 75119<br>
                             Indonesia
@@ -137,7 +136,7 @@
 
                 <!-- Phone -->
                 <div class="flex items-start space-x-3">
-                    <svg class="h-6 w-6 text-blue-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="h-6 w-6 text-[#42B2CD] mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
                         </path>
@@ -146,10 +145,10 @@
                         <h4 class="font-semibold text-white mb-1">Telepon</h4>
                         <p class="text-gray-300 text-sm">
                             <a href="https://wa.me/6281180009787" target="_blank"
-                                class="hover:text-blue-400 transition duration-150 ease-in-out">+62 811 8000 9787</a>
+                                class="hover:text-[#42B2CD] transition duration-150 ease-in-out">+62 811 8000 9787</a>
                             <br>
                             <a href="https://wa.me/6282128944772" target="_blank"
-                                class="hover:text-blue-400 transition duration-150 ease-in-out">+62 8212 8944 772</a>
+                                class="hover:text-[#42B2CD] transition duration-150 ease-in-out">+62 8212 8944 772</a>
                             <br>
                         </p>
                     </div>
@@ -157,7 +156,7 @@
 
                 <!-- Email -->
                 <div class="flex items-start space-x-3">
-                    <svg class="h-6 w-6 text-blue-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="h-6 w-6 text-[#42B2CD] mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
                         </path>
@@ -166,10 +165,10 @@
                         <h4 class="font-semibold text-white mb-1">Email</h4>
                         <p class="text-gray-300 text-sm">
                             <a href="mailto:kisantra.official@gmail.com"
-                                class="hover:text-blue-400 transition duration-150 ease-in-out">kisantra.official@gmail.com</a>
+                                class="hover:text-[#42B2CD] transition duration-150 ease-in-out">kisantra.official@gmail.com</a>
                             <br>
                             <a href="mailto:recruitment@kisantra.com"
-                                class="hover:text-blue-400 transition duration-150 ease-in-out">recruitment@kisantra.com</a>
+                                class="hover:text-[#42B2CD] transition duration-150 ease-in-out">recruitment@kisantra.com</a>
                             <br>
                         </p>
                     </div>
@@ -187,16 +186,16 @@
 
                 <!-- Footer Links -->
                 <div class="flex flex-wrap justify-start lg:justify-end space-x-6 text-sm">
-                    <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-150 ease-in-out">
+                    <a href="#" class="text-gray-500 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                         Kebijakan Privasi
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-150 ease-in-out">
+                    <a href="#" class="text-gray-500 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                         Syarat & Ketentuan
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-150 ease-in-out">
+                    <a href="#" class="text-gray-500 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                         FAQ
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-150 ease-in-out">
+                    <a href="#" class="text-gray-500 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                         Sitemap
                     </a>
                 </div>

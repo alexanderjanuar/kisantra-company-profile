@@ -1,16 +1,9 @@
 <div class="">
     @section('title', 'Konsultan Pajak, Keuangan & Digital Marketing Samarinda | Kisantra')
-    
+
     @section('meta_description', 'Konsultan profesional pajak, keuangan, dan digital marketing terpercaya di Samarinda. Solusi lengkap untuk mengembangkan bisnis Anda dengan strategi yang tepat dan terukur.')
-    
+
     @section('meta_keywords', 'konsultan pajak samarinda, konsultan keuangan samarinda, digital marketing samarinda, jasa pajak samarinda, konsultan bisnis kalimantan timur, tax consultant samarinda')
 
-    @include('components.landing.hero')
-    @include('components.landing.about-us')
-    @include('components.landing.services')
-    @include('components.landing.choose-us')
-    @include('components.landing.faq')
-    @include('components.landing.portofolio')
-    @include('components.landing.consult')
-    @include('components.landing.blog')
+    @include('components.landing.homepage-horizontal')
 </div>
