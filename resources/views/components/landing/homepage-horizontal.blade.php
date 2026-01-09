@@ -7,7 +7,7 @@
 
     {{-- Animated Liquid Background --}}
     <div class="absolute inset-0 overflow-hidden">
-        {{-- Multiple Bouncing Blobs with Higher Opacity --}}
+        {{-- Multiple Bouncing Blobs with REDUCED Opacity --}}
         <template x-for="blob in blobs" :key="blob.id">
             <div class="liquid-blob absolute rounded-full blur-[80px] transition-all duration-100 ease-linear" :style="{
                      width: blob.size + 'px',
@@ -20,17 +20,17 @@
             </div>
         </template>
 
-        {{-- Static Large Background Blobs --}}
+        {{-- Static Large Background Blobs - REDUCED OPACITY --}}
         <div
-            class="absolute w-[800px] h-[800px] bg-cyan-500/30 rounded-full blur-[150px] -top-40 -left-40 animate-pulse">
+            class="absolute w-[800px] h-[800px] bg-cyan-500/15 rounded-full blur-[150px] -top-40 -left-40 animate-pulse">
         </div>
-        <div class="absolute w-[700px] h-[700px] bg-cyan-400/25 rounded-full blur-[130px] -bottom-32 -right-32 animate-pulse"
+        <div class="absolute w-[700px] h-[700px] bg-cyan-400/12 rounded-full blur-[130px] -bottom-32 -right-32 animate-pulse"
             style="animation-delay: 0.5s;"></div>
-        <div class="absolute w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[120px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse"
+        <div class="absolute w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse"
             style="animation-delay: 1s;"></div>
 
-        {{-- Animated Lines --}}
-        <div class="absolute inset-0 opacity-30">
+        {{-- Animated Lines - REDUCED OPACITY --}}
+        <div class="absolute inset-0 opacity-15">
             <div
                 class="absolute top-1/4 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent animate-[slideRight_3s_ease-in-out_infinite]">
             </div>
@@ -40,8 +40,8 @@
                 style="animation-delay: 1s;"></div>
         </div>
 
-        {{-- Particle Effect --}}
-        <div class="absolute inset-0 opacity-40">
+        {{-- Particle Effect - REDUCED OPACITY --}}
+        <div class="absolute inset-0 opacity-20">
             <template x-for="particle in particles" :key="particle.id">
                 <div class="absolute w-1 h-1 bg-cyan-400 rounded-full animate-pulse" :style="{
                          left: particle.x + '%',
@@ -58,21 +58,21 @@
     <div class="relative z-10 flex flex-col items-center gap-8">
         {{-- Logo Container with Animation --}}
         <div class="logo-container relative">
-            {{-- Rotating Rings --}}
-            <div class="absolute inset-0 -m-8 border-2 border-cyan-500/40 rounded-full animate-spin"
+            {{-- Rotating Rings - REDUCED OPACITY --}}
+            <div class="absolute inset-0 -m-8 border-2 border-cyan-500/25 rounded-full animate-spin"
                 style="animation-duration: 8s;"></div>
-            <div class="absolute inset-0 -m-12 border-2 border-cyan-400/30 rounded-full animate-spin"
+            <div class="absolute inset-0 -m-12 border-2 border-cyan-400/20 rounded-full animate-spin"
                 style="animation-duration: 12s; animation-direction: reverse;"></div>
-            <div class="absolute inset-0 -m-16 border border-cyan-300/20 rounded-full animate-spin"
+            <div class="absolute inset-0 -m-16 border border-cyan-300/12 rounded-full animate-spin"
                 style="animation-duration: 15s;"></div>
 
-            {{-- Pulsing Glow --}}
-            <div class="absolute inset-0 -m-4 bg-cyan-500/30 rounded-full blur-2xl animate-pulse"></div>
+            {{-- Pulsing Glow - REDUCED OPACITY --}}
+            <div class="absolute inset-0 -m-4 bg-cyan-500/15 rounded-full blur-2xl animate-pulse"></div>
 
             {{-- Logo Image --}}
             <div class="relative w-32 h-32 sm:w-40 sm:h-40 animate-[scaleIn_0.8s_ease-out]">
                 <img src="{{ asset('image/Logo/OnlyLogo.png') }}" alt="Kisantra Logo"
-                    class="w-full h-full object-contain drop-shadow-[0_0_40px_rgba(66,178,205,0.7)]">
+                    class="w-full h-full object-contain drop-shadow-[0_0_40px_rgba(66,178,205,0.4)]">
             </div>
         </div>
 
@@ -106,9 +106,9 @@
 
     {{-- Interactive Fluid Background with Ripple Effect --}}
     <div class="fluid-bg fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        {{-- Bouncing Liquid Blobs --}}
+        {{-- Bouncing Liquid Blobs - ENHANCED VISIBILITY --}}
         <template x-for="blob in liquidBlobs" :key="blob.id">
-            <div class="liquid-blob-dynamic absolute rounded-full blur-[80px] transition-all duration-75 ease-linear"
+            <div class="liquid-blob-dynamic absolute rounded-full blur-[100px] transition-all duration-100 ease-linear"
                 :style="{
                      width: blob.size + 'px',
                      height: blob.size + 'px',
@@ -120,20 +120,20 @@
             </div>
         </template>
 
-        {{-- Static Animated Blobs (original ones, enhanced) --}}
-        <div class="fluid-blob blob-1 absolute rounded-full blur-[100px] opacity-90 transition-transform duration-150 ease-out will-change-transform"
-            :style="{ transform: `translate(${blobX * 0.03}px, ${blobY * 0.03}px)` }"></div>
-        <div class="fluid-blob blob-2 absolute rounded-full blur-[100px] opacity-85 transition-transform duration-150 ease-out will-change-transform"
-            :style="{ transform: `translate(${blobX * -0.02}px, ${blobY * 0.04}px)` }"></div>
-        <div class="fluid-blob blob-3 absolute rounded-full blur-[100px] opacity-80 transition-transform duration-150 ease-out will-change-transform"
-            :style="{ transform: `translate(${blobX * 0.04}px, ${blobY * -0.025}px)` }"></div>
-        <div class="fluid-blob blob-4 absolute rounded-full blur-[100px] opacity-75 transition-transform duration-150 ease-out will-change-transform"
-            :style="{ transform: `translate(${blobX * -0.015}px, ${blobY * -0.02}px)` }"></div>
+        {{-- Static Animated Blobs - MUCH MORE VISIBLE --}}
+        <div class="fluid-blob blob-1 absolute rounded-full blur-[120px] opacity-100 transition-transform duration-200 ease-out will-change-transform"
+            :style="{ transform: `translate(${blobX * 0.05}px, ${blobY * 0.05}px)` }"></div>
+        <div class="fluid-blob blob-2 absolute rounded-full blur-[120px] opacity-100 transition-transform duration-200 ease-out will-change-transform"
+            :style="{ transform: `translate(${blobX * -0.04}px, ${blobY * 0.06}px)` }"></div>
+        <div class="fluid-blob blob-3 absolute rounded-full blur-[120px] opacity-95 transition-transform duration-200 ease-out will-change-transform"
+            :style="{ transform: `translate(${blobX * 0.06}px, ${blobY * -0.04}px)` }"></div>
+        <div class="fluid-blob blob-4 absolute rounded-full blur-[120px] opacity-90 transition-transform duration-200 ease-out will-change-transform"
+            :style="{ transform: `translate(${blobX * -0.03}px, ${blobY * -0.05}px)` }"></div>
 
-        {{-- Ripple effect container --}}
+        {{-- SUBTLE Mouse Trail Ripple Container --}}
         <div class="ripple-container fixed inset-0 pointer-events-none z-[1]" x-ref="rippleContainer">
             <template x-for="ripple in ripples" :key="ripple.id">
-                <div class="ripple absolute w-5 h-5 rounded-full pointer-events-none" :style="{
+                <div class="ripple absolute w-4 h-4 rounded-full pointer-events-none" :style="{
                          left: ripple.x + 'px',
                          top: ripple.y + 'px',
                          animationDelay: '0s'
@@ -142,12 +142,12 @@
             </template>
         </div>
 
-        {{-- Cursor glow effect --}}
-        <div class="cursor-glow fixed w-[400px] h-[400px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 z-[1] blur-[40px]"
+        {{-- ENHANCED Cursor glow effect - MORE VISIBLE --}}
+        <div class="cursor-glow fixed w-[500px] h-[500px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 z-[1] blur-[50px]"
             :style="{
                  left: mouseX + 'px',
                  top: mouseY + 'px',
-                 opacity: isMoving ? 0.6 : 0.3
+                 opacity: isMoving ? 1 : 0.6
              }">
         </div>
 
@@ -180,277 +180,10 @@
         x-ref="scrollContainer" @scroll="onScroll">
 
         {{-- Section 1: Hero --}}
-        <section
-            class="h-section flex-[0_0_100vw] w-screen min-w-screen h-screen min-h-screen snap-start snap-always flex items-center justify-center relative px-32 py-20 box-border"
-            data-index="0">
-            <div class="section-inner relative z-10 w-full max-w-[1400px]">
-                <div class="hero-grid grid grid-cols-2 gap-20 items-center">
-                    {{-- Left Column: Content --}}
-                    <div class="hero-content">
-                        <span
-                            class="tag inline-block text-[11px] font-medium tracking-[3px] uppercase text-cyan-500 mb-6">Selamat
-                            Datang di Kisantra</span>
-                        <h1
-                            class="hero-title text-[clamp(48px,6vw,72px)] font-semibold leading-[1.05] tracking-[-3px] text-white mb-6">
-                            Konsultan Pajak,<br>
-                            Keuangan & <span class="text-cyan-500">Digital Marketing</span>
-                        </h1>
-                        <p class="hero-desc text-lg leading-[1.7] text-white/50 mb-8">
-                            <strong class="text-white/70 font-semibold">PT Kinara Sadayatra Nusantara</strong> - Mitra
-                            strategis untuk perpajakan, perencanaan keuangan, perizinan usaha, dan transformasi digital
-                            bisnis Anda.
-                        </p>
-                        <div class="hero-cta flex gap-4 flex-wrap mb-8">
-                            <a href="{{ route('consultation.index') }}"
-                                class="btn-primary inline-flex items-center gap-3 bg-cyan-500 text-white text-[15px] font-medium px-9 py-[18px] rounded-full no-underline transition-all duration-300 hover:bg-cyan-400 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(66,178,205,0.35)]">
-                                Konsultasi Gratis
-                                <svg class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                            </a>
-                            <a href="{{ route('layanan.index') }}"
-                                class="btn-secondary inline-flex items-center text-white/65 text-[15px] font-medium px-9 py-[18px] border border-white/20 rounded-full no-underline transition-all duration-300 hover:border-white/50 hover:text-white">
-                                Lihat Layanan
-                            </a>
-                        </div>
-                    </div>
-
-                    {{-- Right Column: Features & Stats --}}
-                    <div class="hero-features">
-                        <div class="grid grid-cols-2 gap-6 mb-8">
-                            {{-- Feature Item with Line Border --}}
-                            <div class="feature-item group">
-                                <div
-                                    class="flex items-center gap-4 pb-5 border-b-2 border-cyan-500/30 transition-all duration-300 group-hover:border-cyan-500">
-                                    <div
-                                        class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-cyan-500/20 group-hover:scale-110">
-                                        <svg class="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <div class="text-2xl font-bold text-white mb-0.5">98%</div>
-                                        <p class="text-sm text-white/50">Tingkat Kepuasan Klien</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="feature-item group">
-                                <div
-                                    class="flex items-center gap-4 pb-5 border-b-2 border-cyan-500/30 transition-all duration-300 group-hover:border-cyan-500">
-                                    <div
-                                        class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-cyan-500/20 group-hover:scale-110">
-                                        <svg class="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <div class="text-2xl font-bold text-white mb-0.5">24/7</div>
-                                        <p class="text-sm text-white/50">Layanan Support</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="feature-item group">
-                                <div
-                                    class="flex items-center gap-4 pb-5 border-b-2 border-cyan-500/30 transition-all duration-300 group-hover:border-cyan-500">
-                                    <div
-                                        class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-cyan-500/20 group-hover:scale-110">
-                                        <svg class="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <div class="text-2xl font-bold text-white mb-0.5">150+</div>
-                                        <p class="text-sm text-white/50">Klien Terpuaskan</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="feature-item group">
-                                <div
-                                    class="flex items-center gap-4 pb-5 border-b-2 border-cyan-500/30 transition-all duration-300 group-hover:border-cyan-500">
-                                    <div
-                                        class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-cyan-500/20 group-hover:scale-110">
-                                        <svg class="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <div class="text-2xl font-bold text-cyan-500 mb-0.5">✓</div>
-                                        <p class="text-sm text-white/50">Bersertifikat Resmi</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Info Banner with Line Border --}}
-                        <div
-                            class="border-l-4 border-cyan-500 pl-6 py-4 transition-all duration-300 hover:border-cyan-400">
-                            <div class="flex items-start gap-4">
-                                <div
-                                    class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-white font-semibold mb-1">Melayani Seluruh Indonesia</h3>
-                                    <p class="text-sm text-white/50">UMKM, Perusahaan & Profesional di Samarinda dan
-                                        Kalimantan Timur</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Client Logos Slider - Bottom of Hero Section --}}
-            <div class="absolute bottom-32 left-0 right-0 z-10">
-                <div class="max-w-[1400px] mx-auto px-32">
-                    <div class="border-t border-cyan-500/20 pt-6">
-                        <div class="text-center mb-4">
-                            <span class="text-xs text-white/30 uppercase tracking-[3px] font-medium">Dipercaya
-                                Oleh</span>
-                        </div>
-                        <div class="swiper clientSwiper">
-                            <div class="swiper-wrapper items-center">
-                                @php
-                                $clientPath = public_path('image/Home/Client');
-                                $clientImages = [];
-                                if (File::exists($clientPath)) {
-                                $clientImages = File::files($clientPath);
-                                }
-                                @endphp
-
-                                @forelse($clientImages as $image)
-                                <div class="swiper-slide">
-                                    <div class="flex items-center justify-center h-[80px] px-4">
-                                        <img src="{{ asset('image/Home/Client/' . $image->getFilename()) }}"
-                                            alt="Client Logo"
-                                            class="max-h-12 max-w-full object-contain transition-all duration-300 filter grayscale opacity-40 hover:grayscale-0 hover:opacity-100">
-                                    </div>
-                                </div>
-                                @empty
-                                <div class="swiper-slide">
-                                    <div class="flex items-center justify-center h-[80px] text-white/20 text-xs">
-                                        Client logos coming soon
-                                    </div>
-                                </div>
-                                @endforelse
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Scroll Indicator - Bottom Center of Page --}}
-            <div
-                class="scroll-indicator absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 text-[13px] tracking-wide">
-                <span>Scroll untuk menjelajahi</span>
-                <div class="scroll-arrow animate-[bounceRight_1.5s_ease-in-out_infinite] rotate-90">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </div>
-            </div>
-        </section>
+        @include('components.landing.hero')
 
         {{-- Section 2: About Us --}}
-        <section
-            class="h-section flex-[0_0_100vw] w-screen min-w-screen h-screen min-h-screen snap-start snap-always flex items-center justify-center relative px-32 py-20 box-border"
-            data-index="1">
-            <div class="section-inner relative z-10 w-full max-w-[1100px]">
-                <div class="about-grid grid grid-cols-[1.3fr_1fr] gap-24 items-center">
-                    <div class="about-content">
-                        <span
-                            class="tag inline-block text-[11px] font-medium tracking-[3px] uppercase text-cyan-500 mb-6">Tentang
-                            Perusahaan</span>
-                        <h2
-                            class="section-title text-[clamp(40px,6vw,72px)] font-semibold leading-[1.05] tracking-[-2px] text-white mb-7">
-                            Melangkah Maju<br>
-                            <span class="text-cyan-500">Bersama Anda</span>
-                        </h2>
-                        <p class="section-desc text-lg leading-[1.7] text-white/50 max-w-[560px] mb-10">
-                            PT Kinara Sadayatra Nusantara hadir sejak 2025 dengan komitmen menghadirkan solusi bisnis
-                            yang andal di bidang perpajakan, keuangan, perizinan, dan digital marketing.
-                        </p>
-                        <div class="about-features flex flex-col gap-4.5 mb-9">
-                            <div class="feature flex items-center gap-4 text-white/75 text-base">
-                                <div
-                                    class="feature-icon w-[50px] h-[50px] bg-cyan-500/10 rounded-[14px] flex items-center justify-center text-cyan-500">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                </div>
-                                <span>Konsultan Pajak Bersertifikat</span>
-                            </div>
-                            <div class="feature flex items-center gap-4 text-white/75 text-base">
-                                <div
-                                    class="feature-icon w-[50px] h-[50px] bg-cyan-500/10 rounded-[14px] flex items-center justify-center text-cyan-500">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                    </svg>
-                                </div>
-                                <span>Kepatuhan Perpajakan Terjamin</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Stats with Line Borders --}}
-                    <div class="about-stats flex flex-col gap-8">
-                        {{-- Stat Item with Intersecting Borders --}}
-                        <div class="stat-item group">
-                            <div
-                                class="relative flex items-center gap-6 pl-6 py-4 border-l-2 border-b border-cyan-500/30 transition-all duration-300 group-hover:border-cyan-500 group-hover:pl-8">
-                                <div>
-                                    <span
-                                        class="stat-value block text-7xl font-bold text-cyan-500 tracking-[-3px] leading-none">98%</span>
-                                    <span class="stat-label text-sm text-white/50 mt-2 block">Klien Puas</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="stat-item group">
-                            <div
-                                class="relative flex items-center gap-6 pl-6 py-4 border-l-2 border-b border-cyan-500/30 transition-all duration-300 group-hover:border-cyan-500 group-hover:pl-8">
-                                <div>
-                                    <span
-                                        class="stat-value block text-7xl font-bold text-cyan-500 tracking-[-3px] leading-none">500+</span>
-                                    <span class="stat-label text-sm text-white/50 mt-2 block">Proyek Selesai</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="stat-item group">
-                            <div
-                                class="relative flex items-center gap-6 pl-6 py-4 border-l-2 border-b border-cyan-500/30 transition-all duration-300 group-hover:border-cyan-500 group-hover:pl-8">
-                                <div>
-                                    <span
-                                        class="stat-value block text-7xl font-bold text-cyan-500 tracking-[-3px] leading-none">24/7</span>
-                                    <span class="stat-label text-sm text-white/50 mt-2 block">Dukungan</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        @include('components.landing.about-us')
 
         {{-- Section 3: Services --}}
         <section
@@ -924,43 +657,44 @@
         }
     }
 
-    /* Blob animations */
+    /* Blob animations - LARGER and MORE PROMINENT */
     .blob-1 {
-        width: 800px;
-        height: 800px;
-        background: radial-gradient(circle, rgba(66, 178, 205, 0.8) 0%, rgba(66, 178, 205, 0.3) 50%, transparent 70%);
+        width: 900px;
+        height: 900px;
+        background: radial-gradient(circle, rgba(66, 178, 205, 1) 0%, rgba(66, 178, 205, 0.5) 40%, transparent 70%);
         top: -20%;
         left: -15%;
-        animation: floatBlob1 30s ease-in-out infinite;
+        animation: floatBlob1 25s ease-in-out infinite;
     }
 
     .blob-2 {
-        width: 700px;
-        height: 700px;
-        background: radial-gradient(circle, rgba(34, 211, 238, 0.75) 0%, rgba(34, 211, 238, 0.25) 50%, transparent 70%);
+        width: 850px;
+        height: 850px;
+        background: radial-gradient(circle, rgba(34, 211, 238, 0.95) 0%, rgba(34, 211, 238, 0.45) 40%, transparent 70%);
         bottom: -25%;
         right: -10%;
-        animation: floatBlob2 35s ease-in-out infinite;
+        animation: floatBlob2 30s ease-in-out infinite;
     }
 
     .blob-3 {
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(103, 232, 249, 0.7) 0%, rgba(103, 232, 249, 0.2) 50%, transparent 70%);
+        width: 750px;
+        height: 750px;
+        background: radial-gradient(circle, rgba(103, 232, 249, 0.9) 0%, rgba(103, 232, 249, 0.4) 40%, transparent 70%);
         top: 40%;
         left: 35%;
-        animation: floatBlob3 25s ease-in-out infinite;
+        animation: floatBlob3 22s ease-in-out infinite;
     }
 
     .blob-4 {
-        width: 500px;
-        height: 500px;
-        background: radial-gradient(circle, rgba(59, 130, 246, 0.65) 0%, rgba(59, 130, 246, 0.2) 50%, transparent 70%);
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.85) 0%, rgba(59, 130, 246, 0.35) 40%, transparent 70%);
         top: 15%;
         right: 15%;
-        animation: floatBlob4 28s ease-in-out infinite;
+        animation: floatBlob4 26s ease-in-out infinite;
     }
 
+    /* ENHANCED blob animations with more movement */
     @keyframes floatBlob1 {
 
         0%,
@@ -969,15 +703,15 @@
         }
 
         25% {
-            transform: translate(100px, -60px) scale(1.1) rotate(5deg);
+            transform: translate(150px, -80px) scale(1.2) rotate(8deg);
         }
 
         50% {
-            transform: translate(50px, 80px) scale(0.95) rotate(-5deg);
+            transform: translate(80px, 100px) scale(0.9) rotate(-8deg);
         }
 
         75% {
-            transform: translate(-50px, 30px) scale(1.05) rotate(3deg);
+            transform: translate(-80px, 50px) scale(1.1) rotate(5deg);
         }
     }
 
@@ -989,15 +723,15 @@
         }
 
         25% {
-            transform: translate(-80px, 50px) scale(1.08) rotate(-4deg);
+            transform: translate(-120px, 80px) scale(1.15) rotate(-6deg);
         }
 
         50% {
-            transform: translate(60px, -90px) scale(0.92) rotate(6deg);
+            transform: translate(90px, -120px) scale(0.85) rotate(8deg);
         }
 
         75% {
-            transform: translate(30px, 40px) scale(1.03) rotate(-2deg);
+            transform: translate(50px, 60px) scale(1.08) rotate(-4deg);
         }
     }
 
@@ -1005,11 +739,15 @@
 
         0%,
         100% {
-            transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1) rotate(0deg);
         }
 
-        50% {
-            transform: translate(120px, -50px) scale(1.2);
+        33% {
+            transform: translate(160px, -70px) scale(1.25) rotate(10deg);
+        }
+
+        66% {
+            transform: translate(-100px, 90px) scale(0.95) rotate(-7deg);
         }
     }
 
@@ -1017,22 +755,26 @@
 
         0%,
         100% {
-            transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1) rotate(0deg);
         }
 
-        50% {
-            transform: translate(-90px, 70px) scale(1.15);
+        40% {
+            transform: translate(-130px, 100px) scale(1.2) rotate(-9deg);
+        }
+
+        80% {
+            transform: translate(110px, -80px) scale(0.9) rotate(6deg);
         }
     }
 
-    /* Cursor glow gradient */
+    /* ENHANCED Cursor glow gradient - MORE VISIBLE */
     .cursor-glow {
-        background: radial-gradient(circle, rgba(66, 178, 205, 0.15) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(66, 178, 205, 0.4) 0%, rgba(66, 178, 205, 0.2) 50%, transparent 75%);
     }
 
-    /* Ripple animation */
+    /* SUBTLE Mouse Trail Ripple - Won't interfere with text readability */
     .ripple {
-        background: radial-gradient(circle, rgba(66, 178, 205, 0.4) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(66, 178, 205, 0.25) 0%, rgba(66, 178, 205, 0.1) 50%, transparent 75%);
         transform: translate(-50%, -50%) scale(0);
         animation: rippleExpand 1.5s ease-out forwards;
     }
@@ -1040,21 +782,21 @@
     @keyframes rippleExpand {
         0% {
             transform: translate(-50%, -50%) scale(0);
-            opacity: 0.6;
+            opacity: 0.4;
         }
 
         100% {
-            transform: translate(-50%, -50%) scale(40);
+            transform: translate(-50%, -50%) scale(30);
             opacity: 0;
         }
     }
 
-    /* Fluid gradient background */
+    /* ENHANCED Fluid gradient background */
     .fluid-gradient {
         background:
-            radial-gradient(ellipse 80% 60% at 20% 40%, rgba(66, 178, 205, 0.1) 0%, transparent 50%),
-            radial-gradient(ellipse 60% 80% at 80% 20%, rgba(66, 178, 205, 0.08) 0%, transparent 45%),
-            radial-gradient(ellipse 70% 50% at 50% 80%, rgba(66, 178, 205, 0.06) 0%, transparent 40%),
+            radial-gradient(ellipse 80% 60% at 20% 40%, rgba(66, 178, 205, 0.25) 0%, transparent 50%),
+            radial-gradient(ellipse 60% 80% at 80% 20%, rgba(66, 178, 205, 0.20) 0%, transparent 45%),
+            radial-gradient(ellipse 70% 50% at 50% 80%, rgba(66, 178, 205, 0.15) 0%, transparent 40%),
             linear-gradient(180deg, #050505 0%, #080808 50%, #050505 100%);
     }
 
@@ -1312,14 +1054,14 @@
         particles: [],
 
         initSplash() {
-            // Create bouncing blobs
+            // Create bouncing blobs with REDUCED opacity
             const blobCount = 8;
             const gradients = [
-                'radial-gradient(circle, rgba(6, 182, 212, 0.6) 0%, rgba(6, 182, 212, 0) 70%)', // cyan-500
-                'radial-gradient(circle, rgba(34, 211, 238, 0.5) 0%, rgba(34, 211, 238, 0) 70%)', // cyan-400
-                'radial-gradient(circle, rgba(103, 232, 249, 0.4) 0%, rgba(103, 232, 249, 0) 70%)', // cyan-300
-                'radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, rgba(59, 130, 246, 0) 70%)', // blue-500
-                'radial-gradient(circle, rgba(147, 197, 253, 0.4) 0%, rgba(147, 197, 253, 0) 70%)', // blue-300
+                'radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, rgba(6, 182, 212, 0) 70%)', // REDUCED from 0.6
+                'radial-gradient(circle, rgba(34, 211, 238, 0.25) 0%, rgba(34, 211, 238, 0) 70%)', // REDUCED from 0.5
+                'radial-gradient(circle, rgba(103, 232, 249, 0.2) 0%, rgba(103, 232, 249, 0) 70%)', // REDUCED from 0.4
+                'radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, rgba(59, 130, 246, 0) 70%)', // REDUCED from 0.5
+                'radial-gradient(circle, rgba(147, 197, 253, 0.2) 0%, rgba(147, 197, 253, 0) 70%)', // REDUCED from 0.4
             ];
 
             for (let i = 0; i < blobCount; i++) {
@@ -1327,11 +1069,11 @@
                     id: i,
                     x: Math.random() * window.innerWidth,
                     y: Math.random() * window.innerHeight,
-                    vx: (Math.random() - 0.5) * 3, // velocity x
-                    vy: (Math.random() - 0.5) * 3, // velocity y
+                    vx: (Math.random() - 0.5) * 2, // REDUCED from 3
+                    vy: (Math.random() - 0.5) * 2, // REDUCED from 3
                     size: 200 + Math.random() * 300,
                     gradient: gradients[i % gradients.length],
-                    opacity: 0.6 + Math.random() * 0.4
+                    opacity: 0.3 + Math.random() * 0.2 // REDUCED from 0.6-1.0 to 0.3-0.5
                 });
             }
 
@@ -1347,7 +1089,7 @@
                 });
             }
 
-            // Start animation loop
+            // Start animation loop with SLOWER movement
             this.animateBlobs();
 
             // Auto-hide splash screen after 2.5 seconds
@@ -1368,22 +1110,22 @@
                     blob.x += blob.vx;
                     blob.y += blob.vy;
 
-                    // Bounce off edges with some damping
+                    // Bounce off edges with MORE damping for smoother movement
                     if (blob.x <= -blob.size / 2 || blob.x >= window.innerWidth - blob.size / 2) {
-                        blob.vx *= -1;
+                        blob.vx *= -0.8; // INCREASED damping from -1
                         blob.x = blob.x <= -blob.size / 2 ? -blob.size / 2 : window.innerWidth - blob.size / 2;
                     }
                     if (blob.y <= -blob.size / 2 || blob.y >= window.innerHeight - blob.size / 2) {
-                        blob.vy *= -1;
+                        blob.vy *= -0.8; // INCREASED damping from -1
                         blob.y = blob.y <= -blob.size / 2 ? -blob.size / 2 : window.innerHeight - blob.size / 2;
                     }
 
-                    // Add some randomness to velocity for organic movement
-                    blob.vx += (Math.random() - 0.5) * 0.1;
-                    blob.vy += (Math.random() - 0.5) * 0.1;
+                    // Add LESS randomness for gentler movement
+                    blob.vx += (Math.random() - 0.5) * 0.05; // REDUCED from 0.1
+                    blob.vy += (Math.random() - 0.5) * 0.05; // REDUCED from 0.1
 
-                    // Limit velocity
-                    const maxSpeed = 4;
+                    // Limit velocity to SLOWER speed
+                    const maxSpeed = 2.5; // REDUCED from 4
                     blob.vx = Math.max(-maxSpeed, Math.min(maxSpeed, blob.vx));
                     blob.vy = Math.max(-maxSpeed, Math.min(maxSpeed, blob.vy));
                 });
@@ -1409,28 +1151,28 @@ function horizontalHomepage() {
         ripples: [],
         rippleId: 0,
         liquidBlobs: [],
+        lastRippleTime: 0,
         sections: ['Beranda', 'Tentang', 'Layanan', 'Keunggulan', 'Portofolio', 'FAQ', 'Konsultasi', 'Berita'],
 
         init() {
             this.$nextTick(() => {
                 this.setupWheelHandler();
                 this.onScroll();
-                this.startRippleInterval();
                 this.initLiquidBlobs();
                 this.animateLiquidBlobs();
             });
         },
 
         initLiquidBlobs() {
-            // Create 10 bouncing liquid blobs for the main page
-            const blobCount = 10;
+            // Create MORE and LARGER bouncing liquid blobs with HIGHER opacity
+            const blobCount = 15;
             const gradients = [
-                'radial-gradient(circle, rgba(6, 182, 212, 0.8) 0%, rgba(6, 182, 212, 0.3) 50%, rgba(6, 182, 212, 0) 70%)', // cyan-500
-                'radial-gradient(circle, rgba(34, 211, 238, 0.75) 0%, rgba(34, 211, 238, 0.25) 50%, rgba(34, 211, 238, 0) 70%)', // cyan-400
-                'radial-gradient(circle, rgba(103, 232, 249, 0.7) 0%, rgba(103, 232, 249, 0.25) 50%, rgba(103, 232, 249, 0) 70%)', // cyan-300
-                'radial-gradient(circle, rgba(59, 130, 246, 0.75) 0%, rgba(59, 130, 246, 0.3) 50%, rgba(59, 130, 246, 0) 70%)', // blue-500
-                'radial-gradient(circle, rgba(147, 197, 253, 0.65) 0%, rgba(147, 197, 253, 0.25) 50%, rgba(147, 197, 253, 0) 70%)', // blue-300
-                'radial-gradient(circle, rgba(14, 165, 233, 0.8) 0%, rgba(14, 165, 233, 0.3) 50%, rgba(14, 165, 233, 0) 70%)', // sky-500
+                'radial-gradient(circle, rgba(6, 182, 212, 0.9) 0%, rgba(6, 182, 212, 0.4) 50%, rgba(6, 182, 212, 0) 70%)',
+                'radial-gradient(circle, rgba(34, 211, 238, 0.85) 0%, rgba(34, 211, 238, 0.35) 50%, rgba(34, 211, 238, 0) 70%)',
+                'radial-gradient(circle, rgba(103, 232, 249, 0.8) 0%, rgba(103, 232, 249, 0.35) 50%, rgba(103, 232, 249, 0) 70%)',
+                'radial-gradient(circle, rgba(59, 130, 246, 0.85) 0%, rgba(59, 130, 246, 0.4) 50%, rgba(59, 130, 246, 0) 70%)',
+                'radial-gradient(circle, rgba(147, 197, 253, 0.75) 0%, rgba(147, 197, 253, 0.35) 50%, rgba(147, 197, 253, 0) 70%)',
+                'radial-gradient(circle, rgba(14, 165, 233, 0.9) 0%, rgba(14, 165, 233, 0.4) 50%, rgba(14, 165, 233, 0) 70%)',
             ];
 
             for (let i = 0; i < blobCount; i++) {
@@ -1438,11 +1180,11 @@ function horizontalHomepage() {
                     id: i,
                     x: Math.random() * window.innerWidth,
                     y: Math.random() * window.innerHeight,
-                    vx: (Math.random() - 0.5) * 2.5, // velocity x (slightly faster)
-                    vy: (Math.random() - 0.5) * 2.5, // velocity y
-                    size: 300 + Math.random() * 400, // even larger blobs: 300-700px
+                    vx: (Math.random() - 0.5) * 3.5,
+                    vy: (Math.random() - 0.5) * 3.5,
+                    size: 400 + Math.random() * 500,
                     gradient: gradients[i % gradients.length],
-                    opacity: 0.7 + Math.random() * 0.3 // 0.7-1.0 opacity - MUCH more visible!
+                    opacity: 0.8 + Math.random() * 0.2
                 });
             }
         },
@@ -1450,26 +1192,22 @@ function horizontalHomepage() {
         animateLiquidBlobs() {
             const animate = () => {
                 this.liquidBlobs.forEach(blob => {
-                    // Update position
                     blob.x += blob.vx;
                     blob.y += blob.vy;
 
-                    // Bounce off edges with physics
                     if (blob.x <= -blob.size / 2 || blob.x >= window.innerWidth - blob.size / 2) {
-                        blob.vx *= -0.95; // slight damping
+                        blob.vx *= -0.98;
                         blob.x = blob.x <= -blob.size / 2 ? -blob.size / 2 : window.innerWidth - blob.size / 2;
                     }
                     if (blob.y <= -blob.size / 2 || blob.y >= window.innerHeight - blob.size / 2) {
-                        blob.vy *= -0.95;
+                        blob.vy *= -0.98;
                         blob.y = blob.y <= -blob.size / 2 ? -blob.size / 2 : window.innerHeight - blob.size / 2;
                     }
 
-                    // Add organic movement
-                    blob.vx += (Math.random() - 0.5) * 0.08;
-                    blob.vy += (Math.random() - 0.5) * 0.08;
+                    blob.vx += (Math.random() - 0.5) * 0.12;
+                    blob.vy += (Math.random() - 0.5) * 0.12;
 
-                    // Limit velocity for smooth movement
-                    const maxSpeed = 3;
+                    const maxSpeed = 4;
                     blob.vx = Math.max(-maxSpeed, Math.min(maxSpeed, blob.vx));
                     blob.vy = Math.max(-maxSpeed, Math.min(maxSpeed, blob.vy));
                 });
@@ -1484,14 +1222,10 @@ function horizontalHomepage() {
             const container = this.$refs.scrollContainer;
             if (!container) return;
 
-            // Only enable horizontal scroll on desktop
             if (window.innerWidth > 1024) {
                 container.addEventListener('wheel', (e) => {
-                    // Convert vertical scroll to horizontal
                     if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
                         e.preventDefault();
-
-                        // Smooth scroll with momentum
                         const scrollAmount = e.deltaY * 2;
                         container.scrollBy({
                             left: scrollAmount,
@@ -1500,7 +1234,6 @@ function horizontalHomepage() {
                     }
                 }, { passive: false });
 
-                // Also handle keyboard navigation
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
                         e.preventDefault();
@@ -1555,7 +1288,7 @@ function horizontalHomepage() {
             this.mouseX = e.clientX;
             this.mouseY = e.clientY;
 
-            // Calculate blob movement (centered offset)
+            // Calculate blob movement with MORE responsiveness
             this.blobX = e.clientX - window.innerWidth / 2;
             this.blobY = e.clientY - window.innerHeight / 2;
 
@@ -1565,28 +1298,27 @@ function horizontalHomepage() {
             this.moveTimeout = setTimeout(() => {
                 this.isMoving = false;
             }, 150);
-        },
 
-        startRippleInterval() {
-            // Create periodic subtle ripples
-            setInterval(() => {
-                if (window.innerWidth > 1024 && Math.random() > 0.7) {
-                    this.createRipple(
-                        Math.random() * window.innerWidth,
-                        Math.random() * window.innerHeight
-                    );
-                }
-            }, 3000);
+            // Create SUBTLE mouse trail ripples - but not too frequent
+            // Only create ripple if mouse has moved enough distance and enough time has passed
+            const currentTime = Date.now();
+            const timeSinceLastRipple = currentTime - this.lastRippleTime;
+            
+            // Create ripple every 80-120ms while moving (smooth trail effect)
+            if (timeSinceLastRipple > 100) {
+                this.createRipple(e.clientX, e.clientY);
+                this.lastRippleTime = currentTime;
+            }
         },
 
         createRipple(x, y) {
             const id = this.rippleId++;
             this.ripples.push({ id, x, y });
 
-            // Remove ripple after animation
+            // Remove ripple after animation completes
             setTimeout(() => {
                 this.ripples = this.ripples.filter(r => r.id !== id);
-            }, 1500);
+            }, 1500);  // Match animation duration
         }
     }
 }

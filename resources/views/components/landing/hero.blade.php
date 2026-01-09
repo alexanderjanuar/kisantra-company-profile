@@ -1,4 +1,4 @@
-<div class="hero-slider-wrapper relative overflow-hidden page-banner">
+{{-- <div class="hero-slider-wrapper relative overflow-hidden page-banner">
     <!-- Swiper Container -->
     <div class="swiper heroSwiper relative z-10">
         <div class="swiper-wrapper">
@@ -692,4 +692,232 @@
         }
     });
     </script>
-</div>
+</div> --}}
+
+{{-- Section 1: Hero - Minimalist Version --}}
+{{-- Section 1: Hero - With Bigger Client Logos & Horizontal Scroll Arrow --}}
+<section
+    class="h-section flex-[0_0_100vw] w-screen min-w-screen h-screen min-h-screen snap-start snap-always flex items-center justify-center relative px-32 py-20 box-border"
+    data-index="0">
+    <div class="section-inner relative z-10 w-full max-w-[1400px] flex flex-col justify-center h-full">
+        {{-- Hero Content Grid --}}
+        <div class="hero-grid grid grid-cols-2 gap-20 items-center mb-12">
+            {{-- Left Column: Content --}}
+            <div class="hero-content">
+                <span class="tag inline-block text-[11px] font-medium tracking-[3px] uppercase text-cyan-500 mb-6">
+                    Selamat Datang di Kisantra
+                </span>
+                <h1
+                    class="hero-title text-[clamp(48px,6vw,72px)] font-semibold leading-[1.05] tracking-[-3px] text-white mb-6">
+                    Konsultan
+                    <span class="typewriter-wrapper inline-block">
+                        <span class="text-cyan-500" x-data="typewriter()" x-text="displayText"></span>
+                        <span class="typewriter-cursor text-cyan-500">|</span>
+                    </span>
+                </h1>
+                <p class="hero-desc text-lg leading-[1.7] text-white/50 mb-8">
+                    <strong class="text-white/70 font-semibold">PT Kinara Sadayatra Nusantara</strong> - Mitra
+                    strategis untuk perpajakan, perencanaan keuangan, perizinan usaha, dan transformasi digital
+                    bisnis Anda.
+                </p>
+                <div class="hero-cta flex gap-4 flex-wrap mb-8">
+                    <a href="{{ route('consultation.index') }}"
+                        class="btn-primary inline-flex items-center gap-3 bg-cyan-500 text-white text-[15px] font-medium px-9 py-[18px] rounded-full no-underline transition-all duration-300 hover:bg-cyan-400 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(66,178,205,0.35)]">
+                        Konsultasi Gratis
+                        <svg class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                    <a href="{{ route('layanan.index') }}"
+                        class="btn-secondary inline-flex items-center text-white/65 text-[15px] font-medium px-9 py-[18px] border border-white/20 rounded-full no-underline transition-all duration-300 hover:border-white/50 hover:text-white">
+                        Lihat Layanan
+                    </a>
+                </div>
+            </div>
+
+            {{-- Right Column: Clean Stats Layout --}}
+            <div class="hero-features space-y-12">
+                {{-- Main Stats - Large & Bold --}}
+                <div class="grid grid-cols-2 gap-10">
+                    <div class="text-center group">
+                        <div
+                            class="text-6xl font-bold text-white mb-3 transition-all duration-300 group-hover:text-cyan-500">
+                            98<span class="text-cyan-500">%</span>
+                        </div>
+                        <p class="text-sm text-white/50 uppercase tracking-wider">Kepuasan Klien</p>
+                    </div>
+                    <div class="text-center group">
+                        <div
+                            class="text-6xl font-bold text-white mb-3 transition-all duration-300 group-hover:text-cyan-500">
+                            150<span class="text-cyan-500">+</span>
+                        </div>
+                        <p class="text-sm text-white/50 uppercase tracking-wider">Klien Terpuaskan</p>
+                    </div>
+                </div>
+
+                {{-- Divider Line --}}
+                <div class="h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
+
+                {{-- Key Features - Simple List --}}
+                <div class="space-y-5">
+                    <div class="flex items-center gap-4 group">
+                        <div
+                            class="w-1.5 h-1.5 rounded-full bg-cyan-500 flex-shrink-0 transition-all duration-300 group-hover:scale-150">
+                        </div>
+                        <span
+                            class="text-white/70 text-base transition-all duration-300 group-hover:text-white">Konsultan
+                            Pajak Bersertifikat</span>
+                    </div>
+                    <div class="flex items-center gap-4 group">
+                        <div
+                            class="w-1.5 h-1.5 rounded-full bg-cyan-500 flex-shrink-0 transition-all duration-300 group-hover:scale-150">
+                        </div>
+                        <span class="text-white/70 text-base transition-all duration-300 group-hover:text-white">Layanan
+                            Support 24/7</span>
+                    </div>
+                    <div class="flex items-center gap-4 group">
+                        <div
+                            class="w-1.5 h-1.5 rounded-full bg-cyan-500 flex-shrink-0 transition-all duration-300 group-hover:scale-150">
+                        </div>
+                        <span
+                            class="text-white/70 text-base transition-all duration-300 group-hover:text-white">Melayani
+                            Seluruh Indonesia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Client Logos Slider - BIGGER LOGOS --}}
+        <div class="client-logos-section w-full">
+            <div class="text-center mb-4">
+                <span class="text-xs text-white/30 uppercase tracking-[3px] font-medium">Dipercaya Oleh</span>
+            </div>
+            <div class="swiper clientSwiper">
+                <div class="swiper-wrapper items-center">
+                    @php
+                    $clientPath = public_path('image/Home/Client');
+                    $clientImages = [];
+                    if (File::exists($clientPath)) {
+                    $clientImages = File::files($clientPath);
+                    }
+                    @endphp
+
+                    @forelse($clientImages as $image)
+                    <div class="swiper-slide">
+                        <div class="flex items-center justify-center h-[90px] px-4">
+                            <img src="{{ asset('image/Home/Client/' . $image->getFilename()) }}" alt="Client Logo"
+                                class="max-h-14 max-w-full object-contain transition-all duration-300 filter grayscale opacity-50 hover:grayscale-0 hover:opacity-100">
+                        </div>
+                    </div>
+                    @empty
+                    <div class="swiper-slide">
+                        <div class="flex items-center justify-center h-[90px] text-white/20 text-xs">
+                            Client logos coming soon
+                        </div>
+                    </div>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Scroll Indicator - HORIZONTAL ARROW --}}
+    <div
+        class="scroll-indicator absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 text-[13px] tracking-wide">
+        <span>Scroll untuk menjelajahi</span>
+        <div class="scroll-arrow animate-[bounceRight_1.5s_ease-in-out_infinite]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Typewriter Effect Styles */
+    .typewriter-wrapper {
+        position: relative;
+        display: inline-block;
+        min-width: 400px;
+        /* Adjust based on your longest word */
+    }
+
+    .typewriter-cursor {
+        display: inline-block;
+        animation: blink 1s step-end infinite;
+        margin-left: 2px;
+    }
+
+    @keyframes blink {
+
+        0%,
+        49% {
+            opacity: 1;
+        }
+
+        50%,
+        100% {
+            opacity: 0;
+        }
+    }
+
+    /* Ensure typewriter text maintains line height */
+    .hero-title .typewriter-wrapper {
+        vertical-align: baseline;
+    }
+</style>
+
+<script>
+    // Typewriter Effect Function (Manual - No NPM library needed)
+function typewriter() {
+    return {
+        words: ['Keuangan & Pajak', 'Digital Marketing','Sistem Digital'],
+        currentWordIndex: 0,
+        currentText: '',
+        displayText: '',
+        isDeleting: false,
+        typeSpeed: 100,
+        deleteSpeed: 50,
+        pauseAfterWord: 2000,
+        pauseBeforeDelete: 1500,
+
+        init() {
+            this.type();
+        },
+
+        type() {
+            const currentWord = this.words[this.currentWordIndex];
+            
+            if (this.isDeleting) {
+                // Deleting characters
+                this.currentText = currentWord.substring(0, this.currentText.length - 1);
+                this.displayText = this.currentText;
+                
+                if (this.currentText === '') {
+                    this.isDeleting = false;
+                    this.currentWordIndex = (this.currentWordIndex + 1) % this.words.length;
+                    setTimeout(() => this.type(), 500); // Short pause before typing next word
+                } else {
+                    setTimeout(() => this.type(), this.deleteSpeed);
+                }
+            } else {
+                // Typing characters
+                this.currentText = currentWord.substring(0, this.currentText.length + 1);
+                this.displayText = this.currentText;
+                
+                if (this.currentText === currentWord) {
+                    // Word complete - pause before deleting
+                    setTimeout(() => {
+                        this.isDeleting = true;
+                        this.type();
+                    }, this.pauseBeforeDelete);
+                } else {
+                    setTimeout(() => this.type(), this.typeSpeed);
+                }
+            }
+        }
+    };
+}
+</script>

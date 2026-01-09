@@ -48,35 +48,35 @@
 
 
     <!-- Visi & Misi Section -->
-    <section class="py-20 bg-white"
+    <section class="py-20 bg-gray-950"
         style="background-image: url('{{ asset('image/Pattern/BlueWave.jpg') }}'); background-size: cover;">
         <div class="container mx-auto px-4">
             <div class="grid lg:grid-cols-2 gap-16 max-w-[1600px] mx-auto items-start">
                 <!-- Left Side - Visi & Misi -->
                 <div class="space-y-12">
                     <!-- Visi -->
-                    <div class="border-l-4 border-gray-200 pl-8" data-aos="fade-right" data-aos-duration="800"
+                    <div class="border-l-4 border-gray-700 pl-8" data-aos="fade-right" data-aos-duration="800"
                         data-aos-delay="100">
                         <!-- Icon -->
                         <div class="mb-6">
-                            <svg class="w-12 h-12 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-12 h-12 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                             </svg>
                         </div>
 
                         <!-- Title -->
-                        <h3 class="text-3xl font-bold text-gray-900 mb-4">Visi Kami</h3>
+                        <h3 class="text-3xl font-bold text-white mb-4">Visi Kami</h3>
 
                         <!-- Description -->
-                        <p class="text-gray-600 leading-loose text-[18px]">
+                        <p class="text-gray-400 leading-loose text-[18px]">
                             Menjadi perusahaan jasa yang transparan, terpercaya, dan dapat diandalkan dalam memberikan
                             solusi perpajakan, perizinan, keuangan, serta digital marketing.
                         </p>
                     </div>
 
                     <!-- Divider -->
-                    <div class="border-t border-gray-200" data-aos="fade-right" data-aos-duration="800"
+                    <div class="border-t border-gray-700" data-aos="fade-right" data-aos-duration="800"
                         data-aos-delay="200"></div>
 
                     <!-- Misi -->
