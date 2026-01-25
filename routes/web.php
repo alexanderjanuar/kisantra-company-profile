@@ -5,12 +5,15 @@ use App\Livewire\Career\Index;
 use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KisantraMailController;
+use Inertia\Inertia;
 
-Route::get('/', App\Livewire\Home\Index::class)->name('home.index');
+Route::get('/', function () {
+    return Inertia::render('Home');
+})->name('home.index');
 
 // In routes/web.php
 Route::get('/karir', action: \App\Livewire\Career\Index::class)->name('career.index');
-Route::get('/karir/{jobPosting}/apply', action: \App\Livewire\Career\JobApplication::class)->name('career.apply');
+Route::get('/karir/{jobPosting}/apply', action:         \App\Livewire\Career\JobApplication::class)->name('career.apply');
 
 
 Route::get('/konsultasi', \App\Livewire\Consultation\Index::class)->name('consultation.index');

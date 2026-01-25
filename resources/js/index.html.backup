@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kisantra Consult | Konsultan Pajak di Samarinda & Jasa Keuangan Terpercaya</title>
+    
+    <!-- Primary SEO Meta Tags -->
+    <meta name="title" content="Kisantra Consult | Konsultan Pajak di Samarinda & Jasa Keuangan Terpercaya">
+    <meta name="description" content="Kisantra Consult adalah konsultan pajak di Samarinda yang menyediakan jasa keuangan, audit, dan digital marketing profesional untuk pertumbuhan bisnis di Kalimantan Timur.">
+    <meta name="keywords" content="konsultan pajak di samarinda, jasa keuangan samarinda, digital marketing samarinda, audit pajak samarinda, strategi bisnis samarinda, konsultan bisnis kalimantan timur">
+    <meta name="author" content="Kisantra Consult">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kisantra.id/">
+    <meta property="og:title" content="Kisantra Consult | Ahli Pajak & Strategi Bisnis Samarinda">
+    <meta property="og:description" content="Solusi integrasi pajak, keuangan, dan digital marketing untuk korporasi dan UKM di Samarinda & sekitarnya.">
+    <meta property="og:image" content="https://kisantra.id/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://kisantra.id/">
+    <meta property="twitter:title" content="Kisantra Consult | Konsultan Pajak di Samarinda">
+    <meta property="twitter:description" content="Partner strategis untuk kepatuhan pajak dan transformasi digital bisnis Anda di Kalimantan Timur.">
+    <meta property="twitter:image" content="https://kisantra.id/og-image.jpg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ['"Playfair Display"', 'serif'],
+              sans: ['"Manrope"', 'sans-serif'],
+            },
+            colors: {
+              'lux-black': '#0a0a0a', 
+              'lux-white': '#fafafa', 
+              'lux-teal': '#14b8a6',  
+              'lux-teal-dark': '#0f766e', 
+              'lux-teal-light': '#ccfbf1', 
+            },
+            backgroundImage: {
+              'grain': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #fafafa;
+        color: #0a0a0a;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "framer-motion": "https://esm.sh/framer-motion@^12.29.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

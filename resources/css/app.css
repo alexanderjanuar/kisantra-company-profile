@@ -1,26 +1,24 @@
-@import 'tailwindcss';
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
-
-/* @font-face {
-    font-family: 'Sinhala MN';
-    src: url('/fonts/sinhala-mn/sinhala-mn-bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Sinhala MN';
-    src: url('/fonts/sinhala-mn/sinhala-mn-regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&family=Manrope:wght@200..800&display=swap');
+@import "tailwindcss";
 
 @theme {
-    --font-sans: 'Sinhala MN', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+  /* Font Families */
+  --font-family-sans: Manrope, ui-sans-serif, system-ui, sans-serif;
+  --font-family-serif: "Playfair Display", ui-serif, Georgia, serif;
+
+  /* Custom Colors */
+  --color-lux-black: #0a0a0a;
+  --color-lux-white: #fafafa;
+  --color-lux-teal: #14b8a6;
+  --color-lux-teal-dark: #0f766e;
+  --color-lux-teal-light: #ccfbf1;
+
+  /* Background Image - Grain */
+  --background-image-grain: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E');
 }
+
+@layer base {
+  * {
+    font-family: Manrope, sans-serif;
+  }
+}                       

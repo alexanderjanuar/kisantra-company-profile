@@ -8,10 +8,21 @@
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.13",
+        "@types/react": "^19.2.9",
+        "@types/react-dom": "^19.2.3",
         "axios": "^1.11.0",
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^2.0.0",
         "tailwindcss": "^4.1.13",
+        "typescript": "^5.9.3",
         "vite": "^7.0.4"
+    },
+    "dependencies": {
+        "@google/genai": "^1.38.0",
+        "@inertiajs/react": "^2.3.11",
+        "@vitejs/plugin-react": "^5.1.2",
+        "framer-motion": "^12.29.0",
+        "react": "^19.2.3",
+        "react-dom": "^19.2.3"
     }
 }

@@ -1,0 +1,113 @@
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { Navbar } from '../components/Navbar';
+import { Hero } from '../components/Hero';
+import { Impact } from '../components/Impact';
+import { Services } from '../components/Services';
+import { Industries } from '../components/Industries';
+import { Philosophy } from '../components/Philosophy';
+import { Insights } from '../components/Insights';
+import { Contact } from '../components/Contact';
+import { CTA } from '../components/CTA';
+import { SplashScreen } from '../components/SplashScreen';
+
+// Custom Smooth Scroll Implementation
+const SmoothScrollContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentHeight, setContentHeight] = useState(0);
+
+  // Sync window scroll height with content height
+  useEffect(() => {
+    const handleResize = () => {
+      if (contentRef.current) {
+        setContentHeight(contentRef.current.scrollHeight);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    const observer = new ResizeObserver(handleResize);
+    if (contentRef.current) {
+      observer.observe(contentRef.current);
+    }
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      observer.disconnect();
+    };
+  }, []);
+
+  const { scrollY } = useScroll();
+  const smoothY = useSpring(scrollY, {
+    damping: 15,
+    mass: 0.1,
+    stiffness: 100,
+  });
+
+  const y = useTransform(smoothY, (value) => -value);
+
+  return (
+    <>
+      <div style={{ height: contentHeight }} />
+      <motion.div
+        style={{ y }}
+        ref={contentRef}
+        className="fixed top-0 left-0 w-full overflow-hidden will-change-transform"
+      >
+        {children}
+      </motion.div>
+    </>
+  );
+};
+
+const App: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+  return (
+    <div className="bg-lux-white min-h-screen text-lux-black selection:bg-lux-teal selection:text-white">
+      <AnimatePresence mode="wait">
+        {loading && <SplashScreen onComplete={() => setLoading(false)} />}
+      </AnimatePresence>
+
+      {!loading && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <Navbar />
+          
+          {isMobile ? (
+             <main>
+                <Hero />
+                <Impact />
+                <Services />
+                <Industries />
+                <Philosophy />
+                <Insights />
+                <CTA />
+                <Contact />
+             </main>
+          ) : (
+            <SmoothScrollContainer>
+              <main>
+                <Hero />
+                <Impact />
+                <Services />
+                <Industries />
+                <Philosophy />
+                <Insights />
+                <CTA />
+                <Contact />
+              </main>
+            </SmoothScrollContainer>
+          )}
+        </motion.div>
+      )}
+    </div>
+  );
+};
+
+export default App;
