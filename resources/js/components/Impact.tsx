@@ -21,10 +21,20 @@ const Counter: React.FC<{ value: number; suffix?: string; decimals?: number }> =
 };
 
 export const Impact: React.FC = () => {
-    const clients = [
-        "Nusantara Capital", "Bumi Resources Tech", "Indo Global Holdings", 
-        "Sentra Solusi", "Mega Finance Group", "Alpha Digital Ventures",
-        "Prima Strategis", "Cipta Karya Mandiri", "Venture Indo"
+    const clientLogos = [
+        { name: "34", image: "/image/home/Client/34.png" },
+        { name: "Barakka", image: "/image/home/Client/Barakka.png" },
+        { name: "CV Dahana", image: "/image/home/Client/CV DAHANA.png" },
+        { name: "Etam Post", image: "/image/home/Client/Etam Post.png" },
+        { name: "JSM", image: "/image/home/Client/JSM@4x.png" },
+        { name: "LC", image: "/image/home/Client/LC.png" },
+        { name: "PT Nawa", image: "/image/home/Client/logo-pt-nawa.png" },
+        { name: "LSP", image: "/image/home/Client/LSP.png" },
+        { name: "MBM", image: "/image/home/Client/MBM.png" },
+        { name: "Persiba", image: "/image/home/Client/PERSIBA.png" },
+        { name: "Playmaker", image: "/image/home/Client/Playmaker.png" },
+        { name: "RSMM", image: "/image/home/Client/RSMM.png" },
+        { name: "SB", image: "/image/home/Client/SB.png" },
     ];
 
     return (
@@ -42,7 +52,7 @@ export const Impact: React.FC = () => {
                             transition={{ duration: 0.8 }}
                             className="font-bold text-4xl md:text-5xl lg:text-6xl leading-tight text-lux-black tracking-tight"
                         >
-                            Dampak Terukur bagi Bisnis di <span className="text-lux-teal">Samarinda.</span>
+                            Dampak Terukur bagi Bisnis di <span className="text-lux-teal">Indonesia.</span>
                         </motion.h2>
                         <motion.p 
                             initial={{ opacity: 0 }}
@@ -61,9 +71,9 @@ export const Impact: React.FC = () => {
                         <div className="flex flex-col group cursor-default">
                             <div className="h-[1px] w-full bg-neutral-200 mb-6 group-hover:bg-lux-teal transition-colors duration-500" />
                             <span className="text-7xl md:text-9xl font-bold leading-none mb-4 text-lux-black tracking-tighter group-hover:text-lux-teal transition-colors duration-500">
-                                <Counter value={10} suffix="T+" />
+                                <Counter value={24} suffix=",7" />
                             </span>
-                            <span className="text-xs uppercase tracking-[0.2em] text-neutral-500 mt-2 font-medium">Aset Dikelola (IDR)</span>
+                            <span className="text-xs uppercase tracking-[0.2em] text-neutral-500 mt-2 font-medium">Dukungan</span>
                         </div>
 
                         <div className="flex flex-col group cursor-default">
@@ -93,24 +103,28 @@ export const Impact: React.FC = () => {
                 <div className="absolute top-0 right-0 w-32 md:w-64 h-full z-10 bg-gradient-to-l from-lux-white to-transparent pointer-events-none" />
                 
                 <div className="flex overflow-hidden">
-                    <motion.div 
-                        className="flex gap-16 md:gap-32 items-center pl-16 md:pl-32"
+                    <motion.div
+                        className="flex gap-16 md:gap-24 items-center pl-16 md:pl-24"
                         animate={{ x: "-50%" }}
-                        transition={{ 
-                            duration: 40, 
-                            repeat: Infinity, 
+                        transition={{
+                            duration: 60,
+                            repeat: Infinity,
                             ease: "linear",
-                            repeatType: "loop" 
+                            repeatType: "loop"
                         }}
                         style={{ width: "fit-content" }}
                     >
-                        {[...clients, ...clients, ...clients, ...clients].map((client, index) => (
-                            <span 
-                                key={index} 
-                                className="text-2xl md:text-4xl font-semibold text-neutral-300 whitespace-nowrap tracking-tight"
+                        {[...clientLogos, ...clientLogos].map((client, index) => (
+                            <div
+                                key={index}
+                                className="flex items-center justify-center h-20 md:h-24 shrink-0"
                             >
-                                {client}
-                            </span>
+                                <img
+                                    src={client.image}
+                                    alt={client.name}
+                                    className="max-h-full w-auto object-contain filter grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                                />
+                            </div>
                         ))}
                     </motion.div>
                 </div>

@@ -8,7 +8,16 @@ use App\Http\Controllers\KisantraMailController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Home');
+    $articles = \App\Models\Article::published()
+        ->with('categories:id,name,slug')
+        ->select('id', 'title', 'slug', 'excerpt', 'featured_image', 'published_at')
+        ->latest('published_at')
+        ->limit(3)
+        ->get();
+
+    return Inertia::render('Home', [
+        'articles' => $articles
+    ]);
 })->name('home.index');
 
 // In routes/web.php
@@ -18,7 +27,9 @@ Route::get('/karir/{jobPosting}/apply', action:         \App\Livewire\Career\Job
 
 Route::get('/konsultasi', \App\Livewire\Consultation\Index::class)->name('consultation.index');
 
-Route::get('/tentang-kami', \App\Livewire\AboutUs\Index::class)->name('about.index');
+Route::get('/tentang-kami', function () {
+    return Inertia::render('About');
+})->name('about.index');
 
 Route::get('/layanan', \App\Livewire\Service\Index::class)->name('layanan.index');
 

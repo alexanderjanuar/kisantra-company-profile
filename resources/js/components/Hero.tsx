@@ -107,7 +107,7 @@ export const Hero: React.FC = () => {
           className="max-w-xl text-center"
         >
             <p className="text-base md:text-xl text-neutral-500 font-medium tracking-wide leading-relaxed">
-                Partner strategis <span className="text-lux-black font-bold">konsultan pajak di Samarinda</span>. Mengintegrasikan regulasi, manajemen finansial, dan inovasi digital untuk bisnis di Kalimantan Timur.
+                Partner strategis <span className="text-lux-black font-bold">konsultan pajak di Samarinda</span>. Mengintegrasikan regulasi, manajemen finansial, dan inovasi digital untuk bisnis di Indonesia.
             </p>
         </motion.div>
       </motion.div>

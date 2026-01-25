@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(npm run build:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(git checkout:*)",
+      "Bash(test:*)",
+      "Bash(php artisan db:seed:*)",
+      "Bash(php artisan tinker:*)"
     ]
   }
 }

@@ -43,8 +43,8 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
             transition={{ delay: 1.5, duration: 0.8 }}
             className="flex justify-between mt-2"
         >
-            <span className="text-xs uppercase tracking-[0.4em] text-lux-teal">Jakarta</span>
-            <span className="text-xs uppercase tracking-[0.4em] text-lux-teal">Est. 2024</span>
+            <span className="text-xs uppercase tracking-[0.4em] text-lux-teal">Samarinda</span>
+            <span className="text-xs uppercase tracking-[0.4em] text-lux-teal">Est. 2025</span>
         </motion.div>
       </div>
     </motion.div>

@@ -1,58 +1,143 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 
 export const CTA: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Parallax effects for decorative elements
+  const bgY = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+  const textY = useTransform(scrollYProgress, [0, 1], [20, -20]);
+
   return (
-    <section className="bg-lux-white w-full py-24 md:py-32 px-6 md:px-12 border-t border-neutral-200">
-        <div className="max-w-7xl mx-auto rounded-[2rem] bg-lux-black text-lux-white p-8 md:p-16 lg:p-24 relative overflow-hidden">
-            
-            {/* Background Decor */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-lux-teal opacity-[0.15] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+    <section 
+      ref={containerRef} 
+      id="contact" 
+      className="relative bg-lux-white w-full py-32 md:py-56 px-6 md:px-12 overflow-hidden border-t border-neutral-100"
+    >
+      {/* Background Sophistication */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 opacity-20 bg-grain mix-blend-multiply"></div>
+        <motion.div 
+          style={{ y: bgY }}
+          className="absolute top-1/4 -right-20 w-[500px] h-[500px] bg-lux-teal/5 rounded-full blur-[140px]"
+        />
+        <motion.div 
+          style={{ y: -bgY }}
+          className="absolute bottom-0 -left-20 w-[400px] h-[400px] bg-lux-teal-light/10 rounded-full blur-[120px]"
+        />
+      </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10">
-                <div className="flex flex-col gap-6">
-                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-lux-teal">
-                        Langkah Selanjutnya
-                    </span>
-                    <h2 className="font-bold text-4xl md:text-5xl lg:text-7xl leading-[1.05] tracking-tight">
-                        Siap untuk <span className="text-lux-teal">eskalasi bisnis</span> Anda?
-                    </h2>
-                    <p className="text-lg md:text-xl text-neutral-400 font-light leading-relaxed max-w-md">
-                        Jadwalkan konsultasi strategis. Kami membedah struktur finansial dan potensi digital Anda untuk hasil yang terukur.
-                    </p>
+      <div className="max-w-[1400px] mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 lg:gap-32 items-center">
+          
+          {/* Left Column: Visual & Value Prop */}
+          <div className="lg:col-span-7">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              style={{ y: textY }}
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <div className="h-[1px] w-12 bg-lux-teal"></div>
+                <span className="font-bold text-xs uppercase tracking-[0.4em] text-lux-teal">
+                  Hubungan Jangka Panjang
+                </span>
+              </div>
+              
+              <h2 className="font-bold text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tighter text-lux-black mb-10">
+                Akselerasi <br />
+                <span className="text-lux-teal-dark">Potensi</span> <br />
+                <span className="font-serif italic font-normal text-lux-black/80">Tanpa Batas.</span>
+              </h2>
+
+              <p className="text-xl md:text-2xl text-neutral-500 font-light leading-relaxed max-w-xl mb-12">
+                Kami hadir di Samarinda untuk mentransformasi tantangan fiskal Anda menjadi keunggulan kompetitif yang nyata.
+              </p>
+
+              {/* Minimalist Contact Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+                <div className="group cursor-pointer">
+                  <span className="block text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2 group-hover:text-lux-teal transition-colors">Direct Support</span>
+                  <a href="mailto:hello@kisantra.id" className="text-lg font-bold border-b border-neutral-200 pb-1 hover:border-lux-teal transition-all">hello@kisantra.id</a>
+                </div>
+                <div className="group cursor-pointer">
+                  <span className="block text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2 group-hover:text-lux-teal transition-colors">Call Office</span>
+                  <a href="tel:+62215550199" className="text-lg font-bold border-b border-neutral-200 pb-1 hover:border-lux-teal transition-all">+62 21 555 0199</a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Interaction Hub */}
+          <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+              className="relative p-1 bg-white rounded-[3rem] shadow-2xl shadow-lux-black/5"
+            >
+              {/* Main Interaction Card */}
+              <div className="bg-lux-black rounded-[2.8rem] p-10 md:p-14 overflow-hidden relative group">
+                <div className="absolute top-0 right-0 p-8">
+                  <motion.div 
+                    animate={{ rotate: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 4 }}
+                    className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-lux-teal"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  </motion.div>
                 </div>
 
-                <div className="flex flex-col gap-8 justify-center lg:items-end">
-                     {/* WhatsApp Button */}
-                     <motion.a 
-                        href="https://wa.me/6281234567890" 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="w-full md:w-auto flex items-center justify-center gap-4 bg-lux-teal text-white px-8 py-6 rounded-full group transition-all duration-300 hover:bg-lux-teal-dark"
-                    >
-                        <div className="w-6 h-6">
-                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
-                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.664-.698c.969.587 1.954.893 3.033.893h.003c3.19 0 5.775-2.587 5.776-5.767 0-3.18-2.586-5.767-5.765-5.767zm6.492 10.37c-.367.614-1.127 1.006-2.034 1.157-.905.15-2.613.123-5.228-2.489-2.614-2.612-2.64-4.322-2.491-5.227.151-.906.543-1.666 1.157-2.034.453-.272 1.096-.062 1.346.402.247.458.828 1.956.884 2.148.056.192.016.438-.13.679-.15.244-.27.35-.494.597-.184.204-.383.428-.152.83.228.397.986 1.543 2.053 2.607 1.066 1.064 2.213 1.821 2.612 2.049.401.23.626.031.83-.153.247-.223.353-.343.597-.492.241-.146.487-.186.679-.13.192.056 1.69.637 2.148.884.464.25.674.893.402 1.346v.001z"/>
-                            </svg>
-                        </div>
-                        <span className="font-bold text-sm uppercase tracking-widest">Chat via WhatsApp</span>
-                    </motion.a>
+                <div className="relative z-10">
+                  <h3 className="font-bold text-3xl md:text-4xl text-white mb-6 leading-tight">
+                    Mulai Sesi <br />Strategis Pertama.
+                  </h3>
+                  <p className="text-neutral-400 font-light text-lg mb-10 leading-relaxed">
+                    Diskusikan kebutuhan spesifik Anda dengan tim konsultan senior kami secara privat.
+                  </p>
 
-                    <div className="flex flex-col md:flex-row gap-8 md:gap-16 lg:text-right">
-                        <div>
-                             <span className="text-[10px] uppercase tracking-widest text-neutral-500 block mb-2">Email</span>
-                             <a href="mailto:hello@kisantra.id" className="text-xl text-white hover:text-lux-teal transition-colors">hello@kisantra.id</a>
-                        </div>
-                        <div>
-                             <span className="text-[10px] uppercase tracking-widest text-neutral-500 block mb-2">Telepon</span>
-                             <a href="tel:+62215550199" className="text-xl text-white hover:text-lux-teal transition-colors">+62 21 555 0199</a>
-                        </div>
-                    </div>
+                  <motion.a 
+                    href="https://wa.me/6281234567890"
+                    whileHover={{ scale: 1.05, backgroundColor: "#14b8a6", color: "#ffffff" }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center justify-between w-full bg-white text-lux-black py-6 px-10 rounded-2xl font-bold text-sm uppercase tracking-widest transition-all duration-300"
+                  >
+                    <span>Konsultasi Gratis</span>
+                    <span className="text-xl">→</span>
+                  </motion.a>
                 </div>
-            </div>
+
+                {/* Background Subtle Gradient */}
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-lux-teal/20 rounded-full blur-3xl group-hover:bg-lux-teal/40 transition-colors duration-700"></div>
+              </div>
+
+              {/* Status Pill */}
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.8 }}
+                className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white px-6 py-3 rounded-full shadow-xl border border-neutral-100 flex items-center gap-3 whitespace-nowrap"
+              >
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lux-teal opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-lux-teal"></span>
+                </span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-lux-black">
+                  Respon dalam &lt; 24 Jam
+                </span>
+              </motion.div>
+            </motion.div>
+          </div>
+
         </div>
+      </div>
     </section>
   );
 };

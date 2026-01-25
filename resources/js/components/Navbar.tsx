@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { Link, router } from '@inertiajs/react';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   // Lock scroll when menu is open
   useEffect(() => {
@@ -15,6 +17,23 @@ export const Navbar: React.FC = () => {
       document.body.style.overflow = '';
     };
   }, [isOpen]);
+
+  // Track navigation state
+  useEffect(() => {
+    const handleStart = () => {
+      setIsNavigating(true);
+      setIsOpen(false);
+    };
+    const handleFinish = () => setIsNavigating(false);
+
+    router.on('start', handleStart);
+    router.on('finish', handleFinish);
+
+    return () => {
+      router.off('start', handleStart);
+      router.off('finish', handleFinish);
+    };
+  }, []);
 
   const overlayVariants: Variants = {
     closed: {
@@ -60,14 +79,28 @@ export const Navbar: React.FC = () => {
   };
 
   const menuItems = [
-    { label: "Layanan", href: "#" },
-    { label: "Filosofi", href: "#" },
-    { label: "Wawasan", href: "#" },
-    { label: "Kontak", href: "#" }
+    { label: "Beranda", href: "/", isRoute: true },
+    { label: "Tentang Kami", href: "/tentang-kami", isRoute: true },
+    { label: "Layanan", href: "#services", isRoute: false },
+    { label: "Kontak", href: "#contact", isRoute: false }
   ];
 
   return (
     <>
+      {/* Page Loading Progress Bar */}
+      <AnimatePresence>
+        {isNavigating && (
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            exit={{ scaleX: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="fixed top-0 left-0 h-1 bg-lux-teal z-[200] origin-left"
+            style={{ width: '100%' }}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Fixed UI Layer (Logo & Button) - Uses mix-blend-difference to be visible on white page AND black overlay */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
@@ -76,10 +109,10 @@ export const Navbar: React.FC = () => {
         className="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-start pointer-events-none mix-blend-difference text-white"
       >
         {/* Logo */}
-        <div className="flex flex-col pointer-events-auto cursor-pointer group">
+        <Link href="/" className="flex flex-col pointer-events-auto cursor-pointer group">
           <span className="font-bold text-2xl md:text-3xl tracking-tighter group-hover:text-lux-teal transition-colors duration-300">KISANTRA</span>
-          <span className="text-xs uppercase tracking-[0.2em] opacity-80">Consult</span>
-        </div>
+          <span className="text-xs uppercase tracking-[0.2em] opacity-80 font-sans">Consult</span>
+        </Link>
 
         {/* Floating Hamburger Button */}
         <button 
@@ -113,14 +146,26 @@ export const Navbar: React.FC = () => {
              >
                 {menuItems.map((item, i) => (
                     <div key={i} className="overflow-hidden">
-                        <motion.a
-                            href={item.href}
-                            variants={itemVariants}
-                            onClick={() => setIsOpen(false)}
-                            className="block font-bold text-5xl md:text-7xl lg:text-9xl text-lux-white hover:text-lux-teal transition-colors tracking-tighter cursor-pointer"
-                        >
-                            {item.label}
-                        </motion.a>
+                        {item.isRoute ? (
+                            <motion.div variants={itemVariants}>
+                                <Link
+                                    href={item.href}
+                                    onClick={() => setIsOpen(false)}
+                                    className="block font-bold text-5xl md:text-7xl lg:text-9xl text-lux-white hover:text-lux-teal transition-colors tracking-tighter cursor-pointer"
+                                >
+                                    {item.label}
+                                </Link>
+                            </motion.div>
+                        ) : (
+                            <motion.a
+                                href={item.href}
+                                variants={itemVariants}
+                                onClick={() => setIsOpen(false)}
+                                className="block font-bold text-5xl md:text-7xl lg:text-9xl text-lux-white hover:text-lux-teal transition-colors tracking-tighter cursor-pointer"
+                            >
+                                {item.label}
+                            </motion.a>
+                        )}
                     </div>
                 ))}
              </motion.div>
@@ -132,8 +177,8 @@ export const Navbar: React.FC = () => {
                 transition={{ delay: 1, duration: 1 }}
                 className="absolute bottom-12 left-0 w-full text-center"
              >
-                <span className="text-xs uppercase tracking-[0.3em] text-neutral-500">
-                    Jakarta — Global
+                <span className="text-xs uppercase tracking-[0.3em] text-neutral-500 font-sans">
+                    Samarinda — Global
                 </span>
              </motion.div>
           </motion.div>

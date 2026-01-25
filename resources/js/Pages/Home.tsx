@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { Head, usePage } from '@inertiajs/react';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
 import { Impact } from '../components/Impact';
@@ -9,7 +10,26 @@ import { Philosophy } from '../components/Philosophy';
 import { Insights } from '../components/Insights';
 import { Contact } from '../components/Contact';
 import { CTA } from '../components/CTA';
+import { FAQ } from '@/components/FAQ';
 import { SplashScreen } from '../components/SplashScreen';
+
+interface Article {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt?: string;
+  featured_image?: string;
+  published_at: string;
+  categories: Array<{
+    id: number;
+    name: string;
+    slug: string;
+  }>;
+}
+
+interface HomePageProps {
+  articles: Article[];
+}
 
 // Custom Smooth Scroll Implementation
 const SmoothScrollContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -62,12 +82,15 @@ const SmoothScrollContainer: React.FC<{ children: React.ReactNode }> = ({ childr
 };
 
 const App: React.FC = () => {
+  const { articles } = usePage<HomePageProps>().props;
   const [loading, setLoading] = useState(true);
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   return (
-    <div className="bg-lux-white min-h-screen text-lux-black selection:bg-lux-teal selection:text-white">
-      <AnimatePresence mode="wait">
+    <>
+      <Head title="Beranda" />
+      <div className="bg-lux-white min-h-screen text-lux-black  selection:bg-lux-teal selection:text-white">
+        <AnimatePresence mode="wait">
         {loading && <SplashScreen onComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
@@ -83,11 +106,12 @@ const App: React.FC = () => {
              <main>
                 <Hero />
                 <Impact />
+                <Philosophy />
                 <Services />
                 <Industries />
-                <Philosophy />
-                <Insights />
-                <CTA />
+                {/* <CTA /> */}
+                <FAQ />
+                <Insights articles={articles} />
                 <Contact />
              </main>
           ) : (
@@ -95,18 +119,20 @@ const App: React.FC = () => {
               <main>
                 <Hero />
                 <Impact />
+                <Philosophy />
                 <Services />
                 <Industries />
-                <Philosophy />
-                <Insights />
-                <CTA />
+                <FAQ />
+                {/* <CTA /> */}
+                <Insights articles={articles} />
                 <Contact />
               </main>
             </SmoothScrollContainer>
           )}
         </motion.div>
       )}
-    </div>
+      </div>
+    </>
   );
 };
 

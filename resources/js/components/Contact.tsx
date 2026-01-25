@@ -10,7 +10,7 @@ export const Contact: React.FC = () => {
             
             {/* Brand Column */}
             <div className="col-span-1 lg:col-span-2">
-                <h3 className="font-bold text-2xl tracking-tight mb-4 text-white">KISANTRA CONSULT</h3>
+                <h3 className="font-sans font-bold text-2xl tracking-tight mb-4 text-white">KISANTRA CONSULT</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed max-w-sm">
                     Mitra strategis terpercaya Anda sebagai <span className="text-lux-teal">konsultan pajak di Samarinda</span>. Integrasi keuangan dan solusi digital untuk pertumbuhan bisnis yang kokoh di Kalimantan Timur.
                 </p>
@@ -18,8 +18,8 @@ export const Contact: React.FC = () => {
 
             {/* Address */}
             <div>
-                 <span className="text-xs uppercase tracking-widest text-lux-teal font-bold block mb-6">Kantor & Wilayah</span>
-                 <p className="text-neutral-300 font-light leading-relaxed">
+                 <span className="text-xs uppercase tracking-widest text-lux-teal font-sans font-bold block mb-6">Kantor & Wilayah</span>
+                 <p className="text-neutral-300 font-sans font-light leading-relaxed">
                     Jl. Pahlawan No. 12, Samarinda Ulu<br/>
                     Kalimantan Timur, 75123<br/>
                     Indonesia
@@ -28,11 +28,11 @@ export const Contact: React.FC = () => {
 
             {/* Menu Links */}
             <div>
-                <span className="text-xs uppercase tracking-widest text-lux-teal font-bold block mb-6">Layanan Populer</span>
+                <span className="text-xs uppercase tracking-widest text-lux-teal font-sans font-bold block mb-6">Layanan Populer</span>
                 <ul className="space-y-3">
                     {['Pajak Samarinda', 'Audit Keuangan', 'SEO Samarinda', 'Ads Management'].map((item) => (
                         <li key={item}>
-                            <a href="#" className="text-neutral-400 hover:text-lux-teal transition-colors font-medium text-sm">
+                            <a href="#" className="text-neutral-400 hover:text-lux-teal transition-colors font-sans font-medium text-sm">
                                 {item}
                             </a>
                         </li>

@@ -46,12 +46,12 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ number, title, description, t
             className="overflow-hidden"
           >
             <div className="px-6 pb-12 md:px-12 md:pb-16 md:pl-[calc(3rem+40px)] lg:pl-[calc(3rem+50px)]">
-              <p className="text-lg md:text-xl font-light leading-relaxed max-w-2xl text-neutral-400 mb-8">
+              <p className="text-lg md:text-xl font-sans font-light leading-relaxed max-w-2xl text-neutral-400 mb-8">
                 {description}
               </p>
               <div className="flex flex-wrap gap-3">
                 {tags.map((tag) => (
-                  <span key={tag} className="px-4 py-1 border border-neutral-700 rounded-full text-xs font-medium uppercase tracking-wider text-lux-teal">
+                  <span key={tag} className="px-4 py-1 border border-neutral-700 rounded-full text-xs font-sans font-medium uppercase tracking-wider text-lux-teal">
                     {tag}
                   </span>
                 ))}
@@ -93,7 +93,7 @@ export const Services: React.FC = () => {
   return (
     <section className="py-20 md:py-32 w-full bg-lux-white">
       <div className="px-6 md:px-12 mb-16 md:mb-24">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-lux-teal mb-4">Layanan Kami di Samarinda</h2>
+        <h2 className="text-xs font-sans font-bold uppercase tracking-widest text-lux-teal mb-4">Layanan Kami di Samarinda</h2>
         <div className="h-[1px] w-full bg-neutral-200" />
       </div>
 
