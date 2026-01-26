@@ -22,7 +22,7 @@ const Counter: React.FC<{ value: number; suffix?: string; decimals?: number }> =
 
 export const Impact: React.FC = () => {
     const clientLogos = [
-        { name: "34", image: "/image/home/Client/34.png" },
+        { name: "34", image: "/image/Logo/Logo Horizontal.png" },
         { name: "Barakka", image: "/image/home/Client/Barakka.png" },
         { name: "CV Dahana", image: "/image/home/Client/CV DAHANA.png" },
         { name: "Etam Post", image: "/image/home/Client/Etam Post.png" },
