@@ -7,9 +7,8 @@ import { geoMercator, geoPath } from 'd3-geo';
 import { feature } from 'topojson-client';
 
 const stats = [
-  { label: 'Tahun Pengalaman', value: '10+' },
+  { label: 'Proyek Selesai', value: '500+' },
   { label: 'Klien Korporasi', value: '150+' },
-  { label: 'Sertifikasi Ahli', value: '12' },
   { label: 'Wilayah Layanan', value: 'Global' },
 ];
 
@@ -135,13 +134,10 @@ export const AboutSection: React.FC = () => {
 
         if (indonesia.length > 0) {
           setGeographies(indonesia);
-        } else {
-          console.warn("Indonesia feature not found in map data");
         }
         setIsLoading(false);
       })
-      .catch(err => {
-        console.error("Error loading map data:", err);
+      .catch(() => {
         setIsLoading(false);
       });
   }, []);

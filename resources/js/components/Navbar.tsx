@@ -110,11 +110,15 @@ export const Navbar: React.FC = () => {
       >
         {/* Logo */}
         <Link href="/" className="pointer-events-auto cursor-pointer group">
-          <img
-            src="/image/Logo/Logo Horizontal.png"
-            alt="Kisantra Consult"
-            className="h-8 md:h-10 w-auto drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] transition-all duration-300 hover:scale-105"
-          />
+          <picture>
+            <source srcSet="/image/Logo/Logo Horizontal - Copy.webp" type="image/webp" />
+            <source srcSet="/image/Logo/Logo Horizontal.png" type="image/png" />
+            <img
+              src="/image/Logo/Logo Horizontal.png"
+              alt="Kisantra Consult"
+              className="h-8 md:h-10 w-auto drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] transition-all duration-300 hover:scale-105"
+            />
+          </picture>
         </Link>
 
         {/* Floating Hamburger Button */}
