@@ -69,6 +69,7 @@ export const  Insights: React.FC<InsightsProps> = ({ articles }) => {
                       <img
                           src={article.featured_image || 'https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1000&auto=format&fit=crop'}
                           alt={article.title}
+                          loading="lazy"
                           className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out opacity-90 group-hover:opacity-100"
                       />
                       {/* Teal Tint Overlay */}

@@ -90,9 +90,10 @@ export const Industries: React.FC = () => {
                         {/* Image Side */}
                         <div className="w-full md:w-1/2 h-[40vh] md:h-full relative">
                             <div className="absolute inset-0 bg-neutral-900/40 z-10 mix-blend-multiply" />
-                            <img 
-                                src={project.image} 
-                                alt={project.title} 
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                loading="lazy"
                                 className="w-full h-full object-cover"
                             />
                         </div>

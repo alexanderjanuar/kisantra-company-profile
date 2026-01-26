@@ -122,6 +122,7 @@ export const Impact: React.FC = () => {
                                 <img
                                     src={client.image}
                                     alt={client.name}
+                                    loading="lazy"
                                     className="max-h-full w-auto object-contain filter grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                                 />
                             </div>
