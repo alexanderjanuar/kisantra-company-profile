@@ -22,19 +22,19 @@ const Counter: React.FC<{ value: number; suffix?: string; decimals?: number }> =
 
 export const Impact: React.FC = () => {
     const clientLogos = [
-        { name: "34", image: "/image/Logo/Logo Horizontal.png" },
-        { name: "Barakka", image: "/image/home/Client/Barakka.png" },
-        { name: "CV Dahana", image: "/image/home/Client/CV DAHANA.png" },
-        { name: "Etam Post", image: "/image/home/Client/Etam Post.png" },
-        { name: "JSM", image: "/image/home/Client/JSM@4x.png" },
-        { name: "LC", image: "/image/home/Client/LC.png" },
-        { name: "PT Nawa", image: "/image/home/Client/logo-pt-nawa.png" },
-        { name: "LSP", image: "/image/home/Client/LSP.png" },
-        { name: "MBM", image: "/image/home/Client/MBM.png" },
-        { name: "Persiba", image: "/image/home/Client/PERSIBA.png" },
-        { name: "Playmaker", image: "/image/home/Client/Playmaker.png" },
-        { name: "RSMM", image: "/image/home/Client/RSMM.png" },
-        { name: "SB", image: "/image/home/Client/SB.png" },
+        { name: "34", image: "/image/Home/Client/34.png" },
+        { name: "Barakka", image: "/image/Home/Client/Barakka.png" },
+        { name: "CV Dahana", image: "/image/Home/Client/CV DAHANA.png" },
+        { name: "Etam Post", image: "/image/Home/Client/Etam Post.png" },
+        { name: "JSM", image: "/image/Home/Client/JSM@4x.png" },
+        { name: "LC", image: "/image/Home/Client/LC.png" },
+        { name: "PT Nawa", image: "/image/Home/Client/logo-pt-nawa.png" },
+        { name: "LSP", image: "/image/Home/Client/LSP.png" },
+        { name: "MBM", image: "/image/Home/Client/MBM.png" },
+        { name: "Persiba", image: "/image/Home/Client/PERSIBA.png" },
+        { name: "Playmaker", image: "/image/Home/Client/Playmaker.png" },
+        { name: "RSMM", image: "/image/Home/Client/RSMM.png" },
+        { name: "SB", image: "/image/Home/Client/SB.png" },
     ];
 
     return (
