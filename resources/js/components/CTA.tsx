@@ -1,18 +1,9 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 export const CTA: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Parallax effects for decorative elements
-  const bgY = useTransform(scrollYProgress, [0, 1], [-50, 50]);
-  const textY = useTransform(scrollYProgress, [0, 1], [20, -20]);
 
   return (
     <section 
@@ -20,17 +11,11 @@ export const CTA: React.FC = () => {
       id="contact" 
       className="relative bg-lux-white w-full py-32 md:py-56 px-6 md:px-12 overflow-hidden border-t border-neutral-100"
     >
-      {/* Background Sophistication */}
+      {/* Background Sophistication - Static for better performance */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 opacity-20 bg-grain mix-blend-multiply"></div>
-        <motion.div 
-          style={{ y: bgY }}
-          className="absolute top-1/4 -right-20 w-[500px] h-[500px] bg-lux-teal/5 rounded-full blur-[140px]"
-        />
-        <motion.div 
-          style={{ y: -bgY }}
-          className="absolute bottom-0 -left-20 w-[400px] h-[400px] bg-lux-teal-light/10 rounded-full blur-[120px]"
-        />
+        <div className="absolute top-1/4 -right-20 w-[500px] h-[500px] bg-lux-teal/5 rounded-full blur-[140px]" />
+        <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] bg-lux-teal-light/10 rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-[1400px] mx-auto relative z-10">
@@ -41,8 +26,7 @@ export const CTA: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              style={{ y: textY }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="flex items-center gap-4 mb-8">
                 <div className="h-[1px] w-12 bg-lux-teal"></div>
@@ -78,21 +62,17 @@ export const CTA: React.FC = () => {
           {/* Right Column: Interaction Hub */}
           <div className="lg:col-span-5">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
               className="relative p-1 bg-white rounded-[3rem] shadow-2xl shadow-lux-black/5"
             >
               {/* Main Interaction Card */}
               <div className="bg-lux-black rounded-[2.8rem] p-10 md:p-14 overflow-hidden relative group">
                 <div className="absolute top-0 right-0 p-8">
-                  <motion.div 
-                    animate={{ rotate: [0, 10, 0] }}
-                    transition={{ repeat: Infinity, duration: 4 }}
-                    className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center"
-                  >
+                  <div className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-lux-teal"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                  </motion.div>
+                  </div>
                 </div>
 
                 <div className="relative z-10">

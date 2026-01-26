@@ -42,7 +42,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ number, title, description, t
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
             <div className="px-6 pb-12 md:px-12 md:pb-16 md:pl-[calc(3rem+40px)] lg:pl-[calc(3rem+50px)]">

@@ -56,7 +56,7 @@ export const  Insights: React.FC<InsightsProps> = ({ articles }) => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group cursor-pointer flex flex-col h-full gap-6"
             >
                {/* Image Container with Reveal Effect */}
@@ -70,7 +70,8 @@ export const  Insights: React.FC<InsightsProps> = ({ articles }) => {
                           src={article.featured_image || 'https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1000&auto=format&fit=crop'}
                           alt={article.title}
                           loading="lazy"
-                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out opacity-90 group-hover:opacity-100"
+                          decoding="async"
+                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 ease-in-out opacity-90 group-hover:opacity-100"
                       />
                       {/* Teal Tint Overlay */}
                       <div className="absolute inset-0 bg-lux-teal/20 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-700"></div>

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useMemo } from 'react';
-import { motion, useScroll, useTransform, useInView, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import { Head } from '@inertiajs/react';
 import { Navbar } from '../components/Navbar';
 import { Contact } from '../components/Contact';
@@ -112,15 +112,11 @@ export const AboutSection: React.FC = () => {
     offset: ["start 80%", "end 20%"]
   });
 
-  const springConfig = { damping: 30, stiffness: 100 };
-  const smoothProgress = useSpring(scrollYProgress, springConfig);
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const bgTextX = useTransform(scrollYProgress, [0, 1], ["5%", "-10%"]);
 
-  const imageY = useTransform(smoothProgress, [0, 1], [0, -150]);
-  const bgTextX = useTransform(smoothProgress, [0, 1], ["5%", "-20%"]);
-
-  // Scrubbing effect for text
-  const textOpacity = useTransform(narrativeScroll.scrollYProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
-  const textScale = useTransform(narrativeScroll.scrollYProgress, [0, 0.5, 1], [0.98, 1, 0.98]);
+  // Scrubbing effect for text - simplified
+  const textOpacity = useTransform(narrativeScroll.scrollYProgress, [0, 0.5, 1], [0.5, 1, 0.5]);
 
   // Map Data Fetching
   useEffect(() => {
@@ -252,7 +248,7 @@ export const AboutSection: React.FC = () => {
         <div ref={narrativeRef} className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-center">
           <div className="lg:col-span-2 hidden lg:block" />
           <motion.div
-            style={{ opacity: textOpacity, scale: textScale }}
+            style={{ opacity: textOpacity }}
             className="lg:col-span-9"
           >
             <p className="text-3xl md:text-5xl lg:text-6xl text-lux-black font-sans font-light leading-[1.1] tracking-tight mb-16">
@@ -378,7 +374,7 @@ export const AboutSection: React.FC = () => {
                     })}
                   </g>
 
-                  {/* Render Markers */}
+                  {/* Render Markers - Optimized without continuous animations */}
                   {locations.map((loc) => {
                     const [x, y] = projection(loc.coordinates) || [0, 0];
                     const isActive = activeLocation === loc.id;
@@ -393,11 +389,15 @@ export const AboutSection: React.FC = () => {
                         onMouseLeave={() => setActiveLocation(null)}
                         style={{ cursor: 'pointer' }}
                       >
-                        {/* Pulse Animation */}
-                        <circle cx={x} cy={y} r={isActive ? 12 : 6} fill="#14b8a6" fillOpacity="0.2">
-                          <animate attributeName="r" from="6" to="20" dur="2s" repeatCount="indefinite" />
-                          <animate attributeName="opacity" from="0.4" to="0" dur="2s" repeatCount="indefinite" />
-                        </circle>
+                        {/* Static pulse ring */}
+                        <circle
+                          cx={x}
+                          cy={y}
+                          r={isActive ? 12 : 8}
+                          fill="#14b8a6"
+                          fillOpacity={isActive ? 0.3 : 0.15}
+                          className="transition-all duration-300"
+                        />
 
                         {/* Core Dot */}
                         <circle
@@ -466,40 +466,27 @@ export const AboutSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Staggered Floating Pillars */}
+        {/* Staggered Floating Pillars - Simplified without parallax */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 relative">
-          {pillars.map((pillar, i) => {
-            // Each card moves at a slightly different rate
-            const cardY = useTransform(smoothProgress, [0.4, 1], [0, -100 * pillar.speed * 10]);
-
-            return (
-              <motion.div
-                key={i}
-                style={{ y: cardY }}
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 1, delay: i * 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className={`group p-12 rounded-[3.5rem] bg-white border border-neutral-100 hover:border-lux-teal/20 shadow-sm hover:shadow-2xl hover:shadow-lux-teal/5 transition-all duration-700`}
-              >
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="w-14 h-14 bg-lux-black text-white rounded-2xl flex items-center justify-center mb-12 group-hover:bg-lux-teal transition-colors duration-500 shadow-lg"
-                >
-                  {pillar.icon}
-                </motion.div>
-                <h4 className="text-3xl font-bold text-lux-black mb-6 font-sans tracking-tighter">{pillar.title}</h4>
-                <p className="text-neutral-500 font-sans font-light text-lg leading-relaxed">
-                  {pillar.desc}
-                </p>
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: '100%' }}
-                  className="h-[1px] bg-neutral-100 mt-10 group-hover:bg-lux-teal/30 transition-colors"
-                />
-              </motion.div>
-            );
-          })}
+          {pillars.map((pillar, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="group p-12 rounded-[3.5rem] bg-white border border-neutral-100 hover:border-lux-teal/20 shadow-sm hover:shadow-2xl hover:shadow-lux-teal/5 transition-all duration-500"
+            >
+              <div className="w-14 h-14 bg-lux-black text-white rounded-2xl flex items-center justify-center mb-12 group-hover:bg-lux-teal transition-colors duration-500 shadow-lg">
+                {pillar.icon}
+              </div>
+              <h4 className="text-3xl font-bold text-lux-black mb-6 font-sans tracking-tighter">{pillar.title}</h4>
+              <p className="text-neutral-500 font-sans font-light text-lg leading-relaxed">
+                {pillar.desc}
+              </p>
+              <div className="h-[1px] bg-neutral-100 mt-10 group-hover:bg-lux-teal/30 transition-colors" />
+            </motion.div>
+          ))}
         </div>
 
         {/* New Services Overview Section */}

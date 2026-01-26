@@ -1,23 +1,35 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 
-// Animated Counter Component
+// Optimized Counter Component - uses requestAnimationFrame instead of spring
 const Counter: React.FC<{ value: number; suffix?: string; decimals?: number }> = ({ value, suffix = "", decimals = 0 }) => {
     const ref = useRef<HTMLSpanElement>(null);
     const inView = useInView(ref, { once: true, margin: "-50px" });
-    const springValue = useSpring(0, { bounce: 0, duration: 2500 });
+    const [displayValue, setDisplayValue] = useState(0);
 
-    React.useEffect(() => {
-        if (inView) {
-            springValue.set(value);
-        }
-    }, [inView, value, springValue]);
+    useEffect(() => {
+        if (!inView) return;
 
-    const displayValue = useTransform(springValue, (current) => 
-        current.toFixed(decimals) + suffix
-    );
+        const duration = 1500;
+        const startTime = performance.now();
 
-    return <motion.span ref={ref}>{displayValue}</motion.span>;
+        const animate = (currentTime: number) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            setDisplayValue(Math.floor(value * easeOut * Math.pow(10, decimals)) / Math.pow(10, decimals));
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                setDisplayValue(value);
+            }
+        };
+
+        requestAnimationFrame(animate);
+    }, [inView, value, decimals]);
+
+    return <span ref={ref}>{displayValue.toFixed(decimals)}{suffix}</span>;
 };
 
 export const Impact: React.FC = () => {
@@ -97,21 +109,14 @@ export const Impact: React.FC = () => {
                  </div>
             </div>
 
-            {/* Infinite Horizontal Marquee */}
+            {/* Infinite Horizontal Marquee - CSS Animation for better performance */}
             <div className="w-full relative py-12 border-t border-neutral-100">
                 <div className="absolute top-0 left-0 w-32 md:w-64 h-full z-10 bg-gradient-to-r from-lux-white to-transparent pointer-events-none" />
                 <div className="absolute top-0 right-0 w-32 md:w-64 h-full z-10 bg-gradient-to-l from-lux-white to-transparent pointer-events-none" />
-                
+
                 <div className="flex overflow-hidden">
-                    <motion.div
-                        className="flex gap-16 md:gap-24 items-center pl-16 md:pl-24"
-                        animate={{ x: "-50%" }}
-                        transition={{
-                            duration: 60,
-                            repeat: Infinity,
-                            ease: "linear",
-                            repeatType: "loop"
-                        }}
+                    <div
+                        className="flex gap-16 md:gap-24 items-center pl-16 md:pl-24 animate-marquee"
                         style={{ width: "fit-content" }}
                     >
                         {[...clientLogos, ...clientLogos].map((client, index) => (
@@ -123,11 +128,12 @@ export const Impact: React.FC = () => {
                                     src={client.image}
                                     alt={client.name}
                                     loading="lazy"
+                                    decoding="async"
                                     className="max-h-full w-auto object-contain filter grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                                 />
                             </div>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>

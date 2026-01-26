@@ -8,13 +8,12 @@ export const Philosophy: React.FC = () => {
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0.1, 0.5, 0.8], [0, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0.1, 0.5], [0.95, 1]);
+  const opacity = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [0.3, 1, 0.3]);
 
   return (
     <section ref={targetRef} className="min-h-[80vh] flex items-center justify-center py-24 px-6 md:px-12 bg-neutral-50/50">
-      <motion.div 
-        style={{ opacity, scale }}
+      <motion.div
+        style={{ opacity }}
         className="max-w-5xl mx-auto text-center"
       >
         <span className="inline-block mb-8 text-xs font-bold uppercase tracking-[0.2em] text-lux-teal">

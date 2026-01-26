@@ -20,18 +20,17 @@ export const Hero: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05, 
-        delayChildren: 0.8,    
+        staggerChildren: 0.02,
+        delayChildren: 0.1,
       }
     }
   };
 
   const charVariants: Variants = {
-    hidden: { opacity: 0, display: "none" },
-    visible: { 
-      opacity: 1, 
-      display: "inline",
-      transition: { duration: 0.01 } 
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.01 }
     }
   };
 
@@ -41,32 +40,13 @@ export const Hero: React.FC = () => {
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 z-10 opacity-30 bg-grain mix-blend-multiply pointer-events-none"></div>
 
-        <motion.div 
+        <div
             className="absolute top-1/2 left-1/2 w-[80vw] h-[80vw] md:w-[600px] md:h-[600px] bg-gradient-to-tr from-lux-teal-light to-transparent rounded-full opacity-30 blur-[100px]"
-            style={{ x: '-50%', y: '-50%' }}
-            animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.4, 0.3] 
-            }}
-            transition={{ 
-                duration: 8, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-            }}
+            style={{ transform: 'translate(-50%, -50%)' }}
         />
 
-        <motion.div 
+        <div
             className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] opacity-[0.05]"
-            animate={{ 
-                x: ["0%", "-2%"],
-                y: ["0%", "-2%"]
-            }}
-            transition={{
-                duration: 15,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "linear"
-            }}
             style={{
                 backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px),
                                   linear-gradient(to bottom, #000 1px, transparent 1px)`,
@@ -92,10 +72,8 @@ export const Hero: React.FC = () => {
                         {char}
                     </motion.span>
                 ))}
-                <motion.span 
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{ duration: 0.8, repeat: Infinity }}
-                    className="inline-block w-2 h-10 md:h-20 bg-lux-teal ml-1 align-middle"
+                <span
+                    className="inline-block w-2 h-10 md:h-20 bg-lux-teal ml-1 align-middle animate-pulse"
                 />
             </h1>
         </motion.div>
@@ -103,7 +81,7 @@ export const Hero: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 3.5, ease: "easeOut" }} 
+          transition={{ duration: 0.6, delay: 1.2, ease: "easeOut" }}
           className="max-w-xl text-center"
         >
             <p className="text-base md:text-xl text-neutral-500 font-medium tracking-wide leading-relaxed">
@@ -112,13 +90,11 @@ export const Hero: React.FC = () => {
         </motion.div>
       </motion.div>
 
-      <motion.div 
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-lux-black opacity-40"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      <div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-lux-black opacity-40 animate-bounce"
       >
         <span className="text-[10px] uppercase tracking-widest font-semibold">Scroll</span>
-      </motion.div>
+      </div>
     </section>
   );
 };

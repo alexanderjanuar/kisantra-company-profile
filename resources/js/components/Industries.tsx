@@ -56,10 +56,11 @@ export const Industries: React.FC = () => {
                     className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden"
                     style={{ zIndex: i + 1 }}
                 >
-                    <motion.div 
-                        initial={{ y: 100 }}
+                    <motion.div
+                        initial={{ y: 50 }}
                         whileInView={{ y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        viewport={{ once: true }}
                         className={`relative w-full h-full flex flex-col md:flex-row ${project.color}`}
                     >
                          {/* Text Content */}
@@ -93,7 +94,9 @@ export const Industries: React.FC = () => {
                             <img
                                 src={project.image}
                                 alt={project.title}
-                                loading="lazy"
+                                loading={i === 0 ? "eager" : "lazy"}
+                                decoding="async"
+                                fetchPriority={i === 0 ? "high" : "auto"}
                                 className="w-full h-full object-cover"
                             />
                         </div>

@@ -6,15 +6,15 @@ export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
 
-  // Lock scroll when menu is open
+  // Lock scroll when menu is open - using class toggle instead of direct style manipulation
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('overflow-hidden');
     } else {
-      document.body.style.overflow = '';
+      document.body.classList.remove('overflow-hidden');
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.classList.remove('overflow-hidden');
     };
   }, [isOpen]);
 
@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
       opacity: 0,
       y: "-100%",
       transition: {
-        duration: 1,
+        duration: 0.4,
         ease: [0.76, 0, 0.24, 1]
       }
     },
@@ -48,7 +48,7 @@ export const Navbar: React.FC = () => {
       opacity: 1,
       y: "0%",
       transition: {
-        duration: 1,
+        duration: 0.4,
         ease: [0.76, 0, 0.24, 1]
       }
     }
@@ -57,24 +57,24 @@ export const Navbar: React.FC = () => {
   const containerVariants: Variants = {
     closed: {
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.05,
         staggerDirection: -1
       }
     },
     open: {
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.5
+        staggerChildren: 0.08,
+        delayChildren: 0.2
       }
     }
   };
 
   const itemVariants: Variants = {
-    closed: { y: 100, opacity: 0 },
-    open: { 
-      y: 0, 
-      opacity: 1, 
-      transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
+    closed: { y: 50, opacity: 0 },
+    open: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] }
     }
   };
 

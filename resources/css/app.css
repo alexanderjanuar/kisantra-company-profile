@@ -21,4 +21,37 @@
   * {
     font-family: Manrope, sans-serif;
   }
+
+  /* Smooth scrolling for better UX */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Optimized marquee animation using CSS instead of JS */
+  .animate-marquee {
+    animation: marquee 60s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }                       
