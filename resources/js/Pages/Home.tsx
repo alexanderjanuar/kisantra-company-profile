@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { Head, usePage } from '@inertiajs/react';
+import type { PageProps } from '@inertiajs/core';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
 import { Impact } from '../components/Impact';
@@ -27,7 +28,7 @@ interface Article {
   }>;
 }
 
-interface HomePageProps {
+interface HomePageProps extends PageProps {
   articles: Article[];
 }
 
