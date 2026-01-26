@@ -47,7 +47,7 @@ const SmoothScrollContainer: React.FC<{ children: React.ReactNode }> = ({ childr
 
     handleResize();
     window.addEventListener('resize', handleResize);
-    
+
     const observer = new ResizeObserver(handleResize);
     if (contentRef.current) {
       observer.observe(contentRef.current);
@@ -84,54 +84,65 @@ const SmoothScrollContainer: React.FC<{ children: React.ReactNode }> = ({ childr
 
 const App: React.FC = () => {
   const { articles } = usePage<HomePageProps>().props;
-  const [loading, setLoading] = useState(true);
+
+  // Only show splash screen on first visit (not on SPA navigation)
+  const [loading, setLoading] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    return !sessionStorage.getItem('splashShown');
+  });
+
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+  const handleSplashComplete = () => {
+    sessionStorage.setItem('splashShown', 'true');
+    setLoading(false);
+  };
 
   return (
     <>
       <Head title="Beranda" />
-      <div className="bg-lux-white min-h-screen text-lux-black  selection:bg-lux-teal selection:text-white">
+      <div className="bg-lux-white min-h-screen text-lux-black selection:bg-lux-teal selection:text-white">
         <AnimatePresence mode="wait">
-        {loading && <SplashScreen onComplete={() => setLoading(false)} />}
-      </AnimatePresence>
+          {loading && <SplashScreen onComplete={handleSplashComplete} />}
+        </AnimatePresence>
 
-      {!loading && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <Navbar />
-          
-          {isMobile ? (
-             <main>
-                <Hero />
-                <Impact />
-                <Philosophy />
-                <Services />
-                <Industries />
-                {/* <CTA /> */}
-                <FAQ />
-                <Insights articles={articles} />
-                <Contact />
-             </main>
-          ) : (
-            <SmoothScrollContainer>
+        {!loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Navbar />
+
+            {isMobile ? (
               <main>
                 <Hero />
                 <Impact />
                 <Philosophy />
                 <Services />
                 <Industries />
+                <CTA />
                 <FAQ />
-                {/* <CTA /> */}
                 <Insights articles={articles} />
                 <Contact />
               </main>
-            </SmoothScrollContainer>
-          )}
-        </motion.div>
-      )}
+            ) : (
+              <SmoothScrollContainer>
+                <main>
+                  <Hero />
+                  <Impact />
+                  <Philosophy />
+                  <Services />
+                  <Industries />
+                  <FAQ />
+                  <CTA />
+                  <Insights articles={articles} />
+                  <Contact />
+                </main>
+              </SmoothScrollContainer>
+            )}
+          </motion.div>
+        )}
       </div>
     </>
   );

@@ -119,8 +119,10 @@ export const FAQ: React.FC = () => {
             <h4 className="font-bold text-xl text-lux-black mb-1">Masih butuh bantuan?</h4>
             <p className="text-sm text-neutral-500">Tim ahli kami siap menjawab pertanyaan mendalam Anda.</p>
           </div>
-          <motion.a 
-            href="#contact"
+          <motion.a
+            href="https://wa.me/6281180009787?text=Halo%20Kisantra%2C%20saya%20memiliki%20pertanyaan%20yang%20ingin%20saya%20diskusikan%20dengan%20tim%20konsultan%20Anda."
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-8 py-3 bg-lux-black text-white rounded-full font-bold text-xs uppercase tracking-widest hover:bg-lux-teal transition-colors"

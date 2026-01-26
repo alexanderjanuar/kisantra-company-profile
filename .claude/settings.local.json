@@ -6,7 +6,8 @@
       "Bash(git checkout:*)",
       "Bash(test:*)",
       "Bash(php artisan db:seed:*)",
-      "Bash(php artisan tinker:*)"
+      "Bash(php artisan tinker:*)",
+      "Bash(npm run dev:*)"
     ]
   }
 }

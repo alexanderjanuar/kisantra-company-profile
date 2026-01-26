@@ -13,12 +13,12 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     const handleStart = () => setIsNavigating(true);
     const handleFinish = () => setIsNavigating(false);
 
-    router.on('start', handleStart);
-    router.on('finish', handleFinish);
+    const removeStartListener = router.on('start', handleStart);
+    const removeFinishListener = router.on('finish', handleFinish);
 
     return () => {
-      router.off('start', handleStart);
-      router.off('finish', handleFinish);
+      removeStartListener();
+      removeFinishListener();
     };
   }, []);
 

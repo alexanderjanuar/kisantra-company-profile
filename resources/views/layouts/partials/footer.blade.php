@@ -23,7 +23,7 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </a>
-                    <a href="https://www.instagram.com/kisantra.official" target="_blank"
+                    <a href="https://www.instagram.com/kisantra.official/" target="_blank"
                         class="text-gray-500 hover:text-[#42B2CD] transition duration-150 ease-in-out">
                         <span class="sr-only">Instagram</span>
                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">

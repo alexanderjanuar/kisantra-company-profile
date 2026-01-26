@@ -31,7 +31,7 @@ const industries = [
     subtitle: "Maritim & Kelautan",
     desc: "Navigasi hukum maritim dan strategi aset bernilai tinggi, memberikan solusi komprehensif.",
     id: "04",
-    image: "https://images.unsplash.com/photo-1494412574643-35d324698420?q=80&w=1000&auto=format&fit=crop", 
+    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1000&auto=format&fit=crop",
     color: "bg-neutral-800" // Back to dark neutral
   }
 ];

@@ -64,12 +64,12 @@ export const CTA: React.FC = () => {
               {/* Minimalist Contact Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                 <div className="group cursor-pointer">
-                  <span className="block text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2 group-hover:text-lux-teal transition-colors">Direct Support</span>
-                  <a href="mailto:hello@kisantra.id" className="text-lg font-bold border-b border-neutral-200 pb-1 hover:border-lux-teal transition-all">hello@kisantra.id</a>
+                  <span className="block text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2 group-hover:text-lux-teal transition-colors">WhatsApp</span>
+                  <a href="https://wa.me/6281180009787?text=Halo%20Kisantra%2C%20saya%20tertarik%20untuk%20berkonsultasi%20mengenai%20layanan%20Anda." target="_blank" rel="noopener noreferrer" className="text-lg font-bold border-b border-neutral-200 pb-1 hover:border-lux-teal transition-all">0811-8000-9787</a>
                 </div>
                 <div className="group cursor-pointer">
-                  <span className="block text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2 group-hover:text-lux-teal transition-colors">Call Office</span>
-                  <a href="tel:+62215550199" className="text-lg font-bold border-b border-neutral-200 pb-1 hover:border-lux-teal transition-all">+62 21 555 0199</a>
+                  <span className="block text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2 group-hover:text-lux-teal transition-colors">Email</span>
+                  <a href="mailto:kisantra.official@gmail.com" className="text-lg font-bold border-b border-neutral-200 pb-1 hover:border-lux-teal transition-all">kisantra.official@gmail.com</a>
                 </div>
               </div>
             </motion.div>
@@ -103,8 +103,10 @@ export const CTA: React.FC = () => {
                     Diskusikan kebutuhan spesifik Anda dengan tim konsultan senior kami secara privat.
                   </p>
 
-                  <motion.a 
-                    href="https://wa.me/6281234567890"
+                  <motion.a
+                    href="https://wa.me/6281180009787?text=Halo%20Kisantra%2C%20saya%20ingin%20menjadwalkan%20sesi%20konsultasi%20gratis%20untuk%20mendiskusikan%20kebutuhan%20bisnis%20saya."
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, backgroundColor: "#14b8a6", color: "#ffffff" }}
                     whileTap={{ scale: 0.95 }}
                     className="flex items-center justify-between w-full bg-white text-lux-black py-6 px-10 rounded-2xl font-bold text-sm uppercase tracking-widest transition-all duration-300"

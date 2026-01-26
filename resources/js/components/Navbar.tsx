@@ -26,12 +26,12 @@ export const Navbar: React.FC = () => {
     };
     const handleFinish = () => setIsNavigating(false);
 
-    router.on('start', handleStart);
-    router.on('finish', handleFinish);
+    const removeStartListener = router.on('start', handleStart);
+    const removeFinishListener = router.on('finish', handleFinish);
 
     return () => {
-      router.off('start', handleStart);
-      router.off('finish', handleFinish);
+      removeStartListener();
+      removeFinishListener();
     };
   }, []);
 
@@ -82,7 +82,7 @@ export const Navbar: React.FC = () => {
     { label: "Beranda", href: "/", isRoute: true },
     { label: "Tentang Kami", href: "/tentang-kami", isRoute: true },
     { label: "Layanan", href: "#services", isRoute: false },
-    { label: "Kontak", href: "#contact", isRoute: false }
+    { label: "Kontak", href: "https://wa.me/6281180009787?text=Halo%20Kisantra%2C%20saya%20ingin%20menghubungi%20tim%20Anda%20untuk%20informasi%20lebih%20lanjut.", isRoute: false, isExternal: true }
   ];
 
   return (
@@ -101,29 +101,32 @@ export const Navbar: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Fixed UI Layer (Logo & Button) - Uses mix-blend-difference to be visible on white page AND black overlay */}
-      <motion.div 
+      {/* Fixed UI Layer (Logo & Button) */}
+      <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-start pointer-events-none mix-blend-difference text-white"
+        className="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center pointer-events-none"
       >
         {/* Logo */}
-        <Link href="/" className="flex flex-col pointer-events-auto cursor-pointer group">
-          <span className="font-bold text-2xl md:text-3xl tracking-tighter group-hover:text-lux-teal transition-colors duration-300">KISANTRA</span>
-          <span className="text-xs uppercase tracking-[0.2em] opacity-80 font-sans">Consult</span>
+        <Link href="/" className="pointer-events-auto cursor-pointer group">
+          <img
+            src="/image/Logo/Logo Horizontal.png"
+            alt="Kisantra Consult"
+            className="h-8 md:h-10 w-auto drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] transition-all duration-300 hover:scale-105"
+          />
         </Link>
 
         {/* Floating Hamburger Button */}
-        <button 
+        <button
           onClick={() => setIsOpen(!isOpen)}
-          className="pointer-events-auto group flex flex-col items-end gap-[6px] p-2 hover:opacity-70 transition-opacity"
+          className="pointer-events-auto group flex flex-col items-end gap-[6px] p-2 hover:scale-105 transition-all duration-300"
           aria-label="Toggle Menu"
         >
           {/* Animated Hamburger Lines */}
-          <span className={`h-[2px] bg-white transition-all duration-300 ease-out ${isOpen ? 'w-8 rotate-45 translate-y-[8px]' : 'w-8 group-hover:bg-lux-teal'}`} />
-          <span className={`h-[2px] bg-white transition-all duration-300 ease-out ${isOpen ? 'w-8 opacity-0' : 'w-6 group-hover:w-8 group-hover:bg-lux-teal'}`} />
-          <span className={`h-[2px] bg-white transition-all duration-300 ease-out ${isOpen ? 'w-8 -rotate-45 -translate-y-[8px]' : 'w-4 group-hover:w-8 group-hover:bg-lux-teal'}`} />
+          <span className={`h-[2px] bg-lux-black drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] transition-all duration-300 ease-out ${isOpen ? 'w-8 rotate-45 translate-y-[8px]' : 'w-8 group-hover:bg-lux-teal'}`} />
+          <span className={`h-[2px] bg-lux-black drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] transition-all duration-300 ease-out ${isOpen ? 'w-8 opacity-0' : 'w-6 group-hover:w-8 group-hover:bg-lux-teal'}`} />
+          <span className={`h-[2px] bg-lux-black drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] transition-all duration-300 ease-out ${isOpen ? 'w-8 -rotate-45 -translate-y-[8px]' : 'w-4 group-hover:w-8 group-hover:bg-lux-teal'}`} />
         </button>
       </motion.div>
 
@@ -161,6 +164,8 @@ export const Navbar: React.FC = () => {
                                 href={item.href}
                                 variants={itemVariants}
                                 onClick={() => setIsOpen(false)}
+                                target={item.isExternal ? '_blank' : undefined}
+                                rel={item.isExternal ? 'noopener noreferrer' : undefined}
                                 className="block font-bold text-5xl md:text-7xl lg:text-9xl text-lux-white hover:text-lux-teal transition-colors tracking-tighter cursor-pointer"
                             >
                                 {item.label}
