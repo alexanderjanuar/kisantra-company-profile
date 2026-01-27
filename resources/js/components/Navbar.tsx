@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
       opacity: 0,
       y: "-100%",
       transition: {
-        duration: 0.4,
+        duration: 0.7,
         ease: [0.76, 0, 0.24, 1]
       }
     },
@@ -48,7 +48,7 @@ export const Navbar: React.FC = () => {
       opacity: 1,
       y: "0%",
       transition: {
-        duration: 0.4,
+        duration: 0.7,
         ease: [0.76, 0, 0.24, 1]
       }
     }
@@ -57,14 +57,14 @@ export const Navbar: React.FC = () => {
   const containerVariants: Variants = {
     closed: {
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: 0.08,
         staggerDirection: -1
       }
     },
     open: {
       transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.2
+        staggerChildren: 0.12,
+        delayChildren: 0.3
       }
     }
   };
@@ -74,14 +74,14 @@ export const Navbar: React.FC = () => {
     open: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] }
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] }
     }
   };
 
   const menuItems = [
     { label: "Beranda", href: "/", isRoute: true },
     { label: "Tentang Kami", href: "/tentang-kami", isRoute: true },
-    { label: "Layanan", href: "#services", isRoute: false },
+    { label: "Layanan", href: "/layanan", isRoute: true },
     { label: "Kontak", href: "https://wa.me/6281180009787?text=Halo%20Kisantra%2C%20saya%20ingin%20menghubungi%20tim%20Anda%20untuk%20informasi%20lebih%20lanjut.", isRoute: false, isExternal: true }
   ];
 
@@ -105,7 +105,7 @@ export const Navbar: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 1.2, delay: 0.3 }}
         className="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center pointer-events-none"
       >
         {/* Logo */}
@@ -183,7 +183,7 @@ export const Navbar: React.FC = () => {
              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 1 }}
+                transition={{ delay: 1.4, duration: 1.2 }}
                 className="absolute bottom-12 left-0 w-full text-center"
              >
                 <span className="text-xs uppercase tracking-[0.3em] text-neutral-500 font-sans">

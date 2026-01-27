@@ -26,7 +26,7 @@ export const CTA: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="flex items-center gap-4 mb-8">
                 <div className="h-[1px] w-12 bg-lux-teal"></div>
@@ -64,7 +64,7 @@ export const CTA: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
               className="relative p-1 bg-white rounded-[3rem] shadow-2xl shadow-lux-black/5"
             >
               {/* Main Interaction Card */}
@@ -101,10 +101,10 @@ export const CTA: React.FC = () => {
               </div>
 
               {/* Status Pill */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.8 }}
+                transition={{ delay: 1.2, duration: 0.8 }}
                 className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white px-6 py-3 rounded-full shadow-xl border border-neutral-100 flex items-center gap-3 whitespace-nowrap"
               >
                 <span className="flex h-2 w-2 relative">

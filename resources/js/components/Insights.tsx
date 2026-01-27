@@ -56,7 +56,7 @@ export const  Insights: React.FC<InsightsProps> = ({ articles }) => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.8, delay: index * 0.15 }}
               className="group cursor-pointer flex flex-col h-full gap-6"
             >
                {/* Image Container with Reveal Effect */}
@@ -64,7 +64,7 @@ export const  Insights: React.FC<InsightsProps> = ({ articles }) => {
                   <motion.div
                       className="absolute inset-0 bg-neutral-200 z-10"
                       whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.6 }}
+                      transition={{ duration: 0.9 }}
                   >
                       <img
                           src={article.featured_image || 'https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1000&auto=format&fit=crop'}

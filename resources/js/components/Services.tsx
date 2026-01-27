@@ -27,8 +27,9 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ number, title, description, t
         </div>
         
         <div className="md:w-1/2 flex justify-end items-center">
-            <motion.span 
+            <motion.span
                 animate={{ rotate: isOpen ? 45 : 0 }}
+                transition={{ duration: 0.5 }}
                 className={`text-2xl font-light transition-colors duration-500 ${isOpen ? 'text-lux-teal' : 'text-neutral-400'}`}
             >
                 +
@@ -42,7 +43,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ number, title, description, t
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
             <div className="px-6 pb-12 md:px-12 md:pb-16 md:pl-[calc(3rem+40px)] lg:pl-[calc(3rem+50px)]">

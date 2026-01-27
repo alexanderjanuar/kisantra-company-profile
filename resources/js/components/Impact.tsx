@@ -10,7 +10,7 @@ const Counter: React.FC<{ value: number; suffix?: string; decimals?: number }> =
     useEffect(() => {
         if (!inView) return;
 
-        const duration = 1500;
+        const duration = 2200;
         const startTime = performance.now();
 
         const animate = (currentTime: number) => {
@@ -57,20 +57,20 @@ export const Impact: React.FC = () => {
                     
                     {/* Left Column: Narrative Text */}
                     <div className="flex flex-col gap-8 sticky top-32">
-                        <motion.h2 
+                        <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
+                            transition={{ duration: 1.2 }}
                             className="font-bold text-4xl md:text-5xl lg:text-6xl leading-tight text-lux-black tracking-tight"
                         >
                             Dampak Terukur bagi Bisnis di <span className="text-lux-teal">Indonesia.</span>
                         </motion.h2>
-                        <motion.p 
+                        <motion.p
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
+                            transition={{ duration: 1.2, delay: 0.3 }}
                             className="text-lg md:text-xl text-neutral-600 font-light leading-relaxed max-w-md"
                         >
                             Sebagai partner <span className="text-lux-black font-semibold">konsultan pajak di Samarinda</span>, kami telah membantu ratusan entitas bisnis di Kalimantan Timur meraih efisiensi fiskal dan transformasi digital yang signifikan.

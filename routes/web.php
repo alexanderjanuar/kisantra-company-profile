@@ -31,7 +31,9 @@ Route::get('/tentang-kami', function () {
     return Inertia::render('About');
 })->name('about.index');
 
-Route::get('/layanan', \App\Livewire\Service\Index::class)->name('layanan.index');
+Route::get('/layanan', function () {
+    return Inertia::render('Layanan');
+})->name('layanan.index');
 
 
 Route::get('/kontak', \App\Livewire\Contact\Index::class)->name('contact.index');

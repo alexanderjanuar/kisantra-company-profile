@@ -75,12 +75,14 @@ export const FAQ: React.FC = () => {
                     {faq.question}
                   </span>
                   <div className="relative flex items-center justify-center w-8 h-8">
-                    <motion.div 
+                    <motion.div
                       animate={{ rotate: isOpen ? 90 : 0 }}
+                      transition={{ duration: 0.5 }}
                       className="absolute w-4 h-[2px] bg-neutral-300"
                     />
-                    <motion.div 
+                    <motion.div
                       animate={{ rotate: isOpen ? 0 : 90 }}
+                      transition={{ duration: 0.5 }}
                       className="absolute w-4 h-[2px] bg-neutral-300"
                     />
                   </div>
@@ -92,7 +94,7 @@ export const FAQ: React.FC = () => {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
                       <div className="pb-8 pr-12">
@@ -108,11 +110,11 @@ export const FAQ: React.FC = () => {
           })}
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
           className="mt-20 p-8 border border-neutral-100 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 bg-neutral-50/30"
         >
           <div className="text-center md:text-left">

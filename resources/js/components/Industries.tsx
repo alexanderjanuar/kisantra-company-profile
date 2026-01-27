@@ -59,7 +59,7 @@ export const Industries: React.FC = () => {
                     <motion.div
                         initial={{ y: 50 }}
                         whileInView={{ y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                         viewport={{ once: true }}
                         className={`relative w-full h-full flex flex-col md:flex-row ${project.color}`}
                     >

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { Head, usePage } from '@inertiajs/react';
 import type { PageProps } from '@inertiajs/core';
 import { Navbar } from '../components/Navbar';
@@ -32,6 +32,56 @@ interface HomePageProps extends PageProps {
   articles: Article[];
 }
 
+// Custom Smooth Scroll Implementation
+const SmoothScrollContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentHeight, setContentHeight] = useState(0);
+
+  // Sync window scroll height with content height
+  useEffect(() => {
+    const handleResize = () => {
+      if (contentRef.current) {
+        setContentHeight(contentRef.current.scrollHeight);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    const observer = new ResizeObserver(handleResize);
+    if (contentRef.current) {
+      observer.observe(contentRef.current);
+    }
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      observer.disconnect();
+    };
+  }, []);
+
+  const { scrollY } = useScroll();
+  const smoothY = useSpring(scrollY, {
+    damping: 15,
+    mass: 0.1,
+    stiffness: 100,
+  });
+
+  const y = useTransform(smoothY, (value) => -value);
+
+  return (
+    <>
+      <div style={{ height: contentHeight }} />
+      <motion.div
+        style={{ y }}
+        ref={contentRef}
+        className="fixed top-0 left-0 w-full overflow-hidden will-change-transform"
+      >
+        {children}
+      </motion.div>
+    </>
+  );
+};
+
 const App: React.FC = () => {
   const { articles } = usePage<HomePageProps>().props;
 
@@ -40,6 +90,8 @@ const App: React.FC = () => {
     if (typeof window === 'undefined') return true;
     return !sessionStorage.getItem('splashShown');
   });
+
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const handleSplashComplete = () => {
     sessionStorage.setItem('splashShown', 'true');
@@ -58,20 +110,37 @@ const App: React.FC = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8 }}
           >
             <Navbar />
-            <main>
-              <Hero />
-              <Impact />
-              <Philosophy />
-              <Services />
-              <Industries />
-              <CTA />
-              <FAQ />
-              <Insights articles={articles} />
-              <Contact />
-            </main>
+
+            {isMobile ? (
+              <main>
+                <Hero />
+                <Impact />
+                <Philosophy />
+                <Services />
+                <Industries />
+                <CTA />
+                <FAQ />
+                <Insights articles={articles} />
+                <Contact />
+              </main>
+            ) : (
+              <SmoothScrollContainer>
+                <main>
+                  <Hero />
+                  <Impact />
+                  <Philosophy />
+                  <Services />
+                  <Industries />
+                  <FAQ />
+                  <CTA />
+                  <Insights articles={articles} />
+                  <Contact />
+                </main>
+              </SmoothScrollContainer>
+            )}
           </motion.div>
         )}
       </div>

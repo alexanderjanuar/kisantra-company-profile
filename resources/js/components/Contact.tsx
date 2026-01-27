@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@inertiajs/react';
 
 export const Contact: React.FC = () => {
   return (
@@ -48,15 +49,21 @@ export const Contact: React.FC = () => {
                 <span className="text-xs uppercase tracking-widest text-lux-teal font-sans font-bold block mb-6">Navigasi</span>
                 <ul className="space-y-3">
                     {[
-                        { label: 'Beranda', href: '/', isExternal: false },
-                        { label: 'Tentang Kami', href: '/tentang-kami', isExternal: false },
-                        { label: 'Layanan', href: '#services', isExternal: false },
-                        { label: 'Kontak', href: 'https://wa.me/6281180009787?text=Halo%20Kisantra%2C%20saya%20ingin%20menghubungi%20tim%20Anda%20untuk%20informasi%20lebih%20lanjut.', isExternal: true },
+                        { label: 'Beranda', href: '/', isExternal: false, isRoute: true },
+                        { label: 'Tentang Kami', href: '/tentang-kami', isExternal: false, isRoute: true },
+                        { label: 'Layanan', href: '/layanan', isExternal: false, isRoute: true },
+                        { label: 'Kontak', href: 'https://wa.me/6281180009787?text=Halo%20Kisantra%2C%20saya%20ingin%20menghubungi%20tim%20Anda%20untuk%20informasi%20lebih%20lanjut.', isExternal: true, isRoute: false },
                     ].map((item) => (
                         <li key={item.label}>
-                            <a href={item.href} target={item.isExternal ? '_blank' : undefined} rel={item.isExternal ? 'noopener noreferrer' : undefined} className="text-neutral-400 hover:text-lux-teal transition-colors font-sans font-medium text-sm">
-                                {item.label}
-                            </a>
+                            {item.isRoute ? (
+                                <Link href={item.href} className="text-neutral-400 hover:text-lux-teal transition-colors font-sans font-medium text-sm">
+                                    {item.label}
+                                </Link>
+                            ) : (
+                                <a href={item.href} target={item.isExternal ? '_blank' : undefined} rel={item.isExternal ? 'noopener noreferrer' : undefined} className="text-neutral-400 hover:text-lux-teal transition-colors font-sans font-medium text-sm">
+                                    {item.label}
+                                </a>
+                            )}
                         </li>
                     ))}
                 </ul>
