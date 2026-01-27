@@ -81,6 +81,21 @@ class Article extends Model
     }
 
     // Accessors
+    public function getFeaturedImageAttribute($value)
+    {
+        if (empty($value)) {
+            return null;
+        }
+
+        // If already a full URL, return as is
+        if (str_starts_with($value, 'http://') || str_starts_with($value, 'https://')) {
+            return $value;
+        }
+
+        // Prepend /storage/ for local storage paths
+        return '/storage/' . ltrim($value, '/');
+    }
+
     public function getStatusDisplayAttribute()
     {
         return match($this->status) {
