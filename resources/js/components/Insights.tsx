@@ -38,7 +38,7 @@ export const  Insights: React.FC<InsightsProps> = ({ articles }) => {
           </h3>
         </div>
         
-        <Link href="/berita">
+        <Link href="/articles">
           <motion.button
               whileHover={{ x: 5 }}
               className="text-sm font-sans font-bold uppercase tracking-widest border-b border-lux-black pb-1 flex items-center gap-2 text-lux-black hover:text-lux-teal hover:border-lux-teal transition-colors"

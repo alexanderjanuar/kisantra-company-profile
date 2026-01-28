@@ -41,6 +41,18 @@ Route::get('/kontak', \App\Livewire\Contact\Index::class)->name('contact.index')
 Route::get('/berita', \App\Livewire\News\Index::class)->name('news.index');
 Route::get('/berita/{slug}', \App\Livewire\News\Show::class)->name('news.show');
 
+Route::get('/articles', function () {
+    $articles = \App\Models\Article::published()
+        ->with('categories:id,name,slug')
+        ->select('id', 'title', 'slug', 'excerpt', 'featured_image', 'published_at')
+        ->latest('published_at')
+        ->get();
+
+    return Inertia::render('Articles', [
+        'articles' => $articles
+    ]);
+})->name('articles.index');
+
 
 
 // Route::get('/konsultasi', [KisantraConsultController::class, 'create'])->name('kisantra.consult.create');

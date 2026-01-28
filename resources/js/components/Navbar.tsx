@@ -82,6 +82,7 @@ export const Navbar: React.FC = () => {
     { label: "Beranda", href: "/", isRoute: true },
     { label: "Tentang Kami", href: "/tentang-kami", isRoute: true },
     { label: "Layanan", href: "/layanan", isRoute: true },
+    { label: "Wawasan", href: "/articles", isRoute: true },
     { label: "Kontak", href: "https://wa.me/6281180009787?text=Halo%20Kisantra%2C%20saya%20ingin%20menghubungi%20tim%20Anda%20untuk%20informasi%20lebih%20lanjut.", isRoute: false, isExternal: true }
   ];
 
@@ -144,52 +145,52 @@ export const Navbar: React.FC = () => {
             exit="closed"
             className="fixed inset-0 z-40 bg-lux-black/95 backdrop-blur-xl flex flex-col justify-center items-center text-white"
           >
-             <motion.div 
-                variants={containerVariants}
-                initial="closed"
-                animate="open"
-                exit="closed"
-                className="flex flex-col items-center gap-2 md:gap-6"
-             >
-                {menuItems.map((item, i) => (
-                    <div key={i} className="overflow-hidden">
-                        {item.isRoute ? (
-                            <motion.div variants={itemVariants}>
-                                <Link
-                                    href={item.href}
-                                    onClick={() => setIsOpen(false)}
-                                    className="block font-bold text-5xl md:text-7xl lg:text-9xl text-lux-white hover:text-lux-teal transition-colors tracking-tighter cursor-pointer"
-                                >
-                                    {item.label}
-                                </Link>
-                            </motion.div>
-                        ) : (
-                            <motion.a
-                                href={item.href}
-                                variants={itemVariants}
-                                onClick={() => setIsOpen(false)}
-                                target={item.isExternal ? '_blank' : undefined}
-                                rel={item.isExternal ? 'noopener noreferrer' : undefined}
-                                className="block font-bold text-5xl md:text-7xl lg:text-9xl text-lux-white hover:text-lux-teal transition-colors tracking-tighter cursor-pointer"
-                            >
-                                {item.label}
-                            </motion.a>
-                        )}
-                    </div>
-                ))}
-             </motion.div>
+            <motion.div
+              variants={containerVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              className="flex flex-col items-center gap-2 md:gap-6"
+            >
+              {menuItems.map((item, i) => (
+                <div key={i} className="overflow-hidden">
+                  {item.isRoute ? (
+                    <motion.div variants={itemVariants}>
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className="block font-bold text-5xl md:text-7xl lg:text-9xl text-lux-white hover:text-lux-teal transition-colors tracking-tighter cursor-pointer"
+                      >
+                        {item.label}
+                      </Link>
+                    </motion.div>
+                  ) : (
+                    <motion.a
+                      href={item.href}
+                      variants={itemVariants}
+                      onClick={() => setIsOpen(false)}
+                      target={item.isExternal ? '_blank' : undefined}
+                      rel={item.isExternal ? 'noopener noreferrer' : undefined}
+                      className="block font-bold text-5xl md:text-7xl lg:text-9xl text-lux-white hover:text-lux-teal transition-colors tracking-tighter cursor-pointer"
+                    >
+                      {item.label}
+                    </motion.a>
+                  )}
+                </div>
+              ))}
+            </motion.div>
 
-             {/* Footer inside menu */}
-             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.4, duration: 1.2 }}
-                className="absolute bottom-12 left-0 w-full text-center"
-             >
-                <span className="text-xs uppercase tracking-[0.3em] text-neutral-500 font-sans">
-                    Samarinda — Global
-                </span>
-             </motion.div>
+            {/* Footer inside menu */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.4, duration: 1.2 }}
+              className="absolute bottom-12 left-0 w-full text-center"
+            >
+              <span className="text-xs uppercase tracking-[0.3em] text-neutral-500 font-sans">
+                Samarinda — Global
+              </span>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
