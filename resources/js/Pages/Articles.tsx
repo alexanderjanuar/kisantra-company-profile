@@ -116,56 +116,73 @@ const FeaturedHero: React.FC<{ article: Article }> = ({ article }) => {
 
     // Parallax & Fade Effects
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-    const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+    const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
     const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
+    // Date formatting for the stamp
+    const dateObj = new Date(article.published_at);
+    const day = dateObj.getDate();
+    const monthYear = new Intl.DateTimeFormat('id-ID', { month: 'short', year: 'numeric' }).format(dateObj);
+
     return (
-        <section ref={ref} className="relative w-full h-[90vh] overflow-hidden bg-lux-black flex items-end">
-            <Link href={`/berita/${article.slug}`} className="absolute inset-0 group">
+        <section ref={ref} className="relative w-full h-[95vh] overflow-hidden bg-lux-black">
+            <Link href={`/articles/${article.slug}`} className="block h-full w-full group cursor-pointer">
+                {/* Background Image Parallax */}
                 <motion.div style={{ y, opacity }} className="absolute inset-0">
                     <img
                         src={article.featured_image}
                         alt={article.title}
-                        className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity duration-1000 ease-out scale-105"
+                        className="w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-1000 ease-out scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-lux-black via-lux-black/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-lux-black/80 via-transparent to-lux-black/30" />
                 </motion.div>
 
+                {/* Creative Layout Grid */}
                 <motion.div
                     style={{ y: textY, opacity }}
-                    className="relative z-10 p-6 md:p-16 w-full max-w-[1600px] mx-auto flex flex-col items-start gap-6 pb-24 md:pb-32"
+                    className="relative z-10 w-full h-full max-w-[1800px] mx-auto grid grid-cols-12 grid-rows-6 p-6 md:p-12 pointer-events-none"
                 >
-                    <div className="overflow-hidden">
-                        <motion.span
-                            initial={{ y: "100%" }}
-                            animate={{ y: 0 }}
-                            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-                            className="inline-block px-4 py-2 bg-lux-teal text-white text-xs font-bold uppercase tracking-widest rounded-full"
-                        >
-                            Featured Insight
-                        </motion.span>
+                    {/* 1. Date Stamp (Top Left) */}
+                    <div className="col-span-12 row-span-1 flex justify-start items-start">
+                        <div className="flex flex-col items-start border-l-2 border-lux-teal pl-4 text-white backdrop-blur-sm bg-black/10 p-2 rounded-r-lg">
+                            <span className="text-5xl md:text-6xl font-black font-serif leading-[0.8]">{day}</span>
+                            <span className="text-xs md:text-sm font-mono uppercase tracking-[0.2em]">{monthYear}</span>
+                        </div>
                     </div>
 
-                    <div className="overflow-hidden">
-                        <motion.h1
-                            initial={{ y: "100%" }}
-                            animate={{ y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
-                            className="text-5xl md:text-8xl lg:text-9xl font-black text-white leading-[0.9] tracking-tighter max-w-6xl group-hover:text-lux-teal transition-colors duration-500"
-                        >
+                    {/* 2. Category Watermark (Right Edge - Vertical) */}
+                    <div className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-6 opacity-30 mix-blend-overlay pointer-events-none">
+                        <div className="h-24 w-[1px] bg-white"></div>
+                        <span className="[writing-mode:vertical-rl] rotate-180 text-white font-mono text-xs uppercase tracking-[0.4em]">
+                            Featured Category
+                        </span>
+                        <span className="[writing-mode:vertical-rl] rotate-180 text-transparent font-black font-serif text-6xl md:text-8xl stroke-white [webkit-text-stroke:1px_rgba(255,255,255,0.7)]">
+                            {article.categories[0]?.name}
+                        </span>
+                        <div className="h-24 w-[1px] bg-white"></div>
+                    </div>
+
+                    {/* 3. Main Title (Bottom Left - Massive) */}
+                    <div className="col-span-12 md:col-span-8 row-start-4 row-span-2 flex items-end">
+                        <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-black font-serif text-white leading-[0.85] tracking-tighter mix-blend-screen group-hover:text-lux-teal/90 transition-colors duration-500">
                             {article.title}
-                        </motion.h1>
+                        </h1>
                     </div>
 
-                    <div className="overflow-hidden max-w-2xl">
-                        <motion.p
-                            initial={{ y: "100%" }}
-                            animate={{ y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
-                            className="text-neutral-300 text-lg md:text-2xl font-light line-clamp-3 leading-relaxed"
-                        >
-                            {article.excerpt}
-                        </motion.p>
+                    {/* 4. Glass Card Info (Bottom Right) */}
+                    <div className="col-span-12 md:col-span-4 md:col-start-9 row-start-5 row-span-2 flex items-end justify-end">
+                        <div className="p-8 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl shadow-2xl skew-x-0 group-hover:-skew-x-2 transition-transform duration-500 pointer-events-auto">
+                            <span className="inline-block px-3 py-1 bg-lux-teal text-white text-[10px] font-bold uppercase tracking-widest rounded-full mb-4">
+                                Insight
+                            </span>
+                            <p className="text-neutral-200 text-lg font-light leading-relaxed line-clamp-3 mb-6">
+                                {article.excerpt}
+                            </p>
+                            <div className="flex items-center gap-3 text-white font-bold text-xs uppercase tracking-[0.2em] group-hover:gap-6 transition-all duration-300">
+                                Read Article
+                                <div className="w-8 h-[1px] bg-lux-teal"></div>
+                            </div>
+                        </div>
                     </div>
                 </motion.div>
             </Link>
@@ -181,7 +198,7 @@ const EditorialGrid: React.FC<{ category: string, articles: Article[] }> = ({ ca
     return (
         <section className="py-20 w-full px-6 md:px-12 max-w-[1600px] mx-auto border-t border-neutral-200">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                <h2 className="text-[12vw] md:text-[8vw] leading-[0.8] font-black tracking-tighter text-lux-black opacity-10 select-none">
+                <h2 className="text-[12vw] md:text-[8vw] leading-[0.8] font-black font-serif tracking-tighter text-lux-black opacity-10 select-none">
                     {category.toUpperCase()}
                 </h2>
                 <div className="absolute left-6 md:left-12 mt-10 md:mt-24">
@@ -196,7 +213,7 @@ const EditorialGrid: React.FC<{ category: string, articles: Article[] }> = ({ ca
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
                 {/* Primary Article - Big Focus */}
                 <div className="lg:col-span-7 flex flex-col gap-6 group cursor-pointer">
-                    <Link href={`/berita/${primary.slug}`} className="block overflow-hidden rounded-[2rem]">
+                    <Link href={`/articles/${primary.slug}`} className="block overflow-hidden rounded-[2rem]">
                         <div className="relative aspect-[4/3] overflow-hidden">
                             <img
                                 src={primary.featured_image}
@@ -210,7 +227,7 @@ const EditorialGrid: React.FC<{ category: string, articles: Article[] }> = ({ ca
                         <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest mb-2 block">
                             {formatDate(primary.published_at)}
                         </span>
-                        <Link href={`/berita/${primary.slug}`}>
+                        <Link href={`/articles/${primary.slug}`}>
                             <h3 className="text-3xl md:text-5xl font-bold text-lux-black leading-[1.1] mb-4 group-hover:text-lux-teal transition-colors">
                                 {primary.title}
                             </h3>
@@ -225,7 +242,7 @@ const EditorialGrid: React.FC<{ category: string, articles: Article[] }> = ({ ca
                 <div className="lg:col-span-5 flex flex-col gap-12 border-l border-neutral-100 lg:pl-12">
                     {secondaries.map((article) => (
                         <div key={article.id} className="flex flex-col md:flex-row gap-6 group cursor-pointer">
-                            <Link href={`/berita/${article.slug}`} className="w-full md:w-1/3 aspect-square rounded-xl overflow-hidden shrink-0">
+                            <Link href={`/articles/${article.slug}`} className="w-full md:w-1/3 aspect-square rounded-xl overflow-hidden shrink-0">
                                 <img
                                     src={article.featured_image || 'https://via.placeholder.com/400'}
                                     alt={article.title}
@@ -236,7 +253,7 @@ const EditorialGrid: React.FC<{ category: string, articles: Article[] }> = ({ ca
                                 <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest mb-2">
                                     {formatDate(article.published_at)}
                                 </span>
-                                <Link href={`/berita/${article.slug}`}>
+                                <Link href={`/articles/${article.slug}`}>
                                     <h4 className="text-xl font-bold text-lux-black leading-tight mb-2 group-hover:text-lux-teal transition-colors">
                                         {article.title}
                                     </h4>
@@ -254,7 +271,7 @@ const EditorialGrid: React.FC<{ category: string, articles: Article[] }> = ({ ca
 };
 
 const ArticleCardSimple: React.FC<{ article: Article }> = ({ article }) => (
-    <Link href={`/berita/${article.slug}`} className="group block">
+    <Link href={`/articles/${article.slug}`} className="group block">
         <div className="relative aspect-[16/9] overflow-hidden rounded-xl bg-neutral-100 mb-4">
             <img
                 src={article.featured_image || 'https://via.placeholder.com/800x500'}
@@ -320,7 +337,8 @@ const Articles: React.FC<ArticlesPageProps> = ({ articles = MOCK_ARTICLES }) => 
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
                 className="bg-lux-white min-h-screen text-lux-black selection:bg-lux-teal selection:text-white"
             >
                 <Navbar />

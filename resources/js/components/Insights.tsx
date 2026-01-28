@@ -51,7 +51,7 @@ export const  Insights: React.FC<InsightsProps> = ({ articles }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
         {articles.map((article, index) => (
-          <Link key={article.id} href={`/berita/${article.slug}`}>
+          <Link key={article.id} href={`/articles/${article.slug}`}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
