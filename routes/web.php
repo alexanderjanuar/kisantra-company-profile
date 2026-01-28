@@ -34,7 +34,9 @@ Route::get('/layanan', function () {
     return Inertia::render('Layanan');
 })->name('layanan.index');
 
-Route::get('/kontak', \App\Livewire\Contact\Index::class)->name('contact.index');
+Route::get('/kontak', function () {
+    return Inertia::render('Contact');
+})->name('contact.index');
 
 // Articles routes with Inertia for SPA navigation
 Route::get('/articles', function () {

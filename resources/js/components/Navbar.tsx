@@ -83,7 +83,7 @@ export const Navbar: React.FC = () => {
     { label: "Tentang Kami", href: "/tentang-kami", isRoute: true },
     { label: "Layanan", href: "/layanan", isRoute: true },
     { label: "Wawasan", href: "/articles", isRoute: true },
-    { label: "Kontak", href: "https://wa.me/6281180009787?text=Halo%20Kisantra%2C%20saya%20ingin%20menghubungi%20tim%20Anda%20untuk%20informasi%20lebih%20lanjut.", isRoute: false, isExternal: true }
+    { label: "Kontak", href: "/kontak", isRoute: true }
   ];
 
   return (
