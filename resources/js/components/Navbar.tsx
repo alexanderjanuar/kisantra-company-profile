@@ -78,7 +78,7 @@ export const Navbar: React.FC = () => {
     }
   };
 
-  const menuItems = [
+  const menuItems: { label: string; href: string; isRoute: boolean; isExternal?: boolean }[] = [
     { label: "Beranda", href: "/", isRoute: true },
     { label: "Tentang Kami", href: "/tentang-kami", isRoute: true },
     { label: "Layanan", href: "/layanan", isRoute: true },
@@ -110,7 +110,7 @@ export const Navbar: React.FC = () => {
         className="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center pointer-events-none"
       >
         {/* Logo */}
-        <Link href="/" className="pointer-events-auto cursor-pointer group">
+        <Link href="/" className="pointer-events-auto cursor-pointer group hidden md:block">
           <picture>
             <source srcSet="/image/Logo/Logo Horizontal - Copy.webp" type="image/webp" />
             <source srcSet="/image/Logo/Logo Horizontal.png" type="image/png" />
@@ -125,7 +125,7 @@ export const Navbar: React.FC = () => {
         {/* Floating Hamburger Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="pointer-events-auto group flex flex-col items-end gap-[6px] p-2 hover:scale-105 transition-all duration-300"
+          className="pointer-events-auto group flex flex-col items-end gap-[6px] p-2 hover:scale-105 transition-all duration-300 ml-auto"
           aria-label="Toggle Menu"
         >
           {/* Animated Hamburger Lines */}

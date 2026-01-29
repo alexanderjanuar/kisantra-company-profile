@@ -122,7 +122,7 @@ const services = [
 
 export const ServicesSection: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null);
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -132,6 +132,8 @@ export const ServicesSection: React.FC = () => {
   // --- Parallax Background Animations ---
   const textX1 = useTransform(scrollYProgress, [0, 1], ["-10%", "-30%"]);
   const textX2 = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+
+  const selectedService = services.find(s => s.id === selectedId);
 
   return (
     <section ref={containerRef} id="services" className="relative w-full bg-lux-white pt-32 pb-24 overflow-hidden">
@@ -196,137 +198,168 @@ export const ServicesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* --- 3. Full-Width Interactive Rows --- */}
-        <div className="flex flex-col w-full">
-          {services.map((service) => {
-            const isActive = activeId === service.id;
-
-            return (
+        {/* --- 3. Services Grid --- */}
+        <div className="px-6 md:px-12 max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {services.map((service, idx) => (
               <motion.div
-                layout
+                layoutId={`card-${service.id}`}
                 key={service.id}
-                onClick={() => setActiveId(isActive ? null : service.id)}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                onClick={() => setSelectedId(service.id)}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className={`relative w-full overflow-hidden cursor-pointer transition-all duration-700 ease-[0.22,1,0.36,1] group border-b border-white/10 ${isActive ? 'h-[85vh]' : 'h-[120px] md:h-[180px] hover:h-[140px] md:hover:h-[220px]'}`}
+                transition={{ delay: idx * 0.1 }}
+                className="relative h-[480px] rounded-[2rem] overflow-hidden cursor-pointer group shadow-xl shadow-lux-black/5"
               >
                 {/* Background Image */}
-                <motion.div
-                  layoutId={`bg-img-${service.id}`}
-                  className="absolute inset-0 w-full h-full"
-                >
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className={`w-full h-full object-cover transition-all duration-[1.5s] ease-[0.22,1,0.36,1] ${isActive ? 'scale-105 grayscale-0' : 'scale-100 grayscale group-hover:scale-105 group-hover:grayscale-[0.5]'}`}
-                  />
-                  {/* Overlay Gradient */}
-                  <div className={`absolute inset-0 bg-gradient-to-r from-lux-black via-lux-black/80 to-transparent transition-opacity duration-1000 ${isActive ? 'opacity-90 md:opacity-80' : 'opacity-90 group-hover:opacity-75'}`} />
-                </motion.div>
+                <motion.img
+                  layoutId={`image-${service.id}`}
+                  src={service.image}
+                  alt={service.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-lux-black/90 via-lux-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Content Container */}
-                <div className="relative z-10 h-full w-full max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col justify-center">
-
-                  {/* Header (Title & Subtitle) */}
+                {/* Card Content */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                  <motion.span layoutId={`subtitle-${service.id}`} className="text-lux-teal text-xs font-bold uppercase tracking-widest mb-2 inline-block">
+                    {service.subtitle}
+                  </motion.span>
+                  <motion.h3 layoutId={`title-${service.id}`} className="text-3xl font-bold text-white mb-2 leading-none">
+                    {service.title}
+                  </motion.h3>
                   <motion.div
-                    layout="position"
-                    className={`flex flex-col md:flex-row md:items-end justify-between gap-4 transition-all duration-700 ${isActive ? 'mb-12' : 'mb-0'}`}
-                  >
-                    <div className="flex items-baseline gap-6">
-                      <span className={`text-sm md:text-xl font-mono text-lux-teal font-bold transition-all duration-500 ${isActive ? 'opacity-100' : 'opacity-40 group-hover:opacity-100'}`}>
-                        {service.id}
-                      </span>
-                      <h3 className={` font-bold text-white leading-none transition-all duration-700 ${isActive ? 'text-4xl md:text-7xl' : 'text-3xl md:text-5xl text-white/50 group-hover:text-white'}`}>
-                        {service.title}
-                      </h3>
-                    </div>
-
-                    {/* Collapsed State: Hint */}
-                    {!isActive && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="hidden md:flex items-center gap-3 text-white/30 group-hover:text-lux-teal transition-colors duration-500"
-                      >
-                        <span className="text-xs uppercase tracking-widest font-bold">Explore</span>
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </motion.div>
-                    )}
-                  </motion.div>
-
-                  {/* Expanded Details */}
-                  <AnimatePresence>
-                    {isActive && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 text-white"
-                      >
-                        {/* Left Column: Description & Features */}
-                        <div className="space-y-8">
-                          <span className="inline-block py-1 px-3 border border-lux-teal/50 rounded-full text-lux-teal text-[10px] font-bold uppercase tracking-widest">
-                            {service.subtitle}
-                          </span>
-                          <p className="text-lg md:text-xl text-neutral-300 font-light leading-relaxed max-w-xl">
-                            {service.desc}
-                          </p>
-
-                          <div className="pt-8 border-t border-white/10">
-                            <h4 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-6">Key Deliverables</h4>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                              {service.features.map((feature, idx) => (
-                                <div key={idx} className="flex items-start gap-3">
-                                  <div className="mt-1 w-1.5 h-1.5 rounded-full bg-lux-teal flex-shrink-0" />
-                                  <span className="text-sm text-neutral-300 font-medium">{feature}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Right Column: Pricing & CTA */}
-                        <div className="flex flex-col justify-end lg:items-end">
-                          <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl w-full max-w-md hover:bg-white/10 transition-colors duration-500">
-                            <div className="flex justify-between items-start mb-8">
-                              <div>
-                                <span className="block text-[10px] uppercase font-bold text-neutral-400 mb-1">
-                                  Investasi Mulai Dari
-                                </span>
-                                <div className="flex items-baseline gap-1">
-                                  <span className="font-bold text-3xl text-white">
-                                    IDR {service.price}
-                                  </span>
-                                  <span className="text-xs text-neutral-400">{service.priceUnit}</span>
-                                </div>
-                              </div>
-                              <div className="w-12 h-12 bg-lux-teal rounded-full flex items-center justify-center text-lux-black">
-                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                              </div>
-                            </div>
-
-                            <button className="w-full py-4 rounded-xl bg-white text-lux-black text-xs font-bold uppercase tracking-widest hover:bg-lux-teal hover:text-white transition-all duration-300 flex items-center justify-center gap-3 group/btn">
-                              Konsultasi Layanan
-                              <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                    initial={{ opacity: 0.6 }}
+                    whileHover={{ opacity: 1 }}
+                    className="h-1 w-12 bg-white/20 rounded-full mt-6 group-hover:w-full group-hover:bg-lux-teal transition-all duration-500"
+                  />
                 </div>
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
         </div>
+
+        {/* --- 4. Detailed Modal Overlay --- */}
+        <AnimatePresence>
+          {selectedId && selectedService && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedId(null)}
+                className="absolute inset-0 bg-lux-black/80 backdrop-blur-md"
+              />
+              <motion.div
+                layoutId={`card-${selectedService.id}`}
+                className="w-full max-w-5xl bg-neutral-900 border border-white/10 rounded-[2.5rem] overflow-hidden relative z-10 flex flex-col md:flex-row h-[85vh] md:h-[600px] shadow-2xl"
+              >
+                <button
+                  onClick={(e) => { e.stopPropagation(); setSelectedId(null); }}
+                  className="absolute top-6 right-6 z-50 w-12 h-12 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-lux-teal transition-colors border border-white/10"
+                >
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+
+                {/* Image Side */}
+                <div className="w-full md:w-5/12 h-64 md:h-full relative shrink-0">
+                  <motion.img
+                    layoutId={`image-${selectedService.id}`}
+                    src={selectedService.image}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-neutral-900 via-transparent to-transparent opacity-80" />
+
+                  <div className="absolute bottom-8 left-8 right-8 md:hidden">
+                    <motion.span layoutId={`subtitle-${selectedService.id}`} className="text-lux-teal text-xs font-bold uppercase tracking-widest mb-2 block">
+                      {selectedService.subtitle}
+                    </motion.span>
+                    <motion.h3 layoutId={`title-${selectedService.id}`} className="text-3xl font-bold text-white leading-none">
+                      {selectedService.title}
+                    </motion.h3>
+                  </div>
+                </div>
+
+                {/* Content Side */}
+                <div className="flex-1 p-8 md:p-12 overflow-y-auto bg-neutral-900 custom-scrollbar">
+                  <div className="hidden md:block">
+                    <motion.span layoutId={`subtitle-${selectedService.id}`} className="text-lux-teal text-xs font-bold uppercase tracking-widest mb-3 block">
+                      {selectedService.subtitle}
+                    </motion.span>
+                    <motion.h3 layoutId={`title-${selectedService.id}`} className="text-4xl lg:text-5xl font-bold text-white mb-6">
+                      {selectedService.title}
+                    </motion.h3>
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1, duration: 0.5 }}
+                  >
+                    <p className="text-neutral-400 text-lg leading-relaxed mb-10 border-l-2 border-lux-teal pl-6">
+                      {selectedService.desc}
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
+                  >
+                    <h4 className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-white/50 mb-6">
+                      <span className="w-8 h-[1px] bg-white/20"></span>
+                      What You Get
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                      {selectedService.features.map((f, i) => (
+                        <motion.div
+                          key={f}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.3 + (i * 0.05) }}
+                          className="flex items-start gap-3 text-neutral-300"
+                        >
+                          <svg className="w-5 h-5 text-lux-teal shrink-0 mt-[2px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span className="text-sm font-medium">{f}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                    className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-8 border-t border-white/10 bg-neutral-900/50 -mx-4 px-4 sm:mx-0 sm:px-0 sm:bg-transparent"
+                  >
+                    <div>
+                      <span className="block text-[10px] uppercase font-bold text-neutral-500 mb-1">Estimated Investment</span>
+                      <div className="text-3xl font-bold text-white tracking-tight">
+                        <span className="text-lg text-neutral-400 mr-1">IDR</span>
+                        {selectedService.price}
+                        <span className="text-sm font-normal text-neutral-500 ml-1">{selectedService.priceUnit}</span>
+                      </div>
+                    </div>
+
+                    <a
+                      href={`https://wa.me/6281180009787?text=Halo%20Kisantra%2C%20saya%20tertarik%20dengan%20layanan%20${encodeURIComponent(selectedService.title)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full sm:w-auto bg-lux-white text-lux-black px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-lux-teal hover:text-white transition-all duration-300 shadow-lg shadow-white/5 text-center"
+                    >
+                      Book Consultation
+                    </a>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
 
       </div>
     </section>
