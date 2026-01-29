@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/karir', function () {
     $jobPostings = \App\Models\JobPosting::active()
-        ->select('id', 'title', 'location', 'employment_type', 'work_type', 'created_at')
+        ->select('id', 'title', 'location', 'employment_type', 'work_type', 'description', 'requirements', 'created_at')
         ->latest()
         ->get()
         ->map(function ($job) {
@@ -33,6 +33,8 @@ Route::get('/karir', function () {
                 'type' => $job->employment_type_display, // Using accessor
                 'work_type' => $job->work_type_display, // Using accessor
                 'department' => 'General', // Placeholder as model lacks department
+                'description' => $job->description,
+                'requirements' => $job->requirements,
             ];
         });
 

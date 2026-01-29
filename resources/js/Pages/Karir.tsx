@@ -1,8 +1,23 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Head } from '@inertiajs/react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { Navbar } from '../components/Navbar';
 import { Contact } from '../components/Contact';
+
+interface JobPosting {
+    id: number;
+    title: string;
+    location: string;
+    type: string;
+    work_type: string;
+    department: string;
+    description?: string;
+    requirements?: string;
+}
+
+interface KarirProps {
+    jobPostings: JobPosting[];
+}
 
 // --- Data ---
 const values = [
@@ -134,9 +149,11 @@ const Culture = () => {
     )
 }
 
-const Jobs = () => {
+const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
+    const [selectedJob, setSelectedJob] = useState<JobPosting | null>(null);
+
     return (
-        <section className="py-32 bg-lux-white px-6 md:px-12">
+        <section className="py-32 bg-lux-white px-6 md:px-12 relative">
             <div className="max-w-[1200px] mx-auto">
                 <div className="text-center mb-20">
                     <span className="text-lux-teal text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Open Positions</span>
@@ -144,35 +161,45 @@ const Jobs = () => {
                 </div>
 
                 <div className="flex flex-col">
-                    {jobs.map((job) => (
-                        <motion.div
-                            key={job.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="group flex flex-col md:flex-row items-start md:items-center justify-between py-10 border-b border-neutral-200 hover:border-lux-teal transition-colors duration-300 cursor-pointer"
-                        >
-                            <div className="mb-4 md:mb-0">
-                                <h3 className="text-2xl font-bold text-lux-black group-hover:text-lux-teal transition-colors">{job.role}</h3>
-                                <div className="flex items-center gap-4 mt-2 text-sm text-neutral-500 font-mono uppercase tracking-wide">
-                                    <span>{job.department}</span>
-                                    <span className="w-1 h-1 bg-neutral-300 rounded-full" />
-                                    <span>{job.type}</span>
-                                    <span className="w-1 h-1 bg-neutral-300 rounded-full" />
-                                    <span>{job.location}</span>
+                    {jobs.length > 0 ? (
+                        jobs.map((job) => (
+                            <motion.div
+                                key={job.id}
+                                layoutId={`job-card-${job.id}`}
+                                onClick={() => setSelectedJob(job)}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="group flex flex-col md:flex-row items-start md:items-center justify-between py-10 border-b border-neutral-200 hover:border-lux-teal transition-colors duration-300 cursor-pointer"
+                            >
+                                <div className="mb-4 md:mb-0">
+                                    <motion.h3 layoutId={`job-title-${job.id}`} className="text-2xl font-bold text-lux-black group-hover:text-lux-teal transition-colors">{job.title}</motion.h3>
+                                    <div className="flex items-center gap-4 mt-2 text-sm text-neutral-500 font-mono uppercase tracking-wide">
+                                        <span>{job.department}</span>
+                                        <span className="w-1 h-1 bg-neutral-300 rounded-full" />
+                                        <span>{job.type}</span>
+                                        <span className="w-1 h-1 bg-neutral-300 rounded-full" />
+                                        <span>{job.work_type}</span>
+                                        <span className="w-1 h-1 bg-neutral-300 rounded-full" />
+                                        <span>{job.location}</span>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                                <span className="text-xs font-bold uppercase tracking-widest text-lux-black">Apply Now</span>
-                                <div className="w-10 h-10 rounded-full border border-lux-black flex items-center justify-center group-hover:bg-lux-black group-hover:text-white transition-colors">
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
+                                <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                                    <span className="text-xs font-bold uppercase tracking-widest text-lux-black">View Details</span>
+                                    <div className="w-10 h-10 rounded-full border border-lux-black flex items-center justify-center group-hover:bg-lux-black group-hover:text-white transition-colors">
+                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.div>
-                    ))}
+                            </motion.div>
+                        ))
+                    ) : (
+                        <div className="text-center py-12 text-neutral-400">
+                            <p>Saat ini belum ada posisi yang tersedia.</p>
+                        </div>
+                    )}
                 </div>
 
                 <div className="mt-20 text-center">
@@ -182,11 +209,95 @@ const Jobs = () => {
                     </a>
                 </div>
             </div>
+
+            {/* Job Detail Modal */}
+            <AnimatePresence>
+                {selectedJob && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setSelectedJob(null)}
+                            className="absolute inset-0 bg-lux-black/60 backdrop-blur-sm"
+                        />
+                        <motion.div
+                            layoutId={`job-card-${selectedJob.id}`}
+                            className="w-full max-w-3xl bg-white rounded-3xl overflow-hidden relative z-10 shadow-2xl max-h-[90vh] flex flex-col"
+                        >
+                            <button
+                                onClick={() => setSelectedJob(null)}
+                                className="absolute top-6 right-6 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors z-20"
+                            >
+                                <svg className="w-5 h-5 text-neutral-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+
+                            <div className="p-8 md:p-12 overflow-y-auto custom-scrollbar">
+                                <span className="inline-block py-1 px-3 bg-lux-teal/10 text-lux-teal text-[10px] font-bold uppercase tracking-widest rounded-full mb-6">
+                                    {selectedJob.department}
+                                </span>
+                                <motion.h3 layoutId={`job-title-${selectedJob.id}`} className="text-3xl md:text-4xl font-bold text-lux-black mb-4">
+                                    {selectedJob.title}
+                                </motion.h3>
+
+                                <div className="flex flex-wrap gap-4 text-sm text-neutral-500 font-mono uppercase tracking-wide mb-10 border-b border-neutral-100 pb-8">
+                                    <div className="flex items-center gap-2">
+                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                                        {selectedJob.type}
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                                        {selectedJob.work_type}
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                        {selectedJob.location}
+                                    </div>
+                                </div>
+
+                                <div className="space-y-8 text-neutral-600 leading-relaxed">
+                                    <div>
+                                        <h4 className="font-bold text-lux-black text-lg mb-3">Job Description</h4>
+                                        <div
+                                            className="text-sm text-neutral-600 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_li]:mb-1 [&_strong]:font-bold [&_b]:font-bold"
+                                            dangerouslySetInnerHTML={{ __html: selectedJob.description || "No description provided." }}
+                                        />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-lux-black text-lg mb-3">Requirements</h4>
+                                        <div
+                                            className="text-sm text-neutral-600 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_li]:mb-1 [&_strong]:font-bold [&_b]:font-bold"
+                                            dangerouslySetInnerHTML={{ __html: selectedJob.requirements || "No requirements provided." }}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="p-8 border-t border-neutral-100 bg-neutral-50 flex justify-end gap-4">
+                                <button
+                                    onClick={() => setSelectedJob(null)}
+                                    className="px-6 py-3 rounded-xl text-neutral-500 font-bold text-xs uppercase tracking-widest hover:text-lux-black transition-colors"
+                                >
+                                    Close
+                                </button>
+                                <a
+                                    href={`mailto:careers@kisantra.com?subject=Application for ${selectedJob.title}`}
+                                    className="px-8 py-3 rounded-xl bg-lux-black text-white font-bold text-xs uppercase tracking-widest hover:bg-lux-teal transition-colors shadow-lg shadow-lux-black/20"
+                                >
+                                    Apply for Position
+                                </a>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </section>
     )
 }
 
-const Karir: React.FC = () => {
+const Karir: React.FC<KarirProps> = ({ jobPostings }) => {
     return (
         <>
             <Head title="Karir" />
@@ -201,7 +312,7 @@ const Karir: React.FC = () => {
                 <main>
                     <Hero />
                     <Culture />
-                    <Jobs />
+                    <Jobs jobs={jobPostings} />
                 </main>
                 <Contact />
             </motion.div>
