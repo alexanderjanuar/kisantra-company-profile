@@ -20,9 +20,26 @@ Route::get('/', function () {
     ]);
 })->name('home.index');
 
-// In routes/web.php
-Route::get('/karir', action: \App\Livewire\Career\Index::class)->name('career.index');
-Route::get('/karir/{jobPosting}/apply', action: \App\Livewire\Career\JobApplication::class)->name('career.apply');
+Route::get('/karir', function () {
+    $jobPostings = \App\Models\JobPosting::active()
+        ->select('id', 'title', 'location', 'employment_type', 'work_type', 'created_at')
+        ->latest()
+        ->get()
+        ->map(function ($job) {
+            return [
+                'id' => $job->id,
+                'title' => $job->title,
+                'location' => $job->location,
+                'type' => $job->employment_type_display, // Using accessor
+                'work_type' => $job->work_type_display, // Using accessor
+                'department' => 'General', // Placeholder as model lacks department
+            ];
+        });
+
+    return Inertia::render('Karir', [
+        'jobPostings' => $jobPostings
+    ]);
+})->name('career.index');
 
 Route::get('/konsultasi', \App\Livewire\Consultation\Index::class)->name('consultation.index');
 
