@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KisantraConsultController;
+use App\Http\Controllers\JobApplicationController;
 use App\Livewire\Career\Index;
 use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Route;
@@ -105,6 +106,9 @@ Route::get('/berita/{slug}', function ($slug) {
 
 // Route::get('/konsultasi', [KisantraConsultController::class, 'create'])->name('kisantra.consult.create');
 Route::post('/kisantra-consult', [KisantraConsultController::class, 'store'])->name('kisantra.consult.store');
+
+// Job Application Route
+Route::post('/api/apply-job', [JobApplicationController::class, 'store'])->name('job.apply');
 
 // Route::redirect('/laravel/login', '/login')->name('login');
 // Route::get('/login', function () {

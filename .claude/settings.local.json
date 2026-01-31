@@ -7,7 +7,10 @@
       "Bash(test:*)",
       "Bash(php artisan db:seed:*)",
       "Bash(php artisan tinker:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(php artisan db:table:*)",
+      "Bash(php -r:*)",
+      "Bash(php:*)"
     ]
   }
 }
