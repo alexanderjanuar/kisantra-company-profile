@@ -22,17 +22,17 @@ interface KarirProps {
 // --- Data ---
 const values = [
     {
-        title: "Excellence",
+        title: "Keunggulan",
         desc: "Kami tidak kompromi pada kualitas. Setiap detail diperhitungkan untuk hasil standar global.",
         image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop"
     },
     {
-        title: "Innovation",
+        title: "Inovasi",
         desc: "Mendorong batas kemungkinan dengan teknologi dan strategi kreatif.",
         image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop"
     },
     {
-        title: "Integrity",
+        title: "Integritas",
         desc: "Kepercayaan adalah mata uang kami. Transparansi dan etika di atas segalanya.",
         image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop"
     }
@@ -93,8 +93,8 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-5xl md:text-7xl lg:text-8xl font-black text-lux-black tracking-tight leading-none mb-8"
                 >
-                    Build the <br className="hidden md:block" />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-lux-teal to-lux-black">Vanguard</span>
+                    Bangun Masa Depan <br className="hidden md:block" />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-lux-teal to-lux-black">Bersama Kami</span>
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -115,8 +115,8 @@ const Culture = () => {
             <div className="max-w-[1400px] mx-auto">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-white/10 pb-12">
                     <div>
-                        <span className="text-lux-teal text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Our Culture</span>
-                        <h2 className="text-4xl md:text-6xl font-bold">More Than <br /> Just Work</h2>
+                        <span className="text-lux-teal text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Budaya Kami</span>
+                        <h2 className="text-4xl md:text-6xl font-bold">Lebih Dari <br /> Sekedar Kerja</h2>
                     </div>
                     <p className="mt-8 md:mt-0 max-w-md text-neutral-400 leading-relaxed">
                         Kami membangun lingkungan di mana potensi terbaik Anda dapat berkembang. Kolaborasi, ambisi, dan keseimbangan adalah inti dari siapa kami.
@@ -156,8 +156,8 @@ const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
         <section className="py-32 bg-lux-white px-6 md:px-12 relative">
             <div className="max-w-[1200px] mx-auto">
                 <div className="text-center mb-20">
-                    <span className="text-lux-teal text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Open Positions</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-lux-black">Join the Team</h2>
+                    <span className="text-lux-teal text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Posisi Terbuka</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-lux-black">Bergabung dengan Tim Kami</h2>
                 </div>
 
                 <div className="flex flex-col">
@@ -186,7 +186,7 @@ const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
                                 </div>
 
                                 <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                                    <span className="text-xs font-bold uppercase tracking-widest text-lux-black">View Details</span>
+                                    <span className="text-xs font-bold uppercase tracking-widest text-lux-black">Lihat Detail</span>
                                     <div className="w-10 h-10 rounded-full border border-lux-black flex items-center justify-center group-hover:bg-lux-black group-hover:text-white transition-colors">
                                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -204,7 +204,7 @@ const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
 
                 <div className="mt-20 text-center">
                     <p className="text-neutral-500 mb-6">Tidak menemukan posisi yang cocok?</p>
-                    <a href="mailto:careers@kisantra.com" className="inline-block border-b-2 border-lux-black pb-1 text-lux-black font-bold uppercase tracking-widest hover:text-lux-teal hover:border-lux-teal transition-colors">
+                    <a href="mailto:hr.kisantra@gmail.com" className="inline-block border-b-2 border-lux-black pb-1 text-lux-black font-bold uppercase tracking-widest hover:text-lux-teal hover:border-lux-teal transition-colors">
                         Email CV Anda
                     </a>
                 </div>
@@ -259,17 +259,17 @@ const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
 
                                 <div className="space-y-8 text-neutral-600 leading-relaxed">
                                     <div>
-                                        <h4 className="font-bold text-lux-black text-lg mb-3">Job Description</h4>
+                                        <h4 className="font-bold text-lux-black text-lg mb-3">Deskripsi Pekerjaan</h4>
                                         <div
                                             className="text-sm text-neutral-600 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_li]:mb-1 [&_strong]:font-bold [&_b]:font-bold"
-                                            dangerouslySetInnerHTML={{ __html: selectedJob.description || "No description provided." }}
+                                            dangerouslySetInnerHTML={{ __html: selectedJob.description || "Deskripsi tidak tersedia." }}
                                         />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-lux-black text-lg mb-3">Requirements</h4>
+                                        <h4 className="font-bold text-lux-black text-lg mb-3">Kualifikasi</h4>
                                         <div
                                             className="text-sm text-neutral-600 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_li]:mb-1 [&_strong]:font-bold [&_b]:font-bold"
-                                            dangerouslySetInnerHTML={{ __html: selectedJob.requirements || "No requirements provided." }}
+                                            dangerouslySetInnerHTML={{ __html: selectedJob.requirements || "Kualifikasi tidak tersedia." }}
                                         />
                                     </div>
                                 </div>
@@ -280,13 +280,13 @@ const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
                                     onClick={() => setSelectedJob(null)}
                                     className="px-6 py-3 rounded-xl text-neutral-500 font-bold text-xs uppercase tracking-widest hover:text-lux-black transition-colors"
                                 >
-                                    Close
+                                    Tutup
                                 </button>
                                 <a
-                                    href={`mailto:careers@kisantra.com?subject=Application for ${selectedJob.title}`}
+                                    href={`mailto:hr.kisantra@gmail.com?subject=Lamaran Kerja - ${selectedJob.title}&body=Kepada Yth.%0D%0ATim HR PT Kisantra Indonesia%0D%0A%0D%0ADengan hormat,%0D%0A%0D%0ASaya tertarik untuk melamar posisi ${selectedJob.title} di perusahaan Bapak/Ibu.%0D%0A%0D%0ATerlampir CV/Resume saya untuk bahan pertimbangan.%0D%0A%0D%0ATerima kasih atas perhatian dan kesempatan yang diberikan.%0D%0A%0D%0AHormat saya,`}
                                     className="px-8 py-3 rounded-xl bg-lux-black text-white font-bold text-xs uppercase tracking-widest hover:bg-lux-teal transition-colors shadow-lg shadow-lux-black/20"
                                 >
-                                    Apply for Position
+                                    Lamar Posisi Ini
                                 </a>
                             </div>
                         </motion.div>
