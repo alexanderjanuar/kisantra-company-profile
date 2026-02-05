@@ -5,7 +5,34 @@ import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 
+// Extend Window interface for Google Analytics
+declare global {
+    interface Window {
+        dataLayer: any[];
+    }
+}
+
 const appName = import.meta.env.VITE_APP_NAME || 'Kisantra';
+
+// Google Analytics initialization
+const initGoogleAnalytics = () => {
+    // Add gtag.js script
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-307NCLEJ06';
+    document.head.appendChild(script);
+
+    // Initialize dataLayer and gtag function
+    window.dataLayer = window.dataLayer || [];
+    function gtag(...args: any[]) {
+        window.dataLayer.push(args);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-307NCLEJ06');
+};
+
+// Initialize Google Analytics
+initGoogleAnalytics();
 
 createInertiaApp({
     title: (title) => title ? `${title} - ${appName}` : appName,
