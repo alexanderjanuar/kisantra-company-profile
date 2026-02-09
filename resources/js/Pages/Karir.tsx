@@ -311,7 +311,7 @@ const Karir: React.FC<KarirProps> = ({ jobPostings }) => {
                 <Navbar />
                 <main>
                     <Hero />
-                    <Culture />
+                    {/* <Culture /> */}
                     <Jobs jobs={jobPostings} />
                 </main>
                 <Contact />
