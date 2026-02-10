@@ -181,74 +181,60 @@ const CommentSection = () => (
     </div>
 );
 
-const RelatedArticles: React.FC<{ articles: Article[] }> = ({ articles }) => {
+const Sidebar: React.FC<{ articles: Article[] }> = ({ articles }) => {
     if (!articles || articles.length === 0) return null;
 
-    const formatDate = (dateString: string) => {
-        const date = new Date(dateString);
-        return new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
-    };
-
     return (
-        <section className="py-24 px-6 md:px-12 bg-neutral-50 border-t border-neutral-200">
-            <div className="max-w-[1400px] mx-auto">
-                <div className="flex justify-between items-end mb-12">
-                    <div>
-                        <span className="text-xs font-bold uppercase tracking-widest text-lux-teal mb-2 block">
-                            Baca Juga
-                        </span>
-                        <h2 className="text-3xl md:text-4xl font-bold font-serif text-lux-black">
-                            Artikel Terkait
-                        </h2>
-                    </div>
-                    <Link
-                        href="/articles"
-                        className="text-sm font-bold uppercase tracking-widest text-lux-black hover:text-lux-teal transition-colors flex items-center gap-2"
-                    >
-                        Lihat Semua <span>→</span>
-                    </Link>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {articles.map((article, index) => (
-                        <motion.div
-                            key={article.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                        >
-                            <Link
-                                href={`/articles/${article.slug}`}
-                                className="group block"
-                            >
-                                <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-neutral-200 mb-4">
-                                    <img
-                                        src={article.featured_image || 'https://via.placeholder.com/800x500'}
-                                        alt={article.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    />
-                                    <div className="absolute inset-0 bg-lux-black/10 group-hover:bg-transparent transition-colors" />
-                                    {article.categories?.[0] && (
-                                        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded">
-                                            <span className="text-[10px] font-bold uppercase tracking-widest text-lux-black">
-                                                {article.categories[0].name}
-                                            </span>
-                                        </div>
-                                    )}
-                                </div>
-                                <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest mb-2 block">
-                                    {formatDate(article.published_at)}
-                                </span>
-                                <h3 className="text-lg font-bold text-lux-black leading-tight group-hover:text-lux-teal transition-colors">
+        <aside className="space-y-8 sticky top-32">
+            <div className="bg-neutral-50 rounded-2xl p-6 md:p-8 border border-neutral-100">
+                <span className="text-xs font-bold uppercase tracking-widest text-lux-teal mb-4 block">
+                    Baca Juga
+                </span>
+                <h3 className="text-2xl font-bold font-serif text-lux-black mb-6">
+                    Artikel Terkait
+                </h3>
+                <div className="flex flex-col gap-6">
+                    {articles.map((article) => (
+                        <Link key={article.id} href={`/articles/${article.slug}`} className="group flex gap-4 items-start">
+                            <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-neutral-200">
+                                <img
+                                    src={article.featured_image}
+                                    alt={article.title}
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                />
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-bold text-lux-black leading-tight mb-1 group-hover:text-lux-teal transition-colors line-clamp-2">
                                     {article.title}
-                                </h3>
-                            </Link>
-                        </motion.div>
+                                </h4>
+                                <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest">
+                                    {new Date(article.published_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })}
+                                </span>
+                            </div>
+                        </Link>
                     ))}
                 </div>
             </div>
-        </section>
+
+            {/* Newsletter / CTA Widget in Sidebar */}
+            <div className="bg-lux-black text-white rounded-2xl p-6 md:p-8 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-lux-teal/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                <h4 className="text-lg font-bold mb-2 relative z-10">Subscribe to Kisantra</h4>
+                <p className="text-neutral-400 text-sm mb-6 relative z-10 leading-relaxed">
+                    Dapatkan wawasan eksklusif mingguan langsung ke inbox Anda.
+                </p>
+                <form className="relative z-10 space-y-3">
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-lux-teal transition-colors"
+                    />
+                    <button type="button" className="w-full bg-lux-teal text-white font-bold uppercase tracking-widest text-xs py-3 rounded-lg hover:bg-lux-teal-dark transition-colors">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </aside>
     );
 };
 
@@ -344,10 +330,10 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, related_articles
                 </div>
 
                 <main className="relative z-10 bg-lux-white -mt-12 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] pt-16 md:pt-24 pb-24">
-                    <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 px-6 md:px-12">
+                    <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 px-6 md:px-12">
 
-                        {/* Main Content */}
-                        <div className="col-span-1 lg:col-span-8 lg:col-start-3">
+                        {/* Main Content (Left/Center) */}
+                        <div className="col-span-1 lg:col-span-8">
                             <article className="prose prose-lg md:prose-xl max-w-none 
                                 prose-headings:font-serif prose-headings:font-bold prose-headings:text-lux-black 
                                 prose-p:text-neutral-600 prose-p:leading-relaxed prose-p:mb-6
@@ -381,6 +367,12 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, related_articles
                             <CommentSection />
                         </div>
 
+                        {/* Sidebar (Right) */}
+                        <div className="col-span-1 lg:col-span-4 relative">
+                            {/* Just for layout context, Sidebar component handles content */}
+                            <Sidebar articles={related_articles} />
+                        </div>
+
                     </div>
 
                     {/* Unified Floating Dock Share (Desktop & Mobile) */}
@@ -390,7 +382,6 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, related_articles
 
                 </main>
 
-                <RelatedArticles articles={related_articles} />
                 <Contact />
             </motion.div>
         </>
