@@ -19,6 +19,22 @@ const initGoogleAnalytics = () => {
     // Add gtag.js script
     const script = document.createElement('script');
     script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-307NCLEJ06';
+    document.head.appendChild(script);
+
+    // Initialize dataLayer and gtag function
+    window.dataLayer = window.dataLayer || [];
+    function gtag(...args: any[]) {
+        window.dataLayer.push(args);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-307NCLEJ06');
+};
+
+const initGoogleAnalytics2 = () => {
+    // Add gtag.js script
+    const script = document.createElement('script');
+    script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZBBHT60QP9';
     document.head.appendChild(script);
 
@@ -33,6 +49,7 @@ const initGoogleAnalytics = () => {
 
 // Initialize Google Analytics
 initGoogleAnalytics();
+initGoogleAnalytics2();
 
 createInertiaApp({
     title: (title) => title ? `${title} - ${appName}` : appName,
