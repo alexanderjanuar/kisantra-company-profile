@@ -19,7 +19,7 @@ const initGoogleAnalytics = () => {
     // Add gtag.js script
     const script = document.createElement('script');
     script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-307NCLEJ06';
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZBBHT60QP9';
     document.head.appendChild(script);
 
     // Initialize dataLayer and gtag function
@@ -28,7 +28,7 @@ const initGoogleAnalytics = () => {
         window.dataLayer.push(args);
     }
     gtag('js', new Date());
-    gtag('config', 'G-307NCLEJ06');
+    gtag('config', 'G-ZBBHT60QP9');
 };
 
 // Initialize Google Analytics

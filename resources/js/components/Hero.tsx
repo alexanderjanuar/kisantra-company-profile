@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, Variants } from 'framer-motion';
+import { Link } from '@inertiajs/react';
 
 export const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -109,6 +110,23 @@ export const Hero: React.FC = () => {
           <p className="text-base md:text-xl text-neutral-500 font-medium tracking-wide leading-relaxed">
             Partner strategis <span className="text-lux-black font-bold">konsultan pajak di Samarinda</span>. Mengintegrasikan regulasi, manajemen finansial, dan inovasi digital untuk bisnis di Kalimantan Timur.
           </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 4.2, ease: "easeOut" }}
+          className="mt-8 md:mt-12"
+        >
+          <Link
+            href="/kontak"
+            className="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium tracking-widest text-lux-black transition duration-300 ease-out border border-neutral-300 rounded-full hover:border-lux-black hover:shadow-lg"
+          >
+            <span className="absolute inset-0 w-full h-full bg-lux-black opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
+            <span className="relative z-10 text-xs md:text-sm uppercase group-hover:text-white transition-colors duration-300">
+              Hubungi Kami
+            </span>
+          </Link>
         </motion.div>
       </motion.div>
 
