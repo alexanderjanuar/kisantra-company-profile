@@ -53,8 +53,8 @@ export const Impact: React.FC = () => {
         <section className="py-20 md:py-32 bg-lux-white w-full overflow-hidden border-b border-neutral-200">
             {/* Split Layout: Text Left, Stats Right */}
             <div className="px-6 md:px-12 mb-32 max-w-[1400px] mx-auto">
-                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-                    
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
                     {/* Left Column: Narrative Text */}
                     <div className="flex flex-col gap-8 sticky top-32">
                         <motion.h2
@@ -79,7 +79,7 @@ export const Impact: React.FC = () => {
 
                     {/* Right Column: Massive Statistics */}
                     <div className="flex flex-col gap-16 md:gap-24">
-                        
+
                         <div className="flex flex-col group cursor-default">
                             <div className="h-[1px] w-full bg-neutral-200 mb-6 group-hover:bg-lux-teal transition-colors duration-500" />
                             <span className="text-7xl md:text-9xl font-bold leading-none mb-4 text-lux-black tracking-tighter group-hover:text-lux-teal transition-colors duration-500">
@@ -106,33 +106,82 @@ export const Impact: React.FC = () => {
 
                     </div>
 
-                 </div>
+                </div>
             </div>
 
-            {/* Infinite Horizontal Marquee - CSS Animation for better performance */}
-            <div className="w-full relative py-12 border-t border-neutral-100">
-                <div className="absolute top-0 left-0 w-32 md:w-64 h-full z-10 bg-gradient-to-r from-lux-white to-transparent pointer-events-none" />
-                <div className="absolute top-0 right-0 w-32 md:w-64 h-full z-10 bg-gradient-to-l from-lux-white to-transparent pointer-events-none" />
+            {/* Sophisticated Client Slider */}
+            <div className="w-full relative py-24 border-t border-neutral-100">
+                <div className="px-6 md:px-12 mb-16 max-w-[1400px] mx-auto text-center">
+                    <div className="max-w-xl mx-auto">
+                        <span className="text-xs font-bold uppercase tracking-[0.4em] text-lux-teal mb-4 block">Kepercayaan & Reputasi</span>
+                        <h3 className="font-bold text-3xl md:text-5xl leading-tight text-lux-black tracking-tight">
+                            Partners of <span className="text-lux-teal italic font-serif">Note.</span>
+                        </h3>
+                    </div>
+                </div>
 
-                <div className="flex overflow-hidden">
-                    <div
-                        className="flex gap-16 md:gap-24 items-center pl-16 md:pl-24 animate-marquee"
-                        style={{ width: "fit-content" }}
-                    >
-                        {[...clientLogos, ...clientLogos].map((client, index) => (
-                            <div
-                                key={index}
-                                className="flex items-center justify-center h-20 md:h-24 shrink-0"
-                            >
-                                <img
-                                    src={client.image}
-                                    alt={client.name}
-                                    loading="lazy"
-                                    decoding="async"
-                                    className="max-h-full w-auto object-contain filter grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                                />
-                            </div>
-                        ))}
+                <div className="relative w-full overflow-hidden space-y-8 md:space-y-12">
+                    <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-lux-white to-transparent pointer-events-none" />
+                    <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-lux-white to-transparent pointer-events-none" />
+
+                    {/* Row 1 - Left */}
+                    <div className="flex overflow-hidden">
+                        <motion.div
+                            className="flex gap-16 md:gap-24 items-center shrink-0 pl-16 md:pl-24"
+                            animate={{ x: ["0%", "-50%"] }}
+                            transition={{ repeat: Infinity, ease: "linear", duration: 60 }}
+                        >
+                            {[...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
+                                <div key={`r1-${index}`} className="flex items-center justify-center h-20 md:h-24 shrink-0 opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
+                                    <img
+                                        src={client.image}
+                                        alt={client.name}
+                                        loading="lazy"
+                                        className="max-h-full w-auto object-contain"
+                                    />
+                                </div>
+                            ))}
+                        </motion.div>
+                    </div>
+
+                    {/* Row 2 - Right */}
+                    <div className="flex overflow-hidden">
+                        <motion.div
+                            className="flex gap-16 md:gap-24 items-center shrink-0 pl-16 md:pl-24"
+                            animate={{ x: ["-50%", "0%"] }}
+                            transition={{ repeat: Infinity, ease: "linear", duration: 75 }}
+                        >
+                            {[...clientLogos, ...clientLogos, ...clientLogos].reverse().map((client, index) => (
+                                <div key={`r2-${index}`} className="flex items-center justify-center h-20 md:h-24 shrink-0 opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
+                                    <img
+                                        src={client.image}
+                                        alt={client.name}
+                                        loading="lazy"
+                                        className="max-h-full w-auto object-contain"
+                                    />
+                                </div>
+                            ))}
+                        </motion.div>
+                    </div>
+
+                    {/* Row 3 - Left */}
+                    <div className="flex overflow-hidden">
+                        <motion.div
+                            className="flex gap-16 md:gap-24 items-center shrink-0 pl-16 md:pl-24"
+                            animate={{ x: ["0%", "-50%"] }}
+                            transition={{ repeat: Infinity, ease: "linear", duration: 65 }}
+                        >
+                            {[...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
+                                <div key={`r3-${index}`} className="flex items-center justify-center h-20 md:h-24 shrink-0 opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
+                                    <img
+                                        src={client.image}
+                                        alt={client.name}
+                                        loading="lazy"
+                                        className="max-h-full w-auto object-contain"
+                                    />
+                                </div>
+                            ))}
+                        </motion.div>
                     </div>
                 </div>
             </div>

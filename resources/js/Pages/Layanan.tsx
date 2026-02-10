@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Head } from '@inertiajs/react';
 import { Navbar } from '../components/Navbar';
 import { Contact } from '../components/Contact';
@@ -106,7 +106,7 @@ const services = [
     title: "Sistem Digital",
     subtitle: "Automation & ERP",
     desc: "Membangun infrastruktur teknologi untuk efisiensi operasional tanpa batas. Integrasikan seluruh proses bisnis Anda dalam satu dashboard terpusat.",
-    price: "15.000.000",
+    price: "5.000.000",
     priceUnit: "/ system",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop",
     features: [
@@ -122,8 +122,6 @@ const services = [
 
 export const ServicesSection: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
@@ -132,8 +130,6 @@ export const ServicesSection: React.FC = () => {
   // --- Parallax Background Animations ---
   const textX1 = useTransform(scrollYProgress, [0, 1], ["-10%", "-30%"]);
   const textX2 = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-
-  const selectedService = services.find(s => s.id === selectedId);
 
   return (
     <section ref={containerRef} id="services" className="relative w-full bg-lux-white pt-32 pb-24 overflow-hidden">
@@ -167,8 +163,11 @@ export const ServicesSection: React.FC = () => {
               Layanan & Proses
             </span>
             <h2 className="font-bold text-4xl md:text-5xl lg:text-6xl text-lux-black mb-8 tracking-tight">
-              Our Services
+              Our Services in Samarinda
             </h2>
+            <p className="text-neutral-500 max-w-2xl mx-auto mt-4">
+              Solusi bisnis terintegrasi dari konsultan pajak dan keuangan terbaik di Samarinda untuk pertumbuhan perusahaan Anda.
+            </p>
           </motion.div>
         </div>
 
@@ -198,168 +197,88 @@ export const ServicesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* --- 3. Services Grid --- */}
-        <div className="px-6 md:px-12 max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, idx) => (
+        {/* --- 3. Expanded Services List --- */}
+        <div className="px-6 md:px-12 max-w-[1400px] mx-auto space-y-32">
+          {services.map((service, idx) => {
+            const isEven = idx % 2 === 0;
+            return (
               <motion.div
-                layoutId={`card-${service.id}`}
                 key={service.id}
-                onClick={() => setSelectedId(service.id)}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="relative h-[480px] rounded-[2rem] overflow-hidden cursor-pointer group shadow-xl shadow-lux-black/5"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6 }}
+                className={`flex flex-col lg:flex-row gap-12 lg:gap-24 items-center ${isEven ? '' : 'lg:flex-row-reverse'}`}
               >
-                {/* Background Image */}
-                <motion.img
-                  layoutId={`image-${service.id}`}
-                  src={service.image}
-                  alt={service.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-lux-black/90 via-lux-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-
-                {/* Card Content */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                  <motion.span layoutId={`subtitle-${service.id}`} className="text-lux-teal text-xs font-bold uppercase tracking-widest mb-2 inline-block">
-                    {service.subtitle}
-                  </motion.span>
-                  <motion.h3 layoutId={`title-${service.id}`} className="text-3xl font-bold text-white mb-2 leading-none">
-                    {service.title}
-                  </motion.h3>
-                  <motion.div
-                    initial={{ opacity: 0.6 }}
-                    whileHover={{ opacity: 1 }}
-                    className="h-1 w-12 bg-white/20 rounded-full mt-6 group-hover:w-full group-hover:bg-lux-teal transition-all duration-500"
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* --- 4. Detailed Modal Overlay --- */}
-        <AnimatePresence>
-          {selectedId && selectedService && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setSelectedId(null)}
-                className="absolute inset-0 bg-lux-black/80 backdrop-blur-md"
-              />
-              <motion.div
-                layoutId={`card-${selectedService.id}`}
-                className="w-full max-w-5xl bg-neutral-900 border border-white/10 rounded-[2.5rem] overflow-hidden relative z-10 flex flex-col md:flex-row h-[85vh] md:h-[600px] shadow-2xl"
-              >
-                <button
-                  onClick={(e) => { e.stopPropagation(); setSelectedId(null); }}
-                  className="absolute top-6 right-6 z-50 w-12 h-12 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-lux-teal transition-colors border border-white/10"
-                >
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-
                 {/* Image Side */}
-                <div className="w-full md:w-5/12 h-64 md:h-full relative shrink-0">
-                  <motion.img
-                    layoutId={`image-${selectedService.id}`}
-                    src={selectedService.image}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-neutral-900 via-transparent to-transparent opacity-80" />
-
-                  <div className="absolute bottom-8 left-8 right-8 md:hidden">
-                    <motion.span layoutId={`subtitle-${selectedService.id}`} className="text-lux-teal text-xs font-bold uppercase tracking-widest mb-2 block">
-                      {selectedService.subtitle}
-                    </motion.span>
-                    <motion.h3 layoutId={`title-${selectedService.id}`} className="text-3xl font-bold text-white leading-none">
-                      {selectedService.title}
-                    </motion.h3>
+                <div className="w-full lg:w-1/2 relative group">
+                  <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/3] shadow-2xl shadow-lux-black/10">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-lux-black/10 group-hover:bg-transparent transition-colors duration-500" />
                   </div>
+                  {/* Decorative Elements */}
+                  <div className={`absolute -z-10 w-full h-full top-6 ${isEven ? 'left-6' : 'right-6'} border-2 border-lux-teal/20 rounded-[2.5rem]`} />
                 </div>
 
                 {/* Content Side */}
-                <div className="flex-1 p-8 md:p-12 overflow-y-auto bg-neutral-900 custom-scrollbar">
-                  <div className="hidden md:block">
-                    <motion.span layoutId={`subtitle-${selectedService.id}`} className="text-lux-teal text-xs font-bold uppercase tracking-widest mb-3 block">
-                      {selectedService.subtitle}
-                    </motion.span>
-                    <motion.h3 layoutId={`title-${selectedService.id}`} className="text-4xl lg:text-5xl font-bold text-white mb-6">
-                      {selectedService.title}
-                    </motion.h3>
-                  </div>
+                <div className="w-full lg:w-1/2">
+                  <span className="text-lux-teal text-xs font-bold uppercase tracking-widest mb-3 block">
+                    {service.id} — {service.subtitle}
+                  </span>
+                  <h3 className="text-4xl lg:text-5xl font-bold text-lux-black mb-6 leading-tight">
+                    {service.title}
+                  </h3>
+                  <p className="text-neutral-500 text-lg leading-relaxed mb-8">
+                    {service.desc}
+                  </p>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1, duration: 0.5 }}
-                  >
-                    <p className="text-neutral-400 text-lg leading-relaxed mb-10 border-l-2 border-lux-teal pl-6">
-                      {selectedService.desc}
-                    </p>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2, duration: 0.5 }}
-                  >
-                    <h4 className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-white/50 mb-6">
-                      <span className="w-8 h-[1px] bg-white/20"></span>
+                  <div className="mb-10">
+                    <h4 className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-neutral-400 mb-6">
+                      <span className="w-8 h-[1px] bg-neutral-200"></span>
                       What You Get
                     </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                      {selectedService.features.map((f, i) => (
-                        <motion.div
-                          key={f}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.3 + (i * 0.05) }}
-                          className="flex items-start gap-3 text-neutral-300"
-                        >
-                          <svg className="w-5 h-5 text-lux-teal shrink-0 mt-[2px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span className="text-sm font-medium">{f}</span>
-                        </motion.div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+                      {service.features.map((f, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full bg-lux-teal/10 flex items-center justify-center shrink-0 mt-[1px]">
+                            <svg className="w-3 h-3 text-lux-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                          <span className="text-sm font-medium text-neutral-600">{f}</span>
+                        </div>
                       ))}
                     </div>
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-8 border-t border-white/10 bg-neutral-900/50 -mx-4 px-4 sm:mx-0 sm:px-0 sm:bg-transparent"
-                  >
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-8 border-t border-neutral-100">
                     <div>
-                      <span className="block text-[10px] uppercase font-bold text-neutral-500 mb-1">Estimated Investment</span>
-                      <div className="text-3xl font-bold text-white tracking-tight">
+                      <span className="block text-[10px] uppercase font-bold text-neutral-400 mb-1">Starting Investment</span>
+                      <div className="text-3xl font-bold text-lux-black tracking-tight">
                         <span className="text-lg text-neutral-400 mr-1">IDR</span>
-                        {selectedService.price}
-                        <span className="text-sm font-normal text-neutral-500 ml-1">{selectedService.priceUnit}</span>
+                        {service.price}
+                        <span className="text-sm font-normal text-neutral-500 ml-1">{service.priceUnit}</span>
                       </div>
                     </div>
 
                     <a
-                      href={`https://wa.me/6281180009787?text=Halo%20Kisantra%2C%20saya%20tertarik%20dengan%20layanan%20${encodeURIComponent(selectedService.title)}`}
+                      href={`https://wa.me/6281180009787?text=Halo%20Kisantra%2C%20saya%20tertarik%20dengan%20layanan%20${encodeURIComponent(service.title)}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-full sm:w-auto bg-lux-white text-lux-black px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-lux-teal hover:text-white transition-all duration-300 shadow-lg shadow-white/5 text-center"
+                      className="inline-flex items-center justify-center bg-lux-black text-white px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-lux-teal transition-colors duration-300 shadow-xl shadow-lux-black/10"
                     >
                       Book Consultation
                     </a>
-                  </motion.div>
+                  </div>
                 </div>
               </motion.div>
-            </div>
-          )}
-        </AnimatePresence>
+            );
+          })}
+        </div>
 
       </div>
     </section>
@@ -369,7 +288,11 @@ export const ServicesSection: React.FC = () => {
 const Layanan: React.FC = () => {
   return (
     <>
-      <Head title="Layanan" />
+      <Head>
+        <title>Layanan Konsultan Pajak & Keuangan - Kisantra Samarinda</title>
+        <meta name="description" content="Layanan komprehensif mulai dari kepatuhan pajak, audit, hingga digital marketing dan sistem ERP untuk mengoptimalkan performa bisnis Anda." />
+        <meta name="keywords" content="Jasa Pajak Samarinda, Konsultan Keuangan, Jasa Audit, Digital Marketing Samarinda, Pembuatan Sistem ERP, Layanan Kisantra" />
+      </Head>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

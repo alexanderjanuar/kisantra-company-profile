@@ -40,7 +40,11 @@ const ContactPage = () => {
 
     return (
         <div className="bg-lux-white min-h-screen text-lux-black font-sans selection:bg-lux-teal selection:text-white flex flex-col">
-            <Head title="Contact - Kisantra" />
+            <Head>
+                <title>Hubungi Kami - Konsultan Bisnis Samarinda</title>
+                <meta name="description" content="Hubungi Kisantra Consult untuk konsultasi bisnis, pajak, dan keuangan. Kantor pusat kami berlokasi di Samarinda, Kalimantan Timur." />
+                <meta name="keywords" content="Kontak Kisantra, Alamat Konsultan Samarinda, Telepon Kisantra, Email Kisantra, Lokasi Kantor Kisantra" />
+            </Head>
             <Navbar />
 
             <main className="flex-grow pt-32 pb-20 px-6 md:px-12 w-full max-w-[1600px] mx-auto relative">

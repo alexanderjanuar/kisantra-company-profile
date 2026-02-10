@@ -333,7 +333,11 @@ const Articles: React.FC<ArticlesPageProps> = ({ articles = MOCK_ARTICLES }) => 
 
     return (
         <>
-            <Head title="Wawasan & Artikel" />
+            <Head>
+                <title>Wawasan & Artikel Bisnis - Kisantra Insights</title>
+                <meta name="description" content="Dapatkan wawasan terbaru seputar perpajakan, strategi keuangan, dan tren bisnis terkini dari para ahli Kisantra." />
+                <meta name="keywords" content="Artikel Bisnis, Berita Pajak, Tips Keuangan, Wawasan Ekonomi Samarinda, Tren Bisnis Kaltim" />
+            </Head>
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
