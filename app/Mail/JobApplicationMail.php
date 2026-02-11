@@ -47,6 +47,7 @@ class JobApplicationMail extends Mailable
                 'applicantName' => $this->data['applicant_name'],
                 'applicantEmail' => $this->data['applicant_email'],
                 'applicantPhone' => $this->data['applicant_phone'],
+                'applicantAddress' => $this->data['applicant_address'] ?? $this->data['alamat'] ?? '-',
                 'linkedinUrl' => $this->data['linkedin_url'],
                 'source' => $this->data['source'],
                 'coverLetter' => $this->data['cover_letter'],

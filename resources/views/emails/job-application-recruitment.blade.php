@@ -46,6 +46,10 @@
                                         <td style="padding: 6px 0; font-size: 14px; color: #111827;">{{ $applicantPhone ?? '-' }}</td>
                                     </tr>
                                     <tr>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #6b7280;">Address</td>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #111827;">{{ $applicantAddress ?? '-' }}</td>
+                                    </tr>
+                                    <tr>
                                         <td style="padding: 6px 0; font-size: 14px; color: #6b7280;">LinkedIn</td>
                                         <td style="padding: 6px 0; font-size: 14px; color: #111827;">
                                             @if(!empty($linkedinUrl) && $linkedinUrl !== '-')

@@ -12,15 +12,16 @@ class JobApplicationController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'job_id' => 'required',
+            'job_id' => 'required|integer',
             'job_title' => 'required|string',
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'nullable|string|max:20',
+            'phone' => 'required|string|max:20',
+            'alamat' => 'required|string|max:500',
             'linkedin_url' => 'nullable|url',
-            'source' => 'nullable|string',
+            'source' => 'required|string',
             'cover_letter' => 'nullable|string',
-            'files.*' => 'required|file|mimes:pdf,doc,docx|max:10240', // 10MB max per file
+            'files.*' => 'required|file|mimes:pdf,doc,docx|max:5120', // Max 5MB per file
         ]);
 
         try {
@@ -47,6 +48,7 @@ class JobApplicationController extends Controller
                 'applicant_name' => $validated['name'],
                 'applicant_email' => $validated['email'],
                 'applicant_phone' => $validated['phone'] ?? '-',
+                'applicant_address' => $validated['alamat'],
                 'linkedin_url' => $validated['linkedin_url'] ?? '-',
                 'source' => $validated['source'] ?? '-',
                 'cover_letter' => $validated['cover_letter'] ?? '-',
