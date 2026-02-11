@@ -308,7 +308,7 @@ const JobApplicationForm: React.FC<{ job: JobPosting; onBack: () => void; onSubm
                                     <option value="instagram">Instagram</option>
                                     <option value="website">Website Perusahaan</option>
                                     <option value="linkedin">LinkedIn</option>
-                                    <option value="friend">Teman / Referensi</option>
+                                    <option value="referral">Teman / Referensi</option>
                                     <option value="other">Lainnya</option>
                                 </select>
                                 <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-neutral-500">
