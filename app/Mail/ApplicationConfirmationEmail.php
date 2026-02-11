@@ -40,16 +40,6 @@ class ApplicationConfirmationEmail extends Mailable
     }
 
     /**
-     * Build the message.
-     */
-    public function build()
-    {
-        return $this->from('recruitment@kisantra.com', 'PT Kisantra Indonesia')
-                    ->subject('Konfirmasi Lamaran - ' . $this->jobTitle)
-                    ->view('emails.application-confirmation');
-    }
-
-    /**
      * Get the message content definition.
      */
     public function content(): Content
@@ -69,12 +59,9 @@ class ApplicationConfirmationEmail extends Mailable
         // Add uploaded files as attachments
         if (!empty($this->files)) {
             foreach ($this->files as $file) {
-                // Check if file is a Livewire TemporaryUploadedFile
-                if ($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile) {
-                    $attachments[] = Attachment::fromPath($file->getRealPath())
-                        ->as($file->getClientOriginalName())
-                        ->withMime($file->getMimeType());
-                }
+                 $attachments[] = Attachment::fromPath($file['path'])
+                    ->as($file['name'])
+                    ->withMime($file['mime']);
             }
         }
 

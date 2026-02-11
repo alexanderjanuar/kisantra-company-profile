@@ -3,229 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Job Application - {{ $jobTitle }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .email-container {
-            background-color: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .header {
-            background-color: #111827;
-            color: #ffffff;
-            padding: 30px;
-            text-align: center;
-        }
-        .header-badge {
-            display: inline-block;
-            background-color: #0f766e;
-            color: #ffffff;
-            padding: 6px 14px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 4px;
-            margin-bottom: 12px;
-        }
-        .header h1 {
-            margin: 10px 0;
-            font-size: 24px;
-            font-weight: 700;
-        }
-        .header p {
-            margin: 0;
-            opacity: 0.9;
-            font-size: 14px;
-        }
-        .content {
-            padding: 30px;
-        }
-        .applicant-box {
-            background-color: #f9fafb;
-            border-left: 4px solid #0f766e;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 4px;
-        }
-        .applicant-box h2 {
-            margin: 0 0 8px 0;
-            font-size: 20px;
-            color: #111827;
-        }
-        .applicant-box p {
-            margin: 0;
-            color: #6b7280;
-            font-size: 14px;
-        }
-        .section {
-            margin-bottom: 25px;
-        }
-        .section-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e5e7eb;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .info-row {
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #f3f4f6;
-        }
-        .info-row:last-child {
-            border-bottom: none;
-        }
-        .info-label {
-            font-size: 12px;
-            color: #6b7280;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-        .info-value {
-            font-size: 14px;
-            color: #111827;
-            font-weight: 500;
-        }
-        .info-value a {
-            color: #0f766e;
-            text-decoration: none;
-        }
-        .info-value a:hover {
-            text-decoration: underline;
-        }
-        .cover-letter-box {
-            background-color: #f9fafb;
-            border: 2px solid #e5e7eb;
-            padding: 20px;
-            border-radius: 4px;
-            margin-top: 15px;
-        }
-        .cover-letter-text {
-            font-size: 14px;
-            color: #374151;
-            line-height: 1.7;
-            white-space: pre-wrap;
-        }
-        .attachment-notice {
-            background-color: #fffbeb;
-            border: 2px solid #fbbf24;
-            padding: 16px;
-            border-radius: 4px;
-            margin-top: 20px;
-        }
-        .attachment-notice p {
-            margin: 0;
-            color: #92400e;
-            font-size: 13px;
-        }
-        .footer {
-            background-color: #f9fafb;
-            padding: 20px 30px;
-            text-align: center;
-            border-top: 2px solid #e5e7eb;
-        }
-        .footer p {
-            margin: 5px 0;
-            color: #6b7280;
-            font-size: 12px;
-        }
-        .company-name {
-            font-weight: 700;
-            color: #111827;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-    </style>
+    <title>New Job Application</title>
 </head>
-<body>
-    <div class="email-container">
-        <!-- Header -->
-        <div class="header">
-            <div class="header-badge">New Application</div>
-            <h1>Job Application Received</h1>
-            <p>{{ $jobTitle }}</p>
-        </div>
+<body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f9fafb; color: #374151; line-height: 1.6;">
 
-        <!-- Content -->
-        <div class="content">
-            <!-- Applicant Highlight -->
-            <div class="applicant-box">
-                <h2>{{ $applicantName }}</h2>
-                <p>Applied for: {{ $jobTitle }}</p>
-            </div>
+    <!-- Main Wrapper -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f9fafb; padding: 40px 0;">
+        <tr>
+            <td align="center">
+                
+                <!-- Email Container -->
+                <table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff; max-width: 600px; width: 100%; border-radius: 4px; border: 1px solid #e5e7eb;">
+                    
+                    <!-- Header -->
+                    <tr>
+                        <td style="padding: 40px 40px 10px 40px; border-bottom: 2px solid #0d9488;">
+                            <p style="margin: 0; font-size: 12px; font-weight: 700; color: #0d9488; text-transform: uppercase; letter-spacing: 1px;">New Candidate Application</p>
+                            <h1 style="color: #111827; font-size: 20px; font-weight: 600; margin: 8px 0 0 0;">
+                                {{ $jobTitle }}
+                            </h1>
+                        </td>
+                    </tr>
 
-            <!-- Contact Information -->
-            <div class="section">
-                <div class="section-title">Contact Information</div>
-                <div class="info-row">
-                    <div class="info-label">Full Name</div>
-                    <div class="info-value">{{ $applicantName }}</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Email Address</div>
-                    <div class="info-value"><a href="mailto:{{ $applicantEmail }}">{{ $applicantEmail }}</a></div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Phone Number</div>
-                    <div class="info-value"><a href="tel:{{ $applicantPhone }}">{{ $applicantPhone }}</a></div>
-                </div>
-            </div>
+                    <!-- Body Content -->
+                    <tr>
+                        <td style="padding: 30px 40px 40px 40px;">
 
-            <!-- Position Details -->
-            <div class="section">
-                <div class="section-title">Position Applied</div>
-                <div class="info-row">
-                    <div class="info-label">Job Title</div>
-                    <div class="info-value">{{ $jobTitle }}</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Job ID</div>
-                    <div class="info-value">#{{ $jobId }}</div>
-                </div>
-            </div>
+                            <!-- Applicant Summary -->
+                            <div style="margin-bottom: 32px;">
+                                <h2 style="font-size: 16px; font-weight: 600; color: #111827; margin: 0 0 16px 0;">Applicant Details</h2>
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #6b7280; width: 140px;">Full Name</td>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #111827; font-weight: 500;">{{ $applicantName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #6b7280;">Email Address</td>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #111827;"><a href="mailto:{{ $applicantEmail }}" style="color: #111827; text-decoration: none;">{{ $applicantEmail }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #6b7280;">Phone Number</td>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #111827;">{{ $applicantPhone ?? '-' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #6b7280;">LinkedIn</td>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #111827;">
+                                            @if(!empty($linkedinUrl) && $linkedinUrl !== '-')
+                                                <a href="{{ $linkedinUrl }}" target="_blank" style="color: #0d9488; text-decoration: none;">View Profile &rarr;</a>
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #6b7280;">Source</td>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #111827;">{{ ucfirst($source ?? '-') }}</td>
+                                    </tr>
+                                </table>
+                            </div>
 
-            <!-- Cover Letter -->
-            <div class="section">
-                <div class="section-title">Cover Letter</div>
-                <div class="cover-letter-box">
-                    <div class="cover-letter-text">{{ $coverLetter }}</div>
-                </div>
-            </div>
+                            <!-- Cover Letter -->
+                             @if(!empty($coverLetter) && $coverLetter !== '-')
+                                <div style="margin-bottom: 32px;">
+                                    <h2 style="font-size: 16px; font-weight: 600; color: #111827; margin: 0 0 12px 0;">Cover Letter</h2>
+                                    <div style="background-color: #f9fafb; padding: 20px; border-radius: 4px; font-size: 14px; color: #4b5563; white-space: pre-wrap; line-height: 1.7;">{{ $coverLetter }}</div>
+                                </div>
+                            @endif
 
-            <!-- Attachment Notice -->
-            <div class="attachment-notice">
-                <p><strong>📎 ATTACHMENT:</strong> The applicant's resume/CV is attached to this email. Please review the attached document for complete details.</p>
-            </div>
-        </div>
+                            <!-- Attachment Notice -->
+                            <div style="background-color: #f0fdfa; border: 1px solid #ccfbf1; padding: 16px; border-radius: 4px; display: flex; align-items: start; gap: 12px;">
+                                <div style="flex-shrink: 0; padding-top: 2px;">
+                                    <!-- Simple Icon using unicode -->
+                                    <span style="font-size: 16px;">📎</span>
+                                </div>
+                                <div>
+                                    <p style="margin: 0; font-size: 14px; color: #115e59; font-weight: 500;">Attachments Included</p>
+                                    <p style="margin: 4px 0 0 0; font-size: 13px; color: #134e4a;">The applicant's resume/CV and other documents are attached to this email.</p>
+                                </div>
+                            </div>
 
-        <!-- Footer -->
-        <div class="footer">
-            <p class="company-name">PT Kisantra Indonesia</p>
-            <p>Recruitment Management System</p>
-            <p style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e5e7eb;">
-                Email: <a href="mailto:hr.kisantra@gmail.com" style="color: #6b7280;">hr.kisantra@gmail.com</a>
-            </p>
-            <p style="font-style: italic; margin-top: 10px;">
-                This email was sent automatically from the recruitment system.
-            </p>
-        </div>
-    </div>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f9fafb; padding: 20px 40px; text-align: center; border-radius: 0 0 4px 4px; border-top: 1px solid #e5e7eb;">
+                            <p style="margin: 0; font-size: 11px; color: #9ca3af;">
+                                Generated by Kisantra Recruitment System &bull; {{ date('Y') }}
+                            </p>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </td>
+        </tr>
+    </table>
+
 </body>
 </html>

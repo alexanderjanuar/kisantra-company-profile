@@ -13,28 +13,14 @@ class JobApplicationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $jobId;
-    public $jobTitle;
-    public $applicantName;
-    public $applicantEmail;
-    public $applicantPhone;
-    public $coverLetter;
-    public $resumePath;
-    public $resumeName;
+    public $data;
 
     /**
      * Create a new message instance.
      */
     public function __construct($emailData)
     {
-        $this->jobId = $emailData['job_id'];
-        $this->jobTitle = $emailData['job_title'];
-        $this->applicantName = $emailData['applicant_name'];
-        $this->applicantEmail = $emailData['applicant_email'];
-        $this->applicantPhone = $emailData['applicant_phone'];
-        $this->coverLetter = $emailData['cover_letter'];
-        $this->resumePath = $emailData['resume_path'];
-        $this->resumeName = $emailData['resume_name'];
+        $this->data = $emailData;
     }
 
     /**
@@ -43,8 +29,8 @@ class JobApplicationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Job Application: ' . $this->jobTitle . ' - ' . $this->applicantName,
-            replyTo: [$this->applicantEmail],
+            subject: 'New Job Application: ' . $this->data['job_title'] . ' - ' . $this->data['applicant_name'],
+            replyTo: [$this->data['applicant_email']],
         );
     }
 
@@ -55,6 +41,16 @@ class JobApplicationMail extends Mailable
     {
         return new Content(
             view: 'emails.job-application-recruitment',
+            with: [
+                'jobTitle' => $this->data['job_title'],
+                'jobId' => $this->data['job_id'],
+                'applicantName' => $this->data['applicant_name'],
+                'applicantEmail' => $this->data['applicant_email'],
+                'applicantPhone' => $this->data['applicant_phone'],
+                'linkedinUrl' => $this->data['linkedin_url'],
+                'source' => $this->data['source'],
+                'coverLetter' => $this->data['cover_letter'],
+            ],
         );
     }
 
@@ -63,9 +59,14 @@ class JobApplicationMail extends Mailable
      */
     public function attachments(): array
     {
-        return [
-            Attachment::fromPath($this->resumePath)
-                ->as($this->resumeName)
-        ];
+        $attachments = [];
+        if (!empty($this->data['files'])) {
+            foreach ($this->data['files'] as $file) {
+                $attachments[] = Attachment::fromPath($file['path'])
+                    ->as($file['name'])
+                    ->withMime($file['mime']);
+            }
+        }
+        return $attachments;
     }
 }

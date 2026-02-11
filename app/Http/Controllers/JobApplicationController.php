@@ -16,42 +16,69 @@ class JobApplicationController extends Controller
             'job_title' => 'required|string',
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:20',
-            'cover_letter' => 'required|string',
-            'resume' => 'required|file|mimes:pdf,doc,docx|max:5120', // 5MB max
+            'phone' => 'nullable|string|max:20',
+            'linkedin_url' => 'nullable|url',
+            'source' => 'nullable|string',
+            'cover_letter' => 'nullable|string',
+            'files.*' => 'required|file|mimes:pdf,doc,docx|max:10240', // 10MB max per file
         ]);
 
         try {
-            // Store resume file
-            $resumePath = $request->file('resume')->store('resumes', 'public');
+            Log::info('[JobApplication] Step 1: Validation passed', $validated);
 
-            // Prepare email data
+            $uploadedFiles = [];
+            if ($request->hasFile('files')) {
+                foreach ($request->file('files') as $file) {
+                    $path = $file->store('resumes', 'public');
+                    $uploadedFiles[] = [
+                        'path' => storage_path('app/public/' . $path),
+                        'name' => $file->getClientOriginalName(),
+                        'mime' => $file->getMimeType(),
+                    ];
+                }
+                Log::info('[JobApplication] Step 2: Files uploaded', ['files' => array_column($uploadedFiles, 'name')]);
+            } else {
+                Log::info('[JobApplication] Step 2: No files attached');
+            }
+
             $emailData = [
                 'job_id' => $validated['job_id'],
                 'job_title' => $validated['job_title'],
                 'applicant_name' => $validated['name'],
                 'applicant_email' => $validated['email'],
-                'applicant_phone' => $validated['phone'],
-                'cover_letter' => $validated['cover_letter'],
-                'resume_path' => storage_path('app/public/' . $resumePath),
-                'resume_name' => $request->file('resume')->getClientOriginalName(),
+                'applicant_phone' => $validated['phone'] ?? '-',
+                'linkedin_url' => $validated['linkedin_url'] ?? '-',
+                'source' => $validated['source'] ?? '-',
+                'cover_letter' => $validated['cover_letter'] ?? '-',
+                'files' => $uploadedFiles,
             ];
 
-            // Send email to recruitment
-            Mail::to('hr.kisantra@gmail.com')->send(new JobApplicationMail($emailData));
+            Log::info('[JobApplication] Step 3: Email data prepared, sending to HR...');
 
-            return response()->json([
-                'message' => 'Application submitted successfully',
-                'data' => $emailData
-            ], 200);
+            Mail::to('hr.kisantra@gmail.com')
+                ->send(new JobApplicationMail($emailData));
+
+            Log::info('[JobApplication] Step 4: HR email sent, sending confirmation to applicant...');
+
+            Mail::to($validated['email'])
+                ->send(new \App\Mail\ApplicationConfirmationEmail(
+                    $emailData,
+                    $validated['job_title'],
+                    $validated['name'],
+                    $uploadedFiles
+                ));
+
+            Log::info('[JobApplication] Step 5: Confirmation email sent. All done.');
+
+            return redirect()->back()->with('success', 'Application submitted successfully');
 
         } catch (\Exception $e) {
-            Log::error('Job application error: ' . $e->getMessage());
+            Log::error('[JobApplication] FAILED at: ' . $e->getMessage());
+            Log::error('[JobApplication] Stack trace: ' . $e->getTraceAsString());
 
-            return response()->json([
-                'message' => 'Failed to submit application',
-                'error' => $e->getMessage()
-            ], 500);
+            return redirect()->back()->withErrors([
+                'server' => 'Gagal mengirim lamaran. Silakan coba lagi.',
+            ]);
         }
     }
 }

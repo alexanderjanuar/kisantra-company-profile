@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { Navbar } from '../components/Navbar';
 import { Contact } from '../components/Contact';
@@ -149,8 +149,278 @@ const Culture = () => {
     )
 }
 
+// --- Application Form Component ---
+const JobApplicationForm: React.FC<{ job: JobPosting; onBack: () => void; onSubmit: () => void }> = ({ job, onBack, onSubmit }) => {
+    const [files, setFiles] = useState<File[]>([]);
+    const [serverError, setServerError] = useState('');
+
+    const { data, setData, post, processing, progress, errors } = useForm({
+        job_id: job.id,
+        job_title: job.title,
+        name: '',
+        email: '',
+        phone: '',
+        linkedin_url: '',
+        source: '',
+        cover_letter: '',
+        files: [] as File[],
+    });
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            const newFiles = [...files, ...Array.from(e.target.files)];
+            setFiles(newFiles);
+            setData('files', newFiles as any);
+        }
+    };
+
+    const removeFile = (index: number) => {
+        const newFiles = files.filter((_, i) => i !== index);
+        setFiles(newFiles);
+        setData('files', newFiles as any);
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setServerError('');
+
+        post('/api/apply-job', {
+            forceFormData: true,
+            preserveState: true,
+            preserveScroll: true,
+            onSuccess: () => {
+                onSubmit();
+            },
+            onError: (errs) => {
+                if (typeof errs === 'object' && Object.keys(errs).length === 0) {
+                    setServerError('Gagal mengirim lamaran. Silakan coba lagi.');
+                }
+            },
+        });
+    };
+
+    const uploadProgress = progress ? Math.round(progress.percentage ?? 0) : 0;
+
+    return (
+        <form onSubmit={handleSubmit} className="flex flex-col h-full">
+            <div className="p-8 md:p-12 overflow-y-auto custom-scrollbar flex-grow">
+                <button
+                    type="button"
+                    onClick={onBack}
+                    className="mb-8 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-neutral-400 hover:text-lux-teal transition-colors"
+                >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Kembali
+                </button>
+
+                <h3 className="text-3xl md:text-4xl font-bold text-lux-black mb-2">
+                    Lamar Posisi
+                </h3>
+                <p className="text-neutral-500 text-lg mb-8">
+                    {job.title} <span className="text-neutral-300 mx-2">|</span> {job.location}
+                </p>
+
+                {serverError && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+                        {serverError}
+                    </div>
+                )}
+
+                <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-widest text-lux-black">Nama Lengkap</label>
+                            <input
+                                required
+                                type="text"
+                                value={data.name}
+                                onChange={(e) => setData('name', e.target.value)}
+                                className={`w-full bg-neutral-50 border rounded-lg px-4 py-3 focus:outline-none focus:border-lux-teal focus:ring-1 focus:ring-lux-teal transition-all ${errors.name ? 'border-red-400' : 'border-neutral-200'}`}
+                                placeholder="Jhon Doe"
+                            />
+                            {errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-widest text-lux-black">Email</label>
+                            <input
+                                required
+                                type="email"
+                                value={data.email}
+                                onChange={(e) => setData('email', e.target.value)}
+                                className={`w-full bg-neutral-50 border rounded-lg px-4 py-3 focus:outline-none focus:border-lux-teal focus:ring-1 focus:ring-lux-teal transition-all ${errors.email ? 'border-red-400' : 'border-neutral-200'}`}
+                                placeholder="email@example.com"
+                            />
+                            {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+                        </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-xs font-bold uppercase tracking-widest text-lux-black">Nomor Telepon / WhatsApp</label>
+                        <input
+                            required
+                            type="tel"
+                            value={data.phone}
+                            onChange={(e) => setData('phone', e.target.value)}
+                            className={`w-full bg-neutral-50 border rounded-lg px-4 py-3 focus:outline-none focus:border-lux-teal focus:ring-1 focus:ring-lux-teal transition-all ${errors.phone ? 'border-red-400' : 'border-neutral-200'}`}
+                            placeholder="+62 8xx xxxx xxxx"
+                        />
+                        {errors.phone && <p className="text-red-500 text-xs">{errors.phone}</p>}
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-widest text-lux-black">LinkedIn URL (Opsional)</label>
+                            <input
+                                type="url"
+                                value={data.linkedin_url}
+                                onChange={(e) => setData('linkedin_url', e.target.value)}
+                                className={`w-full bg-neutral-50 border rounded-lg px-4 py-3 focus:outline-none focus:border-lux-teal focus:ring-1 focus:ring-lux-teal transition-all ${errors.linkedin_url ? 'border-red-400' : 'border-neutral-200'}`}
+                                placeholder="https://linkedin.com/in/username"
+                            />
+                            {errors.linkedin_url && <p className="text-red-500 text-xs">{errors.linkedin_url}</p>}
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-widest text-lux-black">Info Dari Mana?</label>
+                            <div className="relative">
+                                <select
+                                    required
+                                    value={data.source}
+                                    onChange={(e) => setData('source', e.target.value)}
+                                    className={`w-full bg-neutral-50 border rounded-lg px-4 py-3 appearance-none focus:outline-none focus:border-lux-teal focus:ring-1 focus:ring-lux-teal transition-all ${errors.source ? 'border-red-400' : 'border-neutral-200'}`}
+                                >
+                                    <option value="" disabled>Pilih Sumber</option>
+                                    <option value="instagram">Instagram</option>
+                                    <option value="website">Website Perusahaan</option>
+                                    <option value="linkedin">LinkedIn</option>
+                                    <option value="friend">Teman / Referensi</option>
+                                    <option value="other">Lainnya</option>
+                                </select>
+                                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-neutral-500">
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </div>
+                            {errors.source && <p className="text-red-500 text-xs">{errors.source}</p>}
+                        </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-xs font-bold uppercase tracking-widest text-lux-black">Resume / Portofolio (Max 5MB)</label>
+                        <div className="border-2 border-dashed border-neutral-200 rounded-xl p-8 text-center hover:border-lux-teal hover:bg-lux-teal/5 transition-all cursor-pointer group relative">
+                            <input
+                                type="file"
+                                multiple
+                                onChange={handleFileChange}
+                                accept=".pdf,.doc,.docx"
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                            />
+                            <div className="flex flex-col items-center gap-2">
+                                <svg className="w-8 h-8 text-neutral-400 group-hover:text-lux-teal transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                </svg>
+                                <p className="text-sm font-bold text-lux-black">Upload Files (PDF/DOC)</p>
+                                <p className="text-xs text-neutral-400">Drag & drop or click to select multiple files</p>
+                            </div>
+                        </div>
+                        {(errors as any)['files.0'] && <p className="text-red-500 text-xs">{(errors as any)['files.0']}</p>}
+
+                        {/* Selected Files List */}
+                        {files.length > 0 && (
+                            <div className="mt-4 space-y-2">
+                                {files.map((file, idx) => (
+                                    <div key={idx} className="flex items-center justify-between p-3 bg-neutral-50 border border-neutral-200 rounded-lg">
+                                        <div className="flex items-center gap-3 overflow-hidden">
+                                            <div className="w-8 h-8 bg-lux-teal/10 rounded flex items-center justify-center text-lux-teal">
+                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                                </svg>
+                                            </div>
+                                            <div className="flex flex-col min-w-0">
+                                                <span className="text-sm font-bold text-lux-black truncate">{file.name}</span>
+                                                <span className="text-[10px] text-neutral-400 uppercase tracking-widest">{(file.size / 1024 / 1024).toFixed(2)} MB</span>
+                                            </div>
+                                        </div>
+                                        <button
+                                            type="button"
+                                            onClick={() => removeFile(idx)}
+                                            className="text-neutral-400 hover:text-red-500 transition-colors p-1"
+                                        >
+                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-xs font-bold uppercase tracking-widest text-lux-black">Cover Letter</label>
+                        <textarea
+                            rows={4}
+                            value={data.cover_letter}
+                            onChange={(e) => setData('cover_letter', e.target.value)}
+                            className="w-full bg-neutral-50 border border-neutral-200 rounded-lg px-4 py-3 focus:outline-none focus:border-lux-teal focus:ring-1 focus:ring-lux-teal transition-all resize-none"
+                            placeholder="Ceritakan singkat mengapa Anda cocok untuk posisi ini..."
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="p-8 border-t border-neutral-100 bg-neutral-50 flex flex-col gap-4">
+                {processing && progress && (
+                    <div className="w-full mb-2">
+                        <div className="flex justify-between text-xs font-bold uppercase tracking-widest mb-1">
+                            <span>Uploading...</span>
+                            <span>{uploadProgress}%</span>
+                        </div>
+                        <div className="w-full bg-neutral-200 rounded-full h-2 overflow-hidden">
+                            <motion.div
+                                className="bg-lux-teal h-full"
+                                initial={{ width: 0 }}
+                                animate={{ width: `${uploadProgress}%` }}
+                                transition={{ ease: "easeOut" }}
+                            />
+                        </div>
+                    </div>
+                )}
+
+                <div className="flex justify-end gap-4">
+                    <button
+                        type="button"
+                        onClick={onBack}
+                        className="px-6 py-3 rounded-xl text-neutral-500 font-bold text-xs uppercase tracking-widest hover:text-lux-black transition-colors"
+                        disabled={processing}
+                    >
+                        Batal
+                    </button>
+                    <button
+                        type="submit"
+                        disabled={processing}
+                        className="px-8 py-3 rounded-xl bg-lux-black text-white font-bold text-xs uppercase tracking-widest hover:bg-lux-teal transition-colors shadow-lg shadow-lux-black/20 disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2"
+                    >
+                        {processing ? 'Mengirim...' : 'Kirim Lamaran'}
+                    </button>
+                </div>
+            </div>
+        </form>
+    );
+};
+
 const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
     const [selectedJob, setSelectedJob] = useState<JobPosting | null>(null);
+    const [showApplicationForm, setShowApplicationForm] = useState(false);
+    const [submitSuccess, setSubmitSuccess] = useState(false);
+
+    const handleClose = () => {
+        setSelectedJob(null);
+        setShowApplicationForm(false);
+        setSubmitSuccess(false);
+    };
 
     return (
         <section className="py-32 bg-lux-white px-6 md:px-12 relative">
@@ -203,14 +473,14 @@ const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
                 </div>
 
                 <div className="mt-20 text-center">
-                    <p className="text-neutral-500 mb-6">Tidak menemukan posisi yang cocok?</p>
+                    <p className="text-neutral-500 mb-6">Mengalami gangguan sistem saat melamar?</p>
                     <a href="mailto:hr.kisantra@gmail.com" className="inline-block border-b-2 border-lux-black pb-1 text-lux-black font-bold uppercase tracking-widest hover:text-lux-teal hover:border-lux-teal transition-colors">
                         Email CV Anda
                     </a>
                 </div>
             </div>
 
-            {/* Job Detail Modal */}
+            {/* Modal */}
             <AnimatePresence>
                 {selectedJob && (
                     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
@@ -218,77 +488,129 @@ const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            onClick={() => setSelectedJob(null)}
+                            onClick={handleClose}
                             className="absolute inset-0 bg-lux-black/60 backdrop-blur-sm"
                         />
                         <motion.div
                             layoutId={`job-card-${selectedJob.id}`}
                             className="w-full max-w-3xl bg-white rounded-3xl overflow-hidden relative z-10 shadow-2xl max-h-[90vh] flex flex-col"
                         >
-                            <button
-                                onClick={() => setSelectedJob(null)}
-                                className="absolute top-6 right-6 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors z-20"
-                            >
-                                <svg className="w-5 h-5 text-neutral-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-
-                            <div className="p-8 md:p-12 overflow-y-auto custom-scrollbar">
-                                <span className="inline-block py-1 px-3 bg-lux-teal/10 text-lux-teal text-[10px] font-bold uppercase tracking-widest rounded-full mb-6">
-                                    {selectedJob.department}
-                                </span>
-                                <motion.h3 layoutId={`job-title-${selectedJob.id}`} className="text-3xl md:text-4xl font-bold text-lux-black mb-4">
-                                    {selectedJob.title}
-                                </motion.h3>
-
-                                <div className="flex flex-wrap gap-4 text-sm text-neutral-500 font-mono uppercase tracking-wide mb-10 border-b border-neutral-100 pb-8">
-                                    <div className="flex items-center gap-2">
-                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                                        {selectedJob.type}
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-                                        {selectedJob.work_type}
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                        {selectedJob.location}
-                                    </div>
-                                </div>
-
-                                <div className="space-y-8 text-neutral-600 leading-relaxed">
-                                    <div>
-                                        <h4 className="font-bold text-lux-black text-lg mb-3">Deskripsi Pekerjaan</h4>
-                                        <div
-                                            className="text-sm text-neutral-600 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_li]:mb-1 [&_strong]:font-bold [&_b]:font-bold"
-                                            dangerouslySetInnerHTML={{ __html: selectedJob.description || "Deskripsi tidak tersedia." }}
-                                        />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-lux-black text-lg mb-3">Kualifikasi</h4>
-                                        <div
-                                            className="text-sm text-neutral-600 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_li]:mb-1 [&_strong]:font-bold [&_b]:font-bold"
-                                            dangerouslySetInnerHTML={{ __html: selectedJob.requirements || "Kualifikasi tidak tersedia." }}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="p-8 border-t border-neutral-100 bg-neutral-50 flex justify-end gap-4">
+                            {!showApplicationForm && !submitSuccess && (
                                 <button
-                                    onClick={() => setSelectedJob(null)}
-                                    className="px-6 py-3 rounded-xl text-neutral-500 font-bold text-xs uppercase tracking-widest hover:text-lux-black transition-colors"
+                                    onClick={handleClose}
+                                    className="absolute top-6 right-6 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors z-20"
                                 >
-                                    Tutup
+                                    <svg className="w-5 h-5 text-neutral-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
                                 </button>
-                                <a
-                                    href={`mailto:hr.kisantra@gmail.com?subject=Lamaran Kerja - ${selectedJob.title}&body=Kepada Yth.%0D%0ATim HR PT Kisantra Indonesia%0D%0A%0D%0ADengan hormat,%0D%0A%0D%0ASaya tertarik untuk melamar posisi ${selectedJob.title} di perusahaan Bapak/Ibu.%0D%0A%0D%0ATerlampir CV/Resume saya untuk bahan pertimbangan.%0D%0A%0D%0ATerima kasih atas perhatian dan kesempatan yang diberikan.%0D%0A%0D%0AHormat saya,`}
-                                    className="px-8 py-3 rounded-xl bg-lux-black text-white font-bold text-xs uppercase tracking-widest hover:bg-lux-teal transition-colors shadow-lg shadow-lux-black/20"
-                                >
-                                    Lamar Posisi Ini
-                                </a>
-                            </div>
+                            )}
+
+                            <AnimatePresence mode="wait">
+                                {submitSuccess ? (
+                                    <motion.div
+                                        key="success"
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="flex flex-col items-center justify-center h-full p-12 text-center"
+                                    >
+                                        <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
+                                            <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                        <h3 className="text-3xl font-bold text-lux-black mb-4">Lamaran Terkirim!</h3>
+                                        <p className="text-neutral-500 max-w-md mb-8">
+                                            Terima kasih telah melamar posisi {selectedJob.title}. Tim HR kami akan mereview aplikasi Anda dan menghubungi jika kualifikasi sesuai.
+                                        </p>
+                                        <button
+                                            onClick={handleClose}
+                                            className="px-8 py-3 rounded-xl bg-lux-black text-white font-bold text-xs uppercase tracking-widest hover:bg-lux-teal transition-colors"
+                                        >
+                                            Tutup
+                                        </button>
+                                    </motion.div>
+                                ) : showApplicationForm ? (
+                                    <motion.div
+                                        key="form"
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        className="h-full flex flex-col"
+                                    >
+                                        <JobApplicationForm
+                                            job={selectedJob}
+                                            onBack={() => setShowApplicationForm(false)}
+                                            onSubmit={() => setSubmitSuccess(true)}
+                                        />
+                                    </motion.div>
+                                ) : (
+                                    <motion.div
+                                        key="details"
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: 20 }}
+                                        className="flex flex-col h-full"
+                                    >
+                                        <div className="p-8 md:p-12 overflow-y-auto custom-scrollbar flex-grow">
+                                            <span className="inline-block py-1 px-3 bg-lux-teal/10 text-lux-teal text-[10px] font-bold uppercase tracking-widest rounded-full mb-6">
+                                                {selectedJob.department}
+                                            </span>
+                                            <motion.h3 layoutId={`job-title-${selectedJob.id}`} className="text-3xl md:text-4xl font-bold text-lux-black mb-4">
+                                                {selectedJob.title}
+                                            </motion.h3>
+
+                                            <div className="flex flex-wrap gap-4 text-sm text-neutral-500 font-mono uppercase tracking-wide mb-10 border-b border-neutral-100 pb-8">
+                                                {/* Meta Info (Type, Location, etc) */}
+                                                <div className="flex items-center gap-2">
+                                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                                                    {selectedJob.type}
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                                                    {selectedJob.work_type}
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                                    {selectedJob.location}
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-8 text-neutral-600 leading-relaxed">
+                                                <div>
+                                                    <h4 className="font-bold text-lux-black text-lg mb-3">Deskripsi Pekerjaan</h4>
+                                                    <div
+                                                        className="text-sm text-neutral-600 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_li]:mb-1 [&_strong]:font-bold [&_b]:font-bold"
+                                                        dangerouslySetInnerHTML={{ __html: selectedJob.description || "Deskripsi tidak tersedia." }}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <h4 className="font-bold text-lux-black text-lg mb-3">Kualifikasi</h4>
+                                                    <div
+                                                        className="text-sm text-neutral-600 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_li]:mb-1 [&_strong]:font-bold [&_b]:font-bold"
+                                                        dangerouslySetInnerHTML={{ __html: selectedJob.requirements || "Kualifikasi tidak tersedia." }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="p-8 border-t border-neutral-100 bg-neutral-50 flex justify-end gap-4 shrink-0">
+                                            <button
+                                                onClick={handleClose}
+                                                className="px-6 py-3 rounded-xl text-neutral-500 font-bold text-xs uppercase tracking-widest hover:text-lux-black transition-colors"
+                                            >
+                                                Tutup
+                                            </button>
+                                            <button
+                                                onClick={() => setShowApplicationForm(true)}
+                                                className="px-8 py-3 rounded-xl bg-lux-black text-white font-bold text-xs uppercase tracking-widest hover:bg-lux-teal transition-colors shadow-lg shadow-lux-black/20"
+                                            >
+                                                Lamar Posisi Ini
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </motion.div>
                     </div>
                 )}
