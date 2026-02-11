@@ -96,6 +96,7 @@ class JobApplicationController extends Controller
                 } else {
                     Log::error('[JobApplication] API Step: Failed', [
                         'status' => $response->status(),
+                        'body' => $response->body()
                     ]);
                     // We log but do NOT throw exception to ensure email backup still works
                     // OR we should throw? User said "Apply the api".
