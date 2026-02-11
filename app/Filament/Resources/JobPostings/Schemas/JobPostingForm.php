@@ -31,16 +31,10 @@ class JobPostingForm
                         Select::make('division')
                             ->label('Divisi/Departemen')
                             ->options([
-                                'Engineering' => 'Engineering',
-                                'Product' => 'Product',
-                                'Design' => 'Design',
-                                'Marketing' => 'Marketing',
-                                'Sales' => 'Sales',
-                                'Finance' => 'Finance',
-                                'HR' => 'Human Resources',
-                                'Operations' => 'Operations',
-                                'Customer Success' => 'Customer Success',
-                                'QA' => 'Quality Assurance',
+                                'Digital Marketing' => 'Digital Marketing',
+                                'Sistem Digital' => 'Sistem Digital',
+                                'Administrasi Pajak' => 'Administrasi Pajak',
+                                'HR' => 'HR',
                             ])
                             ->searchable()
                             ->placeholder('Pilih divisi')
