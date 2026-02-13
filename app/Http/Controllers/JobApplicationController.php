@@ -50,10 +50,10 @@ class JobApplicationController extends Controller
                 $division = $job ? $job->division : 'General'; // Default to General if not found
 
                 $departmentMap = [
-                    'Digital Marketing' => 1,
+                    'Digital Marketing' => 3,
                     'Sistem Digital' => 2,
-                    'Administrasi Pajak' => 3,
-                    'HR' => 4,
+                    'Administrasi Pajak' => 4,
+                    'HR' => 1,
                 ];
                 $deptId = $departmentMap[$division] ?? 4; // Default to HR (4) if unknown
 
