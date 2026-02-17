@@ -289,7 +289,7 @@ const Layanan: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Layanan Konsultan Pajak & Keuangan - Kisantra Samarinda</title>
+        <title>Layanan Konsultan Pajak & Keuangan</title>
         <meta name="description" content="Layanan komprehensif mulai dari kepatuhan pajak, audit, hingga digital marketing dan sistem ERP untuk mengoptimalkan performa bisnis Anda." />
         <meta name="keywords" content="Jasa Pajak Samarinda, Konsultan Keuangan, Jasa Audit, Digital Marketing Samarinda, Pembuatan Sistem ERP, Layanan Kisantra" />
       </Head>

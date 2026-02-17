@@ -818,7 +818,7 @@ const About: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Tentang Kami - Kisantra Consult Samarinda</title>
+        <title>Tentang Kami</title>
         <meta name="description" content="Mengenal lebih dekat Kisantra Consult, perusahaan konsultan yang berdedikasi membangun legasi bisnis melalui integritas dan inovasi di Samarinda." />
         <meta name="keywords" content="Profil Kisantra, Sejarah Kisantra, Visi Misi Kisantra, Konsultan Terpercaya Samarinda, Lokasi Kisantra" />
       </Head>

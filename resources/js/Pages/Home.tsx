@@ -101,7 +101,7 @@ const App: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Kisantra Consult - Konsultan Bisnis, Pajak & Keuangan Samarinda</title>
+        <title>Konsultan Bisnis, Pajak & Keuangan Samarinda</title>
         <meta name="description" content="Mitra strategis terpercaya untuk solusi perpajakan, audit keuangan, dan transformasi digital bisnis di Samarinda dan Kalimantan Timur." />
         <meta name="keywords" content="Konsultan Samarinda, Jasa Pajak Samarinda, Audit Keuangan, Konsultan Bisnis Kaltim, ERP System Samarinda, Kisantra Consult" />
       </Head>

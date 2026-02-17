@@ -637,7 +637,7 @@ const Karir: React.FC<KarirProps> = ({ jobPostings }) => {
     return (
         <>
             <Head>
-                <title>Karir & Lowongan Kerja - Kisantra Consult</title>
+                <title>Karir & Lowongan Kerja</title>
                 <meta name="description" content="Bergabunglah dengan tim Kisantra. Temukan peluang karir menarik di bidang konsultan pajak, keuangan, dan teknologi di Samarinda." />
                 <meta name="keywords" content="Lowongan Kerja Samarinda, Karir Konsultan, Loker Akuntan Samarinda, Job Vacancy Kisantra, Karir IT Samarinda" />
             </Head>
