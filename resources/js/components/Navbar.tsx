@@ -111,7 +111,7 @@ export const Navbar: React.FC = () => {
         className="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center pointer-events-none"
       >
         {/* Logo */}
-        <Link href="/" className="pointer-events-auto cursor-pointer group hidden md:block">
+        <Link href="/" className="pointer-events-auto cursor-pointer group block">
           <picture>
             <source srcSet="/image/Logo/Logo Horizontal - Copy.webp" type="image/webp" />
             <source srcSet="/image/Logo/Logo Horizontal.png" type="image/png" />
@@ -151,7 +151,7 @@ export const Navbar: React.FC = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="flex flex-col items-center gap-2 md:gap-6"
+              className="flex flex-col items-center gap-3 md:gap-6"
             >
               {menuItems.map((item, i) => (
                 <div key={i} className="overflow-hidden">
@@ -160,7 +160,7 @@ export const Navbar: React.FC = () => {
                       <Link
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className="block font-bold text-5xl md:text-7xl lg:text-9xl text-lux-white hover:text-lux-teal transition-colors tracking-tighter cursor-pointer"
+                        className="block font-bold text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-lux-white hover:text-lux-teal transition-colors tracking-tighter cursor-pointer"
                       >
                         {item.label}
                       </Link>
@@ -172,7 +172,7 @@ export const Navbar: React.FC = () => {
                       onClick={() => setIsOpen(false)}
                       target={item.isExternal ? '_blank' : undefined}
                       rel={item.isExternal ? 'noopener noreferrer' : undefined}
-                      className="block font-bold text-5xl md:text-7xl lg:text-9xl text-lux-white hover:text-lux-teal transition-colors tracking-tighter cursor-pointer"
+                      className="block font-bold text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-lux-white hover:text-lux-teal transition-colors tracking-tighter cursor-pointer"
                     >
                       {item.label}
                     </motion.a>
@@ -186,7 +186,7 @@ export const Navbar: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.4, duration: 1.2 }}
-              className="absolute bottom-12 left-0 w-full text-center"
+              className="absolute bottom-8 md:bottom-12 left-0 w-full text-center"
             >
               <span className="text-xs uppercase tracking-[0.3em] text-neutral-500 font-sans">
                 Samarinda — Global

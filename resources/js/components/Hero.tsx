@@ -116,15 +116,24 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 4.2, ease: "easeOut" }}
-          className="mt-8 md:mt-12"
+          className="mt-8 md:mt-12 flex flex-col md:flex-row gap-4 justify-center"
         >
           <Link
             href="/kontak"
-            className="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium tracking-widest text-lux-black transition duration-300 ease-out border border-neutral-300 rounded-full hover:border-lux-black hover:shadow-lg"
+            className="group relative inline-flex items-center justify-center px-8 py-3 font-medium tracking-widest text-white transition-all duration-300 bg-lux-black border border-lux-black rounded-full hover:bg-lux-teal hover:border-lux-teal"
+          >
+            <span className="relative z-10 text-xs md:text-sm uppercase">
+              Hubungi Kami
+            </span>
+          </Link>
+
+          <Link
+            href="/tentang-kami"
+            className="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium tracking-widest text-lux-black transition duration-300 ease-out border border-neutral-300 rounded-full hover:border-lux-black"
           >
             <span className="absolute inset-0 w-full h-full bg-lux-black opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
             <span className="relative z-10 text-xs md:text-sm uppercase group-hover:text-white transition-colors duration-300">
-              Hubungi Kami
+              Tentang Kami
             </span>
           </Link>
         </motion.div>
