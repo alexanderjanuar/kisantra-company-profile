@@ -125,10 +125,10 @@
                     </svg>
                     <div>
                         <h4 class="font-semibold text-white mb-1">Alamat Kantor</h4>
-                        <a href="https://maps.app.goo.gl/kyo3XAtAM6zz5hnY6" target="_blank"
+                        <a href="https://maps.app.goo.gl/yEu2MkJ5Y3xEdqW56" target="_blank"
                             class="text-gray-300 text-sm hover:text-[#42B2CD] transition duration-150 ease-in-out">
-                            Jl. A. Wahab Syahranie Perum Pondok Alam Indah Nomor 3D<br>
-                            Sempaja Sel., Kec. Samarinda Utara, Kota Samarinda, Kalimantan Timur 75119<br>
+                            Sebelah Langgar al-as'ad, Gg. Kopta, Air Putih<br>
+                            Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75243<br>
                             Indonesia
                         </a>
                     </div>

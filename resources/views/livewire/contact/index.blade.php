@@ -217,7 +217,7 @@
                     <div>
                         <h2 class="text-xl font-bold text-gray-900 mb-3">Kunjungi Kami</h2>
                         <p class="text-gray-600 mb-4">Berbicara langsung dengan kami di kantor pusat kami.</p>
-                        <a href="https://maps.app.goo.gl/kyo3XAtAM6zz5hnY6" target="_blank"
+                        <a href="https://maps.app.goo.gl/yEu2MkJ5Y3xEdqW56" target="_blank"
                             class="flex items-center text-gray-900 hover:text-blue-600 transition">
                             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -226,9 +226,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
-                            <span class="underline font-medium">Jl. A. Wahab Syahranie Perum Pondok Alam Indah Nomor
-                                3D<br>
-                                Sempaja Sel., Kec. Samarinda Utara, Kota Samarinda, Kalimantan Timur 75119</span>
+                            <span class="underline font-medium">Sebelah Langgar al-as'ad, Gg. Kopta, Air Putih<br>
+                                Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75243</span>
                         </a>
                     </div> 
                 </div>

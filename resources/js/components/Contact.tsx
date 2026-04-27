@@ -21,9 +21,9 @@ export const Contact: React.FC = () => {
             <div>
                  <span className="text-xs uppercase tracking-widest text-lux-teal font-sans font-bold block mb-6">Kantor & Wilayah</span>
                  <p className="text-neutral-300 font-sans font-light leading-relaxed">
-                    Jl. A. Wahab Syahranie Perum Pondok Alam Indah No.mor 3D,<br/>
-                    Sempaja Sel., Kec. Samarinda Utara,<br/>
-                    Kota Samarinda, Kalimantan Timur 75119
+                    Sebelah Langgar al-as'ad, Gg. Kopta,<br/>
+                    Air Putih, Kec. Samarinda Ulu,<br/>
+                    Kota Samarinda, Kalimantan Timur 75243
                  </p>
             </div>
 
@@ -75,14 +75,14 @@ export const Contact: React.FC = () => {
       <div className="w-full h-[300px] relative filter grayscale contrast-125 border-y border-neutral-800">
         <div className="absolute inset-0 bg-neutral-900/40 pointer-events-none z-10 mix-blend-overlay"></div>
         <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.6950118734067!2d117.14601379999998!3d-0.45046249999999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df679c547514d5f%3A0x8025788902b609e1!2sKisantra%20Consulting!5e0!3m2!1sen!2sid!4v1769397363131!5m2!1sen!2sid"
+            src="https://www.google.com/maps?q=Sebelah%20Langgar%20al-as%27ad%2C%20Gg.%20Kopta%2C%20Air%20Putih%2C%20Kec.%20Samarinda%20Ulu%2C%20Kota%20Samarinda%2C%20Kalimantan%20Timur%2075243&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Kisantra Consulting Location"
+            title="Kisantra Consulting Location - Sebelah Langgar al-as'ad"
             className="opacity-60 hover:opacity-100 transition-opacity duration-700"
         ></iframe>
       </div>
