@@ -44,6 +44,7 @@ class JobApplicationMail extends Mailable
             with: [
                 'jobTitle' => $this->data['job_title'],
                 'jobId' => $this->data['job_id'],
+                'batch' => $this->data['batch'] ?? '-',
                 'applicantName' => $this->data['applicant_name'],
                 'applicantEmail' => $this->data['applicant_email'],
                 'applicantPhone' => $this->data['applicant_phone'],

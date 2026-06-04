@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Head, useForm } from '@inertiajs/react';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from '../components/Navbar';
 import { Contact } from '../components/Contact';
 
@@ -13,141 +13,85 @@ interface JobPosting {
     department: string;
     description?: string;
     requirements?: string;
+    batch?: string | null;
+}
+
+interface BatchInfo {
+    name: string;
+    slug: string;
+    description?: string | null;
+    start_date?: string | null;
+    end_date?: string | null;
+    status: string;
+    status_display: string;
+}
+
+interface JobGroup {
+    batch: BatchInfo | null;
+    jobs: JobPosting[];
 }
 
 interface KarirProps {
-    jobPostings: JobPosting[];
+    groups: JobGroup[];
 }
 
-// --- Data ---
-const values = [
-    {
-        title: "Keunggulan",
-        desc: "Kami tidak kompromi pada kualitas. Setiap detail diperhitungkan untuk hasil standar global.",
-        image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop"
-    },
-    {
-        title: "Inovasi",
-        desc: "Mendorong batas kemungkinan dengan teknologi dan strategi kreatif.",
-        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop"
-    },
-    {
-        title: "Integritas",
-        desc: "Kepercayaan adalah mata uang kami. Transparansi dan etika di atas segalanya.",
-        image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop"
-    }
-];
+// --- Helpers ---
+const fmtDate = (d?: string | null) =>
+    d ? new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(d)) : null;
 
-const jobs = [
-    {
-        id: 1,
-        role: "Senior Tax Consultant",
-        department: "Taxation",
-        type: "Full Time",
-        location: "Jakarta / Hybrid"
-    },
-    {
-        id: 2,
-        role: "Financial Auditor",
-        department: "Audit",
-        type: "Full Time",
-        location: "Samarinda"
-    },
-    {
-        id: 3,
-        role: "Frontend Developer",
-        department: "Technology",
-        type: "Contract",
-        location: "Remote"
-    },
-    {
-        id: 4,
-        role: "Marketing Strategist",
-        department: "Marketing",
-        type: "Full Time",
-        location: "Jakarta"
-    }
-];
+const periodLabel = (b: BatchInfo) => {
+    const s = fmtDate(b.start_date);
+    const e = fmtDate(b.end_date);
+    if (s && e) return `${s} – ${e}`;
+    if (s) return `Mulai ${s}`;
+    if (e) return `s/d ${e}`;
+    return null;
+};
 
-const Hero = () => {
-    return (
-        <section className="relative h-auto min-h-[500px] md:h-[80vh] md:min-h-[600px] flex items-center justify-center overflow-hidden bg-lux-white pt-32 pb-20 md:pt-20 md:pb-0">
-            <div className="absolute inset-0 z-0 overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
-                <div className="absolute top-[20%] right-[10%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-lux-teal/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
-                <div className="absolute bottom-[10%] left-[10%] w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-lux-black/5 rounded-full blur-[60px] md:blur-[100px] pointer-events-none" />
-            </div>
+const batchBadgeColor: Record<string, string> = {
+    open: 'bg-lux-teal/10 text-lux-teal-dark',
+    upcoming: 'bg-amber-100 text-amber-700',
+    closed: 'bg-neutral-200 text-neutral-600',
+};
 
-            <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
-                <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="inline-block py-1 px-3 border border-lux-teal text-lux-teal text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] rounded-full mb-6"
-                >
-                    Karir di Kisantra
-                </motion.span>
-                <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-4xl md:text-7xl lg:text-8xl font-black text-lux-black tracking-tight leading-tight md:leading-none mb-6 md:mb-8"
-                >
-                    Bangun Masa Depan <br className="hidden md:block" />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-lux-teal to-lux-black">Bersama Kami</span>
-                </motion.h1>
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="max-w-xl md:max-w-2xl mx-auto text-base md:text-xl text-neutral-500 font-light leading-relaxed px-4 md:px-0"
-                >
-                    Bergabunglah dengan tim visioner yang mendefinisikan ulang standar industri melalui keahlian, integritas, dan inovasi tanpa henti.
-                </motion.p>
-            </div>
-        </section>
-    )
-}
+// --- Hero ---
+const Hero = () => (
+    <section className="relative h-auto min-h-[500px] md:h-[80vh] md:min-h-[600px] flex items-center justify-center overflow-hidden bg-lux-white pt-32 pb-20 md:pt-20 md:pb-0">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
+            <div className="absolute top-[20%] right-[10%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-lux-teal/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-[10%] left-[10%] w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-lux-black/5 rounded-full blur-[60px] md:blur-[100px] pointer-events-none" />
+        </div>
 
-const Culture = () => {
-    return (
-        <section className="py-24 bg-lux-black text-white px-6 md:px-12 rounded-t-[3rem] -mt-12 relative z-20">
-            <div className="max-w-[1400px] mx-auto">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-white/10 pb-12">
-                    <div>
-                        <span className="text-lux-teal text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Budaya Kami</span>
-                        <h2 className="text-4xl md:text-6xl font-bold">Lebih Dari <br /> Sekedar Kerja</h2>
-                    </div>
-                    <p className="mt-8 md:mt-0 max-w-md text-neutral-400 leading-relaxed">
-                        Kami membangun lingkungan di mana potensi terbaik Anda dapat berkembang. Kolaborasi, ambisi, dan keseimbangan adalah inti dari siapa kami.
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {values.map((item, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.2 }}
-                            className="group relative h-[400px] rounded-2xl overflow-hidden cursor-default"
-                        >
-                            <img src={item.image} alt={item.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90" />
-                            <div className="absolute bottom-0 left-0 p-8">
-                                <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
-                                <p className="text-sm text-neutral-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
-                                    {item.desc}
-                                </p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    )
-}
+        <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
+            <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="inline-block py-1 px-3 border border-lux-teal text-lux-teal text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] rounded-full mb-6"
+            >
+                Karir di Kisantra
+            </motion.span>
+            <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-4xl md:text-7xl lg:text-8xl font-black text-lux-black tracking-tight leading-tight md:leading-none mb-6 md:mb-8"
+            >
+                Bangun Masa Depan <br className="hidden md:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-lux-teal to-lux-black">Bersama Kami</span>
+            </motion.h1>
+            <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="max-w-xl md:max-w-2xl mx-auto text-base md:text-xl text-neutral-500 font-light leading-relaxed px-4 md:px-0"
+            >
+                Bergabunglah dengan tim visioner yang mendefinisikan ulang standar industri melalui keahlian, integritas, dan inovasi tanpa henti.
+            </motion.p>
+        </div>
+    </section>
+);
 
 // --- Application Form Component ---
 const JobApplicationForm: React.FC<{ job: JobPosting; onBack: () => void; onSubmit: () => void }> = ({ job, onBack, onSubmit }) => {
@@ -425,7 +369,62 @@ const JobApplicationForm: React.FC<{ job: JobPosting; onBack: () => void; onSubm
     );
 };
 
-const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
+// --- Single job row ---
+const JobRow: React.FC<{ job: JobPosting; onSelect: () => void }> = ({ job, onSelect }) => (
+    <motion.div
+        layoutId={`job-card-${job.id}`}
+        onClick={onSelect}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="group flex flex-col md:flex-row items-stretch md:items-center justify-between py-8 md:py-10 border-b border-neutral-200 hover:border-lux-teal transition-colors duration-300 cursor-pointer"
+    >
+        <div className="mb-6 md:mb-0">
+            <motion.h3 layoutId={`job-title-${job.id}`} className="text-xl md:text-2xl font-bold text-lux-black group-hover:text-lux-teal transition-colors">{job.title}</motion.h3>
+            <div className="flex flex-wrap items-center gap-2 md:gap-4 mt-2 text-xs md:text-sm text-neutral-500 font-mono uppercase tracking-wide">
+                <span>{job.department}</span>
+                <span className="hidden md:inline w-1 h-1 bg-neutral-300 rounded-full" />
+                <span className="hidden md:inline">|</span>
+                <span>{job.type}</span>
+                <span className="bg-neutral-100 text-[10px] px-2 py-0.5 rounded">
+                    {job.location}
+                </span>
+            </div>
+        </div>
+
+        <div className="flex items-center gap-4 text-lux-teal md:text-lux-black md:opacity-0 md:group-hover:opacity-100 md:-translate-x-4 md:group-hover:translate-x-0 transition-all duration-300 mt-2 md:mt-0 font-bold text-sm uppercase tracking-widest">
+            <span className="md:hidden">Lihat Detail &rarr;</span>
+            <span className="hidden md:inline text-xs font-bold uppercase tracking-widest text-lux-black">Lihat Detail</span>
+            <div className="hidden md:flex w-10 h-10 rounded-full border border-lux-black items-center justify-center group-hover:bg-lux-black group-hover:text-white transition-colors">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </div>
+        </div>
+    </motion.div>
+);
+
+// --- Batch header ---
+const BatchHeader: React.FC<{ batch: BatchInfo }> = ({ batch }) => {
+    const period = periodLabel(batch);
+    return (
+        <div className="mb-6 border-l-4 border-lux-teal pl-5">
+            <div className="flex flex-wrap items-center gap-3">
+                <h3 className="text-xl md:text-2xl font-bold text-lux-black">{batch.name}</h3>
+                <span className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] ${batchBadgeColor[batch.status] ?? batchBadgeColor.upcoming}`}>
+                    {batch.status_display}
+                </span>
+            </div>
+            {period && (
+                <span className="mt-1 block font-mono text-xs uppercase tracking-widest text-neutral-400">{period}</span>
+            )}
+            {batch.description && <p className="mt-2 max-w-2xl text-sm text-neutral-500">{batch.description}</p>}
+        </div>
+    );
+};
+
+const Jobs: React.FC<{ groups: JobGroup[] }> = ({ groups }) => {
+    const allJobs = groups.flatMap((g) => g.jobs);
     const [selectedJob, setSelectedJob] = useState<JobPosting | null>(null);
     const [showApplicationForm, setShowApplicationForm] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -435,6 +434,7 @@ const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
         setShowApplicationForm(false);
         setSubmitSuccess(false);
     };
+
     return (
         <section className="py-20 md:py-32 bg-lux-white px-6 md:px-12 relative">
             <div className="max-w-[1200px] mx-auto">
@@ -443,48 +443,32 @@ const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
                     <h2 className="text-3xl md:text-5xl font-bold text-lux-black">Bergabung dengan Tim Kami</h2>
                 </div>
 
-                <div className="flex flex-col">
-                    {jobs.length > 0 ? (
-                        jobs.map((job) => (
-                            <motion.div
-                                key={job.id}
-                                layoutId={`job-card-${job.id}`}
-                                onClick={() => setSelectedJob(job)}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="group flex flex-col md:flex-row items-stretch md:items-center justify-between py-8 md:py-10 border-b border-neutral-200 hover:border-lux-teal transition-colors duration-300 cursor-pointer"
-                            >
-                                <div className="mb-6 md:mb-0">
-                                    <motion.h3 layoutId={`job-title-${job.id}`} className="text-xl md:text-2xl font-bold text-lux-black group-hover:text-lux-teal transition-colors">{job.title}</motion.h3>
-                                    <div className="flex flex-wrap items-center gap-2 md:gap-4 mt-2 text-xs md:text-sm text-neutral-500 font-mono uppercase tracking-wide">
-                                        <span>{job.department}</span>
-                                        <span className="hidden md:inline w-1 h-1 bg-neutral-300 rounded-full" />
-                                        <span className="hidden md:inline">|</span>
-                                        <span>{job.type}</span>
-                                        <span className="bg-neutral-100 text-[10px] px-2 py-0.5 rounded">
-                                            {job.location}
-                                        </span>
-                                    </div>
+                {allJobs.length > 0 ? (
+                    <div className="flex flex-col gap-14 md:gap-20">
+                        {groups.map((group, gi) => (
+                            <div key={gi}>
+                                {group.batch ? (
+                                    <BatchHeader batch={group.batch} />
+                                ) : (
+                                    groups.length > 1 && (
+                                        <div className="mb-6 border-l-4 border-neutral-300 pl-5">
+                                            <h3 className="text-xl md:text-2xl font-bold text-lux-black">Lowongan Lainnya</h3>
+                                        </div>
+                                    )
+                                )}
+                                <div className="flex flex-col">
+                                    {group.jobs.map((job) => (
+                                        <JobRow key={job.id} job={job} onSelect={() => setSelectedJob(job)} />
+                                    ))}
                                 </div>
-
-                                <div className="flex items-center gap-4 text-lux-teal md:text-lux-black md:opacity-0 md:group-hover:opacity-100 md:-translate-x-4 md:group-hover:translate-x-0 transition-all duration-300 mt-2 md:mt-0 font-bold text-sm uppercase tracking-widest">
-                                    <span className="md:hidden">Lihat Detail &rarr;</span>
-                                    <span className="hidden md:inline text-xs font-bold uppercase tracking-widest text-lux-black">Lihat Detail</span>
-                                    <div className="hidden md:flex w-10 h-10 rounded-full border border-lux-black items-center justify-center group-hover:bg-lux-black group-hover:text-white transition-colors">
-                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))
-                    ) : (
-                        <div className="text-center py-12 text-neutral-400">
-                            <p>Saat ini belum ada posisi yang tersedia.</p>
-                        </div>
-                    )}
-                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-12 text-neutral-400">
+                        <p>Saat ini belum ada posisi yang tersedia.</p>
+                    </div>
+                )}
 
                 <div className="mt-16 md:mt-20 text-center">
                     <p className="text-neutral-500 mb-6 text-sm md:text-base">Mengalami gangguan sistem saat melamar?</p>
@@ -567,15 +551,21 @@ const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
                                         className="flex-1 min-h-0 flex flex-col"
                                     >
                                         <div className="p-6 md:p-12 overflow-y-auto custom-scrollbar flex-grow pt-12 text-left">
-                                            <span className="inline-block py-1 px-3 bg-lux-teal/10 text-lux-teal text-[10px] font-bold uppercase tracking-widest rounded-full mb-6">
-                                                {selectedJob!.department}
-                                            </span>
+                                            <div className="mb-6 flex flex-wrap gap-2">
+                                                <span className="inline-block py-1 px-3 bg-lux-teal/10 text-lux-teal text-[10px] font-bold uppercase tracking-widest rounded-full">
+                                                    {selectedJob!.department}
+                                                </span>
+                                                {selectedJob!.batch && (
+                                                    <span className="inline-block py-1 px-3 bg-lux-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full">
+                                                        {selectedJob!.batch}
+                                                    </span>
+                                                )}
+                                            </div>
                                             <motion.h3 layoutId={`job-title-${selectedJob!.id}`} className="text-2xl md:text-4xl font-bold text-lux-black mb-4 leading-tight">
                                                 {selectedJob!.title}
                                             </motion.h3>
 
                                             <div className="flex flex-wrap gap-3 md:gap-4 text-xs md:text-sm text-neutral-500 font-mono uppercase tracking-wide mb-8 md:mb-10 border-b border-neutral-100 pb-6 md:pb-8">
-                                                {/* Meta Info (Type, Location, etc) */}
                                                 <div className="flex items-center gap-2 bg-neutral-50 px-3 py-1.5 rounded-lg border border-neutral-100">
                                                     <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                                                     {selectedJob!.type}
@@ -630,10 +620,10 @@ const Jobs: React.FC<{ jobs: JobPosting[] }> = ({ jobs }) => {
                 )}
             </AnimatePresence>
         </section>
-    )
-}
+    );
+};
 
-const Karir: React.FC<KarirProps> = ({ jobPostings }) => {
+const Karir: React.FC<KarirProps> = ({ groups }) => {
     return (
         <>
             <Head>
@@ -651,8 +641,7 @@ const Karir: React.FC<KarirProps> = ({ jobPostings }) => {
                 <Navbar />
                 <main>
                     <Hero />
-                    {/* <Culture /> */}
-                    <Jobs jobs={jobPostings} />
+                    <Jobs groups={groups} />
                 </main>
                 <Contact />
             </motion.div>

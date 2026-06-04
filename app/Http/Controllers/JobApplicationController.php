@@ -45,9 +45,11 @@ class JobApplicationController extends Controller
             }
 
             // --- EXTERNAL API INTEGRATION ---
+            $batchName = null;
             try {
-                $job = JobPosting::find($validated['job_id']);
+                $job = JobPosting::with('batch')->find($validated['job_id']);
                 $division = $job ? $job->division : 'General'; // Default to General if not found
+                $batchName = $job?->batch?->name;
 
                 $departmentMap = [
                     'Digital Marketing' => 3,
@@ -113,6 +115,7 @@ class JobApplicationController extends Controller
             $emailData = [
                 'job_id' => $validated['job_id'],
                 'job_title' => $validated['job_title'],
+                'batch' => $batchName ?? '-',
                 'applicant_name' => $validated['name'],
                 'applicant_email' => $validated['email'],
                 'applicant_phone' => $validated['phone'] ?? '-',

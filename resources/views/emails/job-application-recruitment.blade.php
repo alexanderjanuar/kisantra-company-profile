@@ -33,6 +33,12 @@
                             <div style="margin-bottom: 32px;">
                                 <h2 style="font-size: 16px; font-weight: 600; color: #111827; margin: 0 0 16px 0;">Applicant Details</h2>
                                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    @if(!empty($batch) && $batch !== '-')
+                                    <tr>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #6b7280; width: 140px;">Batch</td>
+                                        <td style="padding: 6px 0; font-size: 14px; color: #0d9488; font-weight: 600;">{{ $batch }}</td>
+                                    </tr>
+                                    @endif
                                     <tr>
                                         <td style="padding: 6px 0; font-size: 14px; color: #6b7280; width: 140px;">Full Name</td>
                                         <td style="padding: 6px 0; font-size: 14px; color: #111827; font-weight: 500;">{{ $applicantName }}</td>

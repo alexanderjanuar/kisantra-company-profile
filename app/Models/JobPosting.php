@@ -20,7 +20,13 @@ class JobPosting extends Model
         'application_deadline',
         'status',
         'work_type',
+        'recruitment_batch_id',
     ];
+
+    public function batch()
+    {
+        return $this->belongsTo(RecruitmentBatch::class, 'recruitment_batch_id');
+    }
 
     protected $casts = [
         'application_deadline' => 'datetime',

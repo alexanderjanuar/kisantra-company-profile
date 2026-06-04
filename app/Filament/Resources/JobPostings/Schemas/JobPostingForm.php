@@ -98,6 +98,14 @@ class JobPostingForm
                             ->default('draft')
                             ->required(),
 
+                        Select::make('recruitment_batch_id')
+                            ->label('Batch Rekrutmen')
+                            ->relationship('batch', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->nullable()
+                            ->helperText('Opsional — kelompokkan lowongan ini ke dalam sebuah batch/sesi'),
+
                         TextInput::make('salary_min')
                             ->label('Gaji Minimum')
                             ->numeric()

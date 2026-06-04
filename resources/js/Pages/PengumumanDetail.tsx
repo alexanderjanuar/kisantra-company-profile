@@ -228,7 +228,7 @@ const PengumumanDetail: React.FC<PengumumanDetailProps> = ({ announcement, relat
                 {announcement.title}
               </h1>
 
-              <div className="mt-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-white/70">
+              <div className="mt-6 flex flex-wrap items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-white/70">
                 <span>{formatDate(announcement.published_at)}</span>
                 <span className="h-1 w-1 rounded-full bg-white/40" />
                 <span>{readingTime(announcement.content)} menit baca</span>
@@ -253,7 +253,7 @@ const PengumumanDetail: React.FC<PengumumanDetailProps> = ({ announcement, relat
                   [&_p]:mb-5 [&_p]:leading-relaxed
                   [&_strong]:font-bold [&_strong]:text-lux-black
                   [&_a]:font-bold [&_a]:text-lux-teal [&_a:hover]:underline
-                  [&_p>a:only-child]:mt-2 [&_p>a:only-child]:inline-flex [&_p>a:only-child]:items-center [&_p>a:only-child]:gap-2 [&_p>a:only-child]:rounded-xl [&_p>a:only-child]:bg-lux-teal [&_p>a:only-child]:px-7 [&_p>a:only-child]:py-3.5 [&_p>a:only-child]:text-sm [&_p>a:only-child]:font-bold [&_p>a:only-child]:uppercase [&_p>a:only-child]:tracking-[0.1em] [&_p>a:only-child]:text-lux-black [&_p>a:only-child]:no-underline [&_p>a:only-child]:shadow-[0_10px_30px_-12px_rgba(20,184,166,0.6)] [&_p>a:only-child]:transition-all hover:[&_p>a:only-child]:bg-lux-teal-light hover:[&_p>a:only-child]:no-underline hover:[&_p>a:only-child]:-translate-y-0.5
+                  [&_p>a:only-child]:mt-3 [&_p>a:only-child]:inline-flex [&_p>a:only-child]:items-center [&_p>a:only-child]:gap-2 [&_p>a:only-child]:rounded-full [&_p>a:only-child]:bg-lux-black [&_p>a:only-child]:px-8 [&_p>a:only-child]:py-4 [&_p>a:only-child]:text-xs [&_p>a:only-child]:font-bold [&_p>a:only-child]:uppercase [&_p>a:only-child]:tracking-[0.15em] [&_p>a:only-child]:text-white [&_p>a:only-child]:no-underline [&_p>a:only-child]:shadow-lg [&_p>a:only-child]:shadow-lux-black/10 [&_p>a:only-child]:transition-all [&_p>a:only-child]:duration-300 hover:[&_p>a:only-child]:bg-lux-teal hover:[&_p>a:only-child]:text-lux-black hover:[&_p>a:only-child]:no-underline hover:[&_p>a:only-child]:-translate-y-0.5 hover:[&_p>a:only-child]:shadow-xl
                   [&_ul]:my-5 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6
                   [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-6
                   [&_li]:pl-1 [&_li]:marker:text-lux-teal

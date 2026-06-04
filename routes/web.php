@@ -23,25 +23,57 @@ Route::get('/', function () {
 })->name('home.index');
 
 Route::get('/karir', function () {
-    $jobPostings = \App\Models\JobPosting::active()
-        ->select('id', 'title', 'location', 'employment_type', 'work_type', 'description', 'requirements', 'created_at')
+    $jobs = \App\Models\JobPosting::active()
+        ->with('batch')
+        ->select('id', 'title', 'location', 'employment_type', 'work_type', 'description', 'requirements', 'division', 'recruitment_batch_id', 'created_at')
         ->latest()
-        ->get()
-        ->map(function ($job) {
-            return [
-                'id' => $job->id,
-                'title' => $job->title,
-                'location' => $job->location,
-                'type' => $job->employment_type_display, // Using accessor
-                'work_type' => $job->work_type_display, // Using accessor
-                'department' => 'General', // Placeholder as model lacks department
-                'description' => $job->description,
-                'requirements' => $job->requirements,
-            ];
-        });
+        ->get();
+
+    $mapJob = fn ($job) => [
+        'id' => $job->id,
+        'title' => $job->title,
+        'location' => $job->location,
+        'type' => $job->employment_type_display,
+        'work_type' => $job->work_type_display,
+        'department' => $job->division ?: 'Umum',
+        'description' => $job->description,
+        'requirements' => $job->requirements,
+        'batch' => $job->batch?->name,
+    ];
+
+    // Group active jobs by their batch (closed batches fall back to "Lainnya").
+    $grouped = [];
+    $ungrouped = [];
+    foreach ($jobs as $job) {
+        $batch = $job->batch;
+        if ($batch && $batch->status !== 'closed') {
+            if (! isset($grouped[$batch->id])) {
+                $grouped[$batch->id] = [
+                    'batch' => [
+                        'name' => $batch->name,
+                        'slug' => $batch->slug,
+                        'description' => $batch->description,
+                        'start_date' => $batch->start_date,
+                        'end_date' => $batch->end_date,
+                        'status' => $batch->status,
+                        'status_display' => $batch->status_display,
+                    ],
+                    'jobs' => [],
+                ];
+            }
+            $grouped[$batch->id]['jobs'][] = $mapJob($job);
+        } else {
+            $ungrouped[] = $mapJob($job);
+        }
+    }
+
+    $groups = array_values($grouped);
+    if (! empty($ungrouped)) {
+        $groups[] = ['batch' => null, 'jobs' => $ungrouped];
+    }
 
     return Inertia::render('Karir', [
-        'jobPostings' => $jobPostings
+        'groups' => $groups,
     ]);
 })->name('career.index');
 
