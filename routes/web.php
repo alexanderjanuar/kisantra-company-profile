@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KisantraConsultController;
 use App\Http\Controllers\JobApplicationController;
+use App\Models\Announcement;
 use App\Livewire\Career\Index;
 use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Route;
@@ -94,6 +95,70 @@ Route::get('/articles/{slug}', function ($slug) {
         'related_articles' => $relatedArticles
     ]);
 })->name('articles.show');
+
+// Announcements (Pengumuman) routes
+Route::get('/pengumuman', function () {
+    $announcements = Announcement::published()
+        ->withCount('attachments')
+        ->orderByDesc('is_pinned')
+        ->latest('published_at')
+        ->get(['id', 'title', 'slug', 'excerpt', 'featured_image', 'is_pinned', 'published_at'])
+        ->map(fn ($a) => [
+            'id' => $a->id,
+            'title' => $a->title,
+            'slug' => $a->slug,
+            'excerpt' => $a->excerpt,
+            'featured_image' => $a->featured_image,
+            'is_pinned' => (bool) $a->is_pinned,
+            'published_at' => $a->published_at,
+            'attachments_count' => $a->attachments_count,
+        ]);
+
+    return Inertia::render('Pengumuman', [
+        'announcements' => $announcements,
+    ]);
+})->name('announcements.index');
+
+Route::get('/pengumuman/{slug}', function ($slug) {
+    $announcement = Announcement::published()
+        ->where('slug', $slug)
+        ->with('attachments')
+        ->firstOrFail();
+
+    $related = Announcement::published()
+        ->where('id', '!=', $announcement->id)
+        ->orderByDesc('is_pinned')
+        ->latest('published_at')
+        ->limit(3)
+        ->get(['id', 'title', 'slug', 'excerpt', 'featured_image', 'published_at'])
+        ->map(fn ($a) => [
+            'id' => $a->id,
+            'title' => $a->title,
+            'slug' => $a->slug,
+            'excerpt' => $a->excerpt,
+            'featured_image' => $a->featured_image,
+            'published_at' => $a->published_at,
+        ]);
+
+    return Inertia::render('PengumumanDetail', [
+        'announcement' => [
+            'id' => $announcement->id,
+            'title' => $announcement->title,
+            'slug' => $announcement->slug,
+            'excerpt' => $announcement->excerpt,
+            'featured_image' => $announcement->featured_image,
+            'content' => str_replace('//storage/', '/storage/', $announcement->content),
+            'is_pinned' => (bool) $announcement->is_pinned,
+            'published_at' => $announcement->published_at,
+            'attachments' => $announcement->attachments->map(fn ($file) => [
+                'name' => $file->file_name,
+                'url' => $file->url,
+                'description' => $file->description,
+            ]),
+        ],
+        'related_announcements' => $related,
+    ]);
+})->name('announcements.show');
 
 // Legacy berita routes (redirect to new articles routes for SEO)
 Route::get('/berita', function () {
